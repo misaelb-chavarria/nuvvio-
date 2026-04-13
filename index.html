@@ -392,7 +392,11 @@ footer{background:var(--ink);padding:44px 40px 28px}
 <nav>
   <div class="nav-inner">
     <div class="logo">
-      <div class="logo-mark"><svg viewBox="0 0 16 16"><path d="M8 1L2 6v9h4V9h4v6h4V6L8 1z"/></svg></div>
+      <div class="logo-mark" style="background:transparent;border:1px solid rgba(26,107,74,0.25)"><svg width="48" height="48" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M26 3 L49 26 L26 49 L3 26 Z" fill="none" stroke="rgba(26,107,74,0.5)" stroke-width="1.4"/>
+  <path d="M26 13 L39 26 L26 39 L13 26 Z" fill="#1a6b4a"/>
+  <line x1="3" y1="26" x2="49" y2="26" stroke="#1a6b4a" stroke-width="0.8" opacity="0.2"/>
+</svg></div>
       <div class="logo-name">NUV<span>VIO</span></div>
     </div>
     <div class="nav-links">
@@ -768,7 +772,11 @@ footer{background:var(--ink);padding:44px 40px 28px}
     <div class="foot-top">
       <div class="foot-brand">
         <div class="logo">
-          <div class="logo-mark"><svg viewBox="0 0 16 16" style="width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round"><path d="M8 1L2 6v9h4V9h4v6h4V6L8 1z"/></svg></div>
+          <div class="logo-mark" style="background:transparent;border:1px solid rgba(26,107,74,0.25)"><svg width="48" height="48" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M26 3 L49 26 L26 49 L3 26 Z" fill="none" stroke="rgba(26,107,74,0.5)" stroke-width="1.4"/>
+  <path d="M26 13 L39 26 L26 39 L13 26 Z" fill="#1a6b4a"/>
+  <line x1="3" y1="26" x2="49" y2="26" stroke="#1a6b4a" stroke-width="0.8" opacity="0.2"/>
+</svg></div>
           <div class="logo-name" style="color:#fff">NUV<span>VIO</span></div>
         </div>
         <p>Revenue Intelligence Systems. We find where your business loses money and install the system that stops it. Mexico → Global.</p>
@@ -784,7 +792,6 @@ footer{background:var(--ink);padding:44px 40px 28px}
       <div class="foot-col">
         <h4>Contact</h4>
         <a href="https://wa.me/525573764626" target="_blank">WhatsApp</a>
-        <a href="/cdn-cgi/l/email-protection#a2cbccc4cde2ccd7d4d4cbcd8ccdcccecbccc7"><span class="__cf_email__" data-cfemail="147d7a727b547a6162627d7b3a7b7a787d7a71">[email&#160;protected]</span></a>
         <a href="https://www.fiverr.com/misael_depaz" target="_blank">Fiverr</a>
         <a href="https://linkedin.com/in/misaeldepaz" target="_blank">LinkedIn</a>
         <button onclick="openPrivacy()">Privacy Policy</button>
@@ -854,7 +861,7 @@ var _al=[
   {t:17,h:'<span style="color:#1a6b4a">Opportunity:</span> Tuesdays <span style="color:#4ade80">+40% conversion</span>.'},
   {t:22,h:'<span style="color:rgba(255,255,255,0.2)">End of briefing. Powered by Nuvvio.</span>'},
 ];
-var _as='Good morning. Executive revenue briefing. Total revenue this week: forty seven thousand two hundred dollars, up twelve percent. Alert: Polanco underperforming thirty four percent on Fridays. Top product: Regenerating Serum, eighteen point two percent margin. Opportunity: Tuesday evenings show forty percent higher conversion. End of briefing. Powered by Nuvvio.';
+var _as='Good morning. Here is your daily revenue intelligence briefing. This week, total revenue reached forty-seven thousand, two hundred dollars — up twelve percent from last week. One alert requires your attention: the Polanco location is underperforming on Fridays, down thirty-four percent below the weekly average. We recommend reviewing staffing and inventory for that shift. Your top performer continues to be the Regenerating Serum, running at an eighteen-point-two percent margin, well above your category average. There is also a growth opportunity worth noting: Tuesday evenings are converting forty percent higher than the rest of the week. Consider targeted promotions for that window. That concludes your briefing. Powered by Nuvvio Intelligence.';
 
 window.toggleAudio=function(){
   if(!window.speechSynthesis){alert('Use Chrome or Edge for audio.');return;}
@@ -864,10 +871,22 @@ window.toggleAudio=function(){
     return;
   }
   var u=new SpeechSynthesisUtterance(_as);
-  u.rate=0.88;u.pitch=0.95;u.lang='en-US';
-  var vs=speechSynthesis.getVoices().filter(function(v){return v.lang.startsWith('en');});
-  var gv=vs.filter(function(v){return v.name.toLowerCase().indexOf('google')>=0;});
-  if(gv.length)u.voice=gv[0];else if(vs.length)u.voice=vs[0];
+  u.rate=0.92;u.pitch=1.0;u.lang='en-US';u.volume=1;
+  var all=speechSynthesis.getVoices();
+  var preferred=['Google US English','Google English','Microsoft Aria Online','Microsoft Guy Online','Alex','Samantha','Karen'];
+  var chosen=null;
+  for(var i=0;i<preferred.length;i++){
+    var match=all.find(function(v){return v.name===preferred[i];});
+    if(match){chosen=match;break;}
+  }
+  if(!chosen){
+    var usEn=all.filter(function(v){return v.lang==='en-US';});
+    chosen=usEn.find(function(v){return v.name.indexOf('Google')>=0;})||usEn[0];
+  }
+  if(!chosen){
+    chosen=all.filter(function(v){return v.lang.startsWith('en');})[0];
+  }
+  if(chosen)u.voice=chosen;
   u.onend=function(){
     _play=false;clearInterval(_tmr);
     var b=document.getElementById('playBtn');if(b)b.textContent='\u25B6';
