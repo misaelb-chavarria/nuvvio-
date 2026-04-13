@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nuvvio — Business Intelligence That Drives Revenue</title>
+<meta name="description" content="Nuvvio is a Business Intelligence consultancy that finds where your business loses money and builds the system that stops it. Real results: +17% revenue, $793K in hidden losses found.">
+<meta name="keywords" content="business intelligence, data analysis, revenue optimization, BI consultant, Python, data analyst, dashboard, decision systems">
+<meta property="og:title" content="Nuvvio — We Find What Your Data Is Hiding">
+<meta property="og:description" content="Real results: +17% revenue increase, $793K in hidden losses found. No subscriptions. One payment. Full ownership.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nuvvio.online">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════════════ */
+:root{
+  --ink:#0d0d0d; --ink2:#1c1c1c; --ink3:#2e2e2e;
+  --paper:#f6f3ee; --paper2:#edeae3; --paper3:#e2ddd5;
+  --green:#1a6b4a; --green2:#22895f; --green-dim:rgba(26,107,74,0.1); --green-border:rgba(26,107,74,0.25);
+  --gold:#b8922a; --gold-dim:rgba(184,146,42,0.1);
+  --red:#b03a2e; --red-dim:rgba(176,58,46,0.1);
+  --muted:rgba(13,13,13,0.45); --dim:rgba(13,13,13,0.12);
+  --r:4px; --r2:10px;
+  --shadow:0 2px 20px rgba(0,0,0,0.06);
+  --shadow-lg:0 8px 48px rgba(0,0,0,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Outfit',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--green);color:#fff}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--green)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:'Outfit',sans-serif}
+
+/* ═══════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════ */
+.container{max-width:1160px;margin:0 auto;padding:0 40px}
+section{padding:96px 0}
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:62px;background:rgba(246,243,238,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--dim)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:100%;max-width:1160px;margin:0 auto;padding:0 40px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:34px;height:34px;background:var(--ink);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.logo-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;letter-spacing:0.01em}
+.logo-name span{color:var(--green)}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0.03em;transition:.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:var(--paper);font-size:13px;font-weight:600;padding:10px 24px;border-radius:var(--r);border:none;transition:.2s}
+.nav-cta:hover{background:var(--ink2)}
+
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+#hero{min-height:100vh;padding-top:62px;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 56px 80px 80px;position:relative;z-index:2}
+.hero-right{background:var(--ink);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:80px 60px}
+.hero-right-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:52px 52px}
+.hero-right-glow{position:absolute;top:-150px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(26,107,74,0.18) 0%,transparent 60%);pointer-events:none}
+.hero-right-glow2{position:absolute;bottom:-100px;left:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(184,146,42,0.1) 0%,transparent 60%);pointer-events:none}
+.hero-top-line{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green) 0%,rgba(26,107,74,0.2) 60%,transparent 100%)}
+
+.ey{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--green);border:1px solid var(--green-border);display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:2px;margin-bottom:28px;width:fit-content}
+.ey-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(42px,5.5vw,70px);font-weight:900;line-height:0.95;letter-spacing:-0.025em;color:var(--ink);margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero h1 span{display:block}
+.hero-sub{font-size:17px;font-weight:300;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:38px}
+.hero-sub b{color:var(--ink);font-weight:600}
+
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px}
+.btn-dark{background:var(--ink);color:var(--paper);font-size:14px;font-weight:600;padding:14px 32px;border-radius:var(--r);border:none;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-dark:hover{background:var(--ink2);transform:translateY(-1px)}
+.btn-border{border:1.5px solid var(--dim);color:var(--muted);font-size:14px;font-weight:500;padding:13px 28px;border-radius:var(--r);background:transparent;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn-border:hover{border-color:var(--ink);color:var(--ink)}
+
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap}
+.hs{border-left:2px solid var(--green);padding-left:14px}
+.hs-val{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--ink);line-height:1}
+.hs-val .g{color:var(--green)}
+.hs-val .r{color:var(--red)}
+.hs-label{font-size:11px;color:var(--muted);margin-top:3px;font-weight:400}
+
+/* Terminal */
+.terminal{width:100%;max-width:440px;position:relative;z-index:2;border-radius:var(--r2);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
+.term-bar{background:rgba(255,255,255,0.07);padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.tdots{display:flex;gap:6px}
+.td{width:10px;height:10px;border-radius:50%}
+.td1{background:#ff5f57}.td2{background:#febc2e}.td3{background:#28c840}
+.tfile{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.22);margin-left:8px;letter-spacing:.06em}
+.term-body{background:rgba(255,255,255,0.04);padding:20px 20px 24px;font-family:'DM Mono',monospace;font-size:12px;line-height:1.9;min-height:280px}
+.tl{color:rgba(255,255,255,0.35)}
+.tl .p{color:var(--green)}
+.tl .v{color:#4ade80}
+.tl .w{color:#fbbf24}
+.tl .e{color:#f87171}
+.tl .b{color:#60a5fa}
+.tcursor{display:inline-block;width:7px;height:13px;background:var(--green);animation:cur .8s infinite;vertical-align:text-bottom;margin-left:2px}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ═══════════════════════════════════════════════
+   STRIP
+═══════════════════════════════════════════════ */
+.strip{background:var(--ink);padding:20px 40px;display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
+.si{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.si b{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:0;font-style:normal}
+.si .g{color:var(--green)}
+.si .r{color:#f87171}
+
+/* ═══════════════════════════════════════════════
+   PAIN SECTION
+═══════════════════════════════════════════════ */
+#pain{background:var(--paper2);border-top:1px solid var(--dim);border-bottom:1px solid var(--dim)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--dim);margin-top:56px}
+.pain-card{background:var(--paper2);padding:40px 36px;position:relative;overflow:hidden;transition:.3s}
+.pain-card:hover{background:var(--paper)}
+.pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.3s}
+.pain-card:hover::before{transform:scaleX(1)}
+.pain-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--green);opacity:.12;line-height:1;margin-bottom:16px}
+.pain-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:12px;line-height:1.2}
+.pain-desc{font-size:15px;color:var(--muted);line-height:1.75}
+
+/* ═══════════════════════════════════════════════
+   SECTION HEADERS
+═══════════════════════════════════════════════ */
+.sec-ey{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+.sec-h{font-family:'Playfair Display',serif;font-size:clamp(36px,4.5vw,56px);font-weight:900;letter-spacing:-.02em;line-height:1.0;margin-bottom:48px}
+.sec-h em{font-style:italic;color:var(--green)}
+.sec-h-center{text-align:center}
+.sec-intro{font-size:17px;font-weight:300;color:var(--muted);line-height:1.75;max-width:560px;margin-bottom:56px}
+
+/* ═══════════════════════════════════════════════
+   CASES (PROJECTS)
+═══════════════════════════════════════════════ */
+#cases{background:var(--paper)}
+.case-block{border:1px solid var(--dim);border-radius:var(--r2);overflow:hidden;margin-bottom:32px;box-shadow:var(--shadow)}
+.case-block:last-child{margin-bottom:0}
+.case-header{display:grid;grid-template-columns:1fr 1fr;background:var(--ink)}
+.case-meta{padding:40px 48px;position:relative;overflow:hidden}
+.case-meta-glow{position:absolute;top:-80px;right:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(26,107,74,0.2) 0%,transparent 60%);pointer-events:none}
+.case-tag{font-family:'DM Mono',monospace;font-size:9px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:12px}
+.case-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:12px}
+.case-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:24px}
+.case-badge{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(26,107,74,0.8);border:1px solid rgba(26,107,74,0.3);padding:5px 12px;border-radius:2px}
+
+.case-metrics{padding:40px 48px;background:rgba(255,255,255,0.03);display:flex;flex-direction:column;justify-content:center;gap:16px;border-left:1px solid rgba(255,255,255,0.06)}
+.cm{display:flex;align-items:flex-start;gap:16px;padding:16px 20px;background:rgba(255,255,255,0.04);border-radius:var(--r);border:1px solid rgba(255,255,255,0.06)}
+.cm-val{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;line-height:1;min-width:90px;flex-shrink:0}
+.cm-val.g{color:#4ade80}
+.cm-val.r{color:#f87171}
+.cm-val.y{color:#fbbf24}
+.cm-val.w{color:#fff}
+.cm-body h4{font-size:13px;font-weight:600;color:rgba(255,255,255,0.85);margin-bottom:3px}
+.cm-body p{font-size:12px;color:rgba(255,255,255,0.38);line-height:1.5}
+
+.case-footer{padding:28px 48px;background:var(--paper2);border-top:1px solid var(--dim);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.case-story{font-size:14px;color:var(--muted);line-height:1.65;max-width:560px}
+.case-story b{color:var(--ink);font-weight:600}
+.case-link{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);font-size:13px;font-weight:600;padding:11px 24px;border-radius:var(--r);white-space:nowrap;transition:.2s}
+.case-link:hover{background:var(--ink2)}
+.case-link-ghost{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--dim);color:var(--muted);font-size:13px;font-weight:500;padding:10px 20px;border-radius:var(--r);white-space:nowrap;transition:.2s}
+.case-link-ghost:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ═══════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════ */
+#how{background:var(--paper2);border-top:1px solid var(--dim);border-bottom:1px solid var(--dim)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:0;position:relative}
+.steps::before{content:'';position:absolute;top:60px;left:calc(100%/6);right:calc(100%/6);height:1px;background:linear-gradient(90deg,transparent,var(--dim),var(--dim),transparent)}
+.step{padding:48px 40px;position:relative}
+.step-num{font-family:'Playfair Display',serif;font-size:88px;font-weight:900;color:var(--green);opacity:.08;line-height:1;position:absolute;top:24px;left:28px;letter-spacing:-.04em}
+.step-ico{width:52px;height:52px;background:var(--paper3);border:1px solid var(--dim);border-radius:var(--r2);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:20px;position:relative;z-index:1}
+.step-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:12px;line-height:1.2;position:relative;z-index:1}
+.step-desc{font-size:14px;color:var(--muted);line-height:1.75;position:relative;z-index:1}
+.step-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;position:relative;z-index:1}
+.stag{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);border:1px solid var(--green-border);padding:3px 10px;border-radius:2px;letter-spacing:.08em}
+
+/* ═══════════════════════════════════════════════
+   VS TABLE
+═══════════════════════════════════════════════ */
+#vs{background:var(--paper)}
+.vs-wrap{margin-top:48px;overflow-x:auto;border-radius:var(--r2);border:1px solid var(--dim);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--ink)}
+th{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:16px 20px;text-align:left;color:rgba(255,255,255,0.4);font-weight:500}
+th.me-col{color:var(--green)}
+td{padding:14px 20px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--dim)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--paper2)}
+td:first-child{font-weight:500;color:var(--ink)}
+td.me-col{font-weight:500;color:var(--ink)}
+.yes{color:var(--green);font-weight:600}
+.no{color:var(--red)}
+.me-bg{background:var(--green-dim)}
+.me-bg:hover{background:rgba(26,107,74,0.14) !important}
+
+/* ═══════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════ */
+#about{background:var(--ink);position:relative;overflow:hidden}
+.about-glow{position:absolute;top:-200px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(26,107,74,0.15) 0%,transparent 60%);pointer-events:none}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+.about-left .sec-ey{color:rgba(26,107,74,0.7)}
+.about-left .sec-h{color:#fff;margin-bottom:24px}
+.about-left .sec-h em{color:var(--green)}
+.about-story{font-size:16px;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:20px}
+.about-story b{color:rgba(255,255,255,0.8);font-weight:500}
+.about-right{display:flex;flex-direction:column;gap:16px}
+.about-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r2);padding:24px 28px;transition:.2s}
+.about-card:hover{background:rgba(255,255,255,0.06)}
+.ac-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:4px}
+.ac-role{font-family:'DM Mono',monospace;font-size:10px;color:rgba(26,107,74,0.7);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.ac-bio{font-size:13px;color:rgba(255,255,255,0.38);line-height:1.65}
+
+/* ═══════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════ */
+#contact{background:var(--paper2);border-top:1px solid var(--dim)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-top:48px}
+.contact-options{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.co{display:flex;align-items:center;gap:16px;padding:16px 20px;background:var(--paper);border:1px solid var(--dim);border-radius:var(--r2);transition:.2s;text-decoration:none;color:inherit}
+.co:hover{border-color:var(--ink);box-shadow:var(--shadow)}
+.co-icon{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.co-icon.green{background:var(--green-dim)}
+.co-icon.wa{background:rgba(37,211,102,0.1)}
+.co-icon.fv{background:rgba(29,191,115,0.1)}
+.co-body{}
+.co-label{font-size:12px;color:var(--muted);margin-bottom:2px}
+.co-value{font-size:14px;font-weight:600;color:var(--ink)}
+.contact-note{font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px}
+
+/* Form */
+.form-panel{background:var(--paper);border:1px solid var(--dim);border-radius:var(--r2);padding:36px;box-shadow:var(--shadow)}
+.form-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.form-sub{font-size:14px;color:var(--muted);margin-bottom:28px}
+.field{margin-bottom:18px}
+.field label{display:block;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.field input,.field select,.field textarea{width:100%;background:var(--paper2);border:1px solid var(--dim);border-radius:var(--r);padding:12px 14px;color:var(--ink);font-size:14px;font-family:'Outfit',sans-serif;font-weight:400;outline:none;transition:.2s;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);background:var(--paper)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.submit-btn{width:100%;background:var(--ink);color:var(--paper);font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;padding:15px;border-radius:var(--r);border:none;transition:.2s;cursor:pointer}
+.submit-btn:hover{background:var(--ink2)}
+.form-success{display:none;text-align:center;padding:32px;font-size:15px;color:var(--green);font-weight:500}
+
+/* ═══════════════════════════════════════════════
+   PRIVACY MODAL
+═══════════════════════════════════════════════ */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--paper);border-radius:var(--r2);max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:48px;position:relative}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:1px solid var(--dim);border-radius:var(--r);width:36px;height:36px;font-size:18px;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
+.modal-close:hover{border-color:var(--ink);color:var(--ink)}
+.modal h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;margin-bottom:8px}
+.modal-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:28px}
+.modal h3{font-size:16px;font-weight:600;margin:20px 0 8px}
+.modal p,.modal li{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+.modal ul{padding-left:20px}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer{background:var(--ink);padding:48px 40px 32px}
+.footer-inner{max-width:1160px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{margin-bottom:16px}
+.footer-brand .logo-mark{background:rgba(255,255,255,0.1)}
+.footer-brand .logo-name{color:#fff}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.7;max-width:300px}
+.footer-col h4{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:16px}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:10px;transition:.2s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:.06em}
+.footer-privacy{font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer;background:none;border:none;transition:.2s}
+.footer-privacy:hover{color:#fff}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr}.hero-right{display:none}
+  .hero-left{padding:60px 40px}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+  section{padding:64px 0}
+  .pain-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .steps::before{display:none}
+  .case-header{grid-template-columns:1fr}
+  .case-metrics{border-left:none;border-top:1px solid rgba(255,255,255,0.06)}
+  .strip{gap:24px;padding:16px 20px}
+  .field-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .hero-left{padding:48px 20px}
+  .nav-inner{padding:0 20px}
+  .nav-links{display:none}
+  footer{padding:40px 20px 24px}
+}
+
+/* ═══════════════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 18 18"><path d="M9 2L3 7v9h4v-5h4v5h4V7L9 2z"/></svg>
+      </div>
+      <div class="logo-name">NUV<span>VIO</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#cases">Work</a>
+      <a href="#how">Process</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#privacy-link" onclick="openPrivacy()">Privacy</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Work with us →</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="ey"><div class="ey-dot"></div>Business Intelligence Consultancy</div>
+    <h1>
+      <span>Your data knows</span>
+      <span>where you're</span>
+      <span><em>losing money.</em></span>
+    </h1>
+    <p class="hero-sub">
+      We don't build dashboards. We <b>diagnose businesses</b> — find the revenue leaks hiding in plain sight, then build the intelligence system that surfaces them automatically, every single day.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-dark" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Free Data Audit →</button>
+      <button class="btn-border" onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">See Real Results</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-val"><span class="r">$793K</span></div><div class="hs-label">Hidden losses found</div></div>
+      <div class="hs"><div class="hs-val"><span class="g">+17%</span></div><div class="hs-label">Revenue increase · Verified</div></div>
+      <div class="hs"><div class="hs-val">59K+</div><div class="hs-label">Transactions analyzed</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-right-grid"></div>
+    <div class="hero-right-glow"></div>
+    <div class="hero-right-glow2"></div>
+    <div class="hero-top-line"></div>
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="tdots"><div class="td td1"></div><div class="td td2"></div><div class="td td3"></div></div>
+        <div class="tfile">nuvvio_intelligence_scan.py</div>
+      </div>
+      <div class="term-body" id="termBody">
+        <div class="tl"><span class="p">❯</span> python analyze.py --client=retail_5loc</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="si"><b class="r">$793K</b> in profit destruction found</div>
+  <div class="si"><b class="g">+17%</b> revenue increase · verified</div>
+  <div class="si"><b>59K+</b> transactions analyzed</div>
+  <div class="si"><b>0</b> subscriptions required</div>
+</div>
+
+<!-- PAIN -->
+<section id="pain" class="reveal">
+  <div class="container">
+    <div class="sec-ey">The real problem</div>
+    <div class="sec-h">Your data exists.<br>The <em>answers don't.</em></div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-num">01</div>
+        <div class="pain-title">Decisions made on instinct, not intelligence</div>
+        <div class="pain-desc">Without real-time intelligence, every major call is a guess. Markets reward precision — your competitors are already acting on data you haven't read yet.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">02</div>
+        <div class="pain-title">Problems appear weeks after they start</div>
+        <div class="pain-desc">The $793K discount problem existed for 4 years. Silently destroying profit while sales reports looked healthy. By the time Excel caught it, millions were gone.</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-num">03</div>
+        <div class="pain-title">Your best opportunities stay invisible</div>
+        <div class="pain-desc">Canada was generating 26.6% margin — the highest of 147 markets — and receiving zero strategic attention. Hidden gems don't reveal themselves. You have to find them.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases" class="reveal">
+  <div class="container">
+    <div class="sec-ey">Real work · Real results</div>
+    <div class="sec-h">Two projects.<br><em>Zero guessing.</em></div>
+
+    <!-- CASE 1: VERDANTÍA -->
+    <div class="case-block reveal">
+      <div class="case-header">
+        <div class="case-meta">
+          <div class="case-meta-glow"></div>
+          <div class="case-tag">Case 01 · Retail · 5 Locations · Mexico City</div>
+          <div class="case-title">Verdantía — Audio-Driven Business Intelligence</div>
+          <div class="case-sub">A retail brand with 5 locations was making inventory and pricing decisions based on experience. Their data existed — in separate spreadsheets, never consolidated, never actionable.</div>
+          <div class="case-badge">✦ Colorblind-safe design · WCAG AA compliant · Accessible KPIs</div>
+        </div>
+        <div class="case-metrics">
+          <div class="cm"><div class="cm-val g">+17%</div><div class="cm-body"><h4>Revenue increase — verified</h4><p>Data-driven decisions directly improved revenue trajectory within the first quarter of implementation.</p></div></div>
+          <div class="cm"><div class="cm-val w">5×</div><div class="cm-body"><h4>Locations unified in real time</h4><p>All 5 branches feed one live dashboard with automated Google Sheets sync and password-protected access.</p></div></div>
+          <div class="cm"><div class="cm-val" style="color:#60a5fa">🔊</div><div class="cm-body"><h4>Audio executive briefing — daily</h4><p>Spoken summary every morning: revenue, alerts, top product, recommended action. No charts needed.</p></div></div>
+          <div class="cm"><div class="cm-val" style="color:#fbbf24">24h</div><div class="cm-body"><h4>Delivery from raw data to live system</h4><p>Including automated Telegram and email alerts, KPI tracking and multi-location comparison.</p></div></div>
+        </div>
+      </div>
+      <div class="case-footer">
+        <div class="case-story">
+          <b>No Power BI. No Tableau. No subscriptions.</b> One payment — full ownership forever. The client owns the code, the domain, the data. The system works while they sleep, surfaces insights before they open their doors.
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://verdantia-seven.vercel.app/" target="_blank" class="case-link">View Live Demo →</a>
+          <div style="font-size:12px;color:var(--muted);display:flex;flex-direction:column;justify-content:center"><span>User: <b>VERDANTIA</b></span><span>Pass: <b>12345c</b></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE 2: SUPERSTORE -->
+    <div class="case-block reveal">
+      <div class="case-header">
+        <div class="case-meta" style="background:rgba(255,255,255,0.01)">
+          <div class="case-meta-glow" style="background:radial-gradient(circle,rgba(184,146,42,0.15) 0%,transparent 60%)"></div>
+          <div class="case-tag">Case 02 · Global Retail · 147 Countries · Python + Pandas</div>
+          <div class="case-title">SuperStore Global — Executive Intelligence Analysis</div>
+          <div class="case-sub">A global retail company had 4 years of sales data across 147 countries and no idea it was losing money on an entire product line — while actively promoting it.</div>
+          <div class="case-badge" style="color:rgba(184,146,42,0.7);border-color:rgba(184,146,42,0.25)">✦ Pre-attentive attributes · Color-coded alerts · CEO-ready in 30 seconds</div>
+        </div>
+        <div class="case-metrics" style="background:rgba(255,255,255,0.02)">
+          <div class="cm"><div class="cm-val r">-$793K</div><div class="cm-body"><h4>Profit destroyed by their own discount policy</h4><p>At 50%+ discount, for every $1 sold the company lost $1.11. A growth strategy was a financial black hole.</p></div></div>
+          <div class="cm"><div class="cm-val r">-$64K</div><div class="cm-body"><h4>Tables sub-category: hidden loss machine</h4><p>Every unit sold generated a loss at -8.5% margin. Selling more meant losing more — for years, undetected.</p></div></div>
+          <div class="cm"><div class="cm-val y">26.6%</div><div class="cm-body"><h4>Canada: highest margin market — ignored</h4><p>The best-performing market of 147 received the least strategic attention. A hidden expansion opportunity.</p></div></div>
+          <div class="cm"><div class="cm-val w">$12.6M</div><div class="cm-body"><h4>Total revenue mapped and analyzed</h4><p>51,290 transactions across all markets, segments and categories — with margin, growth and alerts.</p></div></div>
+        </div>
+      </div>
+      <div class="case-footer">
+        <div class="case-story">
+          Delivered a <b>custom Executive Intelligence Dashboard</b> — dark corporate design, color-coded alerts, 6 interactive charts with pre-attentive visual attributes for instant pattern recognition. Decisions a CEO can make in <b>30 seconds.</b> No Power BI. No Tableau. No subscriptions.
+        </div>
+        <a href="https://super-store-eight.vercel.app/" target="_blank" class="case-link">View Live Dashboard →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="reveal">
+  <div class="container">
+    <div class="sec-ey">The process</div>
+    <div class="sec-h">Three steps from<br><em>data to decisions.</em></div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-ico">🔍</div>
+        <div class="step-title">Forensic Data Analysis</div>
+        <div class="step-desc">You send your data — any format. CSV, Excel, Google Sheets, database exports. We run a full forensic analysis using Python and Pandas: margin by product, revenue by segment, anomaly detection, discount impact, hidden patterns. This is where we find what's costing you money.</div>
+        <div class="step-tags"><span class="stag">Python</span><span class="stag">Pandas</span><span class="stag">Statistical Analysis</span><span class="stag">Pattern Detection</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-ico">⚡</div>
+        <div class="step-title">Intelligence System Build</div>
+        <div class="step-desc">We build your system. A custom branded dashboard — no Power BI, no Tableau, no third-party subscriptions. Audio executive summary, color-coded alerts with pre-attentive visual design, colorblind-safe palettes, WCAG-compliant KPIs. Connected to your Google Sheets and updated in real time.</div>
+        <div class="step-tags"><span class="stag">HTML Dashboard</span><span class="stag">Audio BI</span><span class="stag">Accessibility</span><span class="stag">Real-time</span></div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-ico">📈</div>
+        <div class="step-title">Automated Intelligence</div>
+        <div class="step-desc">Your system goes live. Telegram or email alerts fire when something needs attention. Every morning you receive your executive briefing. You own the entire system — the code, the domain, the data. No ongoing fees. No vendor lock-in. No dependency. Yours forever.</div>
+        <div class="step-tags"><span class="stag">Telegram Alerts</span><span class="stag">Email Automation</span><span class="stag">Full Ownership</span><span class="stag">No Subscriptions</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VS TABLE -->
+<section id="vs" class="reveal">
+  <div class="container">
+    <div class="sec-ey">Why Nuvvio</div>
+    <div class="sec-h">Not a tool. Not a template.<br><em>An intelligence system.</em></div>
+    <div class="vs-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="me-col">Nuvvio</th>
+            <th>Power BI / Tableau</th>
+            <th>Generic Freelancer</th>
+            <th>In-House Analyst</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Forensic data analysis included</td><td class="me-col me-bg"><span class="yes">✓ Always</span></td><td><span class="no">✗ Tool only</span></td><td>Sometimes</td><td>Depends on scope</td></tr>
+          <tr><td>Subscription-free, full ownership</td><td class="me-col me-bg"><span class="yes">✓ One payment</span></td><td><span class="no">✗ $50–200/mo</span></td><td>Usually SaaS</td><td><span class="no">✗ License fees</span></td></tr>
+          <tr><td>Audio executive summaries</td><td class="me-col me-bg"><span class="yes">✓ Built-in</span></td><td><span class="no">✗ Not available</span></td><td><span class="no">✗ Not available</span></td><td><span class="no">✗ Not available</span></td></tr>
+          <tr><td>Colorblind-safe design (WCAG AA)</td><td class="me-col me-bg"><span class="yes">✓ Standard</span></td><td>Optional add-on</td><td>Rarely considered</td><td>Varies</td></tr>
+          <tr><td>Pre-attentive visual attributes</td><td class="me-col me-bg"><span class="yes">✓ Every project</span></td><td>Partial</td><td>Rarely</td><td>Sometimes</td></tr>
+          <tr><td>Automated alerts (Telegram/Email)</td><td class="me-col me-bg"><span class="yes">✓ Included</span></td><td>Paid add-on</td><td>Rarely</td><td>Custom dev needed</td></tr>
+          <tr><td>Revenue impact focus</td><td class="me-col me-bg"><span class="yes">✓ Primary goal</span></td><td><span class="no">✗ Visualization only</span></td><td>Visualization only</td><td>Reporting focus</td></tr>
+          <tr><td>Delivery time</td><td class="me-col me-bg"><span class="yes">24h–7 days</span></td><td>Weeks of setup</td><td>2–4 weeks</td><td>Months to hire</td></tr>
+          <tr><td>Price</td><td class="me-col me-bg"><span class="yes">$200–$400 USD fixed</span></td><td><span class="no">$600+/year forever</span></td><td>$300–2,000 + tools</td><td>$40K+/year salary</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="sec-ey">About Nuvvio</div>
+        <div class="sec-h">Built from frustration.<br><em>Driven by results.</em></div>
+        <p class="about-story">Nuvvio was born in 2024 from a simple observation: <b>businesses were drowning in data and starving for answers.</b> Every company we encountered had spreadsheets, POS exports, and monthly reports — yet nobody could tell us which product was their most profitable, or which client was actually costing them money.</p>
+        <p class="about-story">We started with one question: <b>what if the intelligence system that Fortune 500 companies pay millions for could be built for any business, at a fraction of the cost, without subscriptions?</b> The answer became Nuvvio — a consultancy that combines deep business understanding with technical precision to deliver systems that pay for themselves in weeks.</p>
+        <p class="about-story">We don't sell software. We don't sell dashboards. <b>We sell clarity.</b></p>
+      </div>
+      <div class="about-right reveal reveal-delay-2">
+        <div class="about-card">
+          <div class="ac-name">Misael Depaz</div>
+          <div class="ac-role">Founder · Revenue Intelligence Analyst</div>
+          <div class="ac-bio">5 years as Cabin Crew at Aeromexico — executing critical operational procedures under pressure, with zero margin for error across 40+ routes. That discipline for structured decision-making, protocol execution and operational clarity is now applied to business data. Currently studying at Tecnológico de Monterrey. Real results across retail, logistics and e-commerce clients globally.</div>
+        </div>
+        <div class="about-card" style="background:rgba(255,255,255,0.06)">
+          <div class="ac-name" style="font-size:16px;color:rgba(255,255,255,0.7)">Our Philosophy</div>
+          <div class="ac-bio" style="margin-top:8px">We believe every business decision should be supported by data. Not because it sounds smart — but because data-driven decisions are consistently better than gut-feel decisions. Our job is to make that intelligence accessible, automatic, and affordable for businesses of any size.</div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div style="background:var(--green-dim);border:1px solid var(--green-border);border-radius:var(--r);padding:10px 16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em">Python · Pandas · SQL</div>
+          <div style="background:var(--green-dim);border:1px solid var(--green-border);border-radius:var(--r);padding:10px 16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em">HTML · CSS · JS</div>
+          <div style="background:var(--green-dim);border:1px solid var(--green-border);border-radius:var(--r);padding:10px 16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em">Google Sheets · APIs</div>
+          <div style="background:var(--green-dim);border:1px solid var(--green-border);border-radius:var(--r);padding:10px 16px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.1em">Telegram · Email Automation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="container">
+    <div class="sec-ey">Start here</div>
+    <div class="sec-h">Three ways to<br><em>reach us today.</em></div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-options">
+          <a href="https://wa.me/525573764626?text=Hi%2C%20I%20found%20Nuvvio%20and%20I'm%20interested%20in%20a%20free%20data%20audit" target="_blank" class="co">
+            <div class="co-icon wa">💬</div>
+            <div class="co-body">
+              <div class="co-label">WhatsApp — Fastest response</div>
+              <div class="co-value">+52 55 7376 4626</div>
+            </div>
+          </a>
+          <a href="mailto:info@nuvvio.online" class="co">
+            <div class="co-icon green">✉️</div>
+            <div class="co-body">
+              <div class="co-label">Email</div>
+              <div class="co-value">info@nuvvio.online</div>
+            </div>
+          </a>
+          <a href="https://www.fiverr.com/misael_depaz" target="_blank" class="co">
+            <div class="co-icon fv">🛒</div>
+            <div class="co-body">
+              <div class="co-label">Fiverr — Secure payment guaranteed</div>
+              <div class="co-value">fiverr.com/misael_depaz</div>
+            </div>
+          </a>
+        </div>
+        <p class="contact-note">We reply within 1 hour during business hours. Free initial audit included — no commitment required. Fixed price, no surprises: $200–$400 USD depending on scope.</p>
+      </div>
+      <div class="form-panel">
+        <div class="form-title">Send us a message</div>
+        <div class="form-sub">Tell us about your business and data — we'll get back to you within 1 hour.</div>
+        <form id="contactForm" action="https://formspree.io/f/xkokwlge" method="POST" onsubmit="handleSubmit(event)">
+          <div class="field-row">
+            <div class="field">
+              <label>First Name</label>
+              <input type="text" name="firstName" placeholder="John" required>
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              <input type="text" name="lastName" placeholder="Smith" required>
+            </div>
+          </div>
+          <div class="field">
+            <label>Business Email</label>
+            <input type="email" name="email" placeholder="john@company.com" required>
+          </div>
+          <div class="field">
+            <label>Business Type</label>
+            <select name="businessType">
+              <option value="">Select your industry</option>
+              <option>Retail / E-commerce</option>
+              <option>Restaurant / Food</option>
+              <option>Logistics / Transport</option>
+              <option>Healthcare</option>
+              <option>Manufacturing</option>
+              <option>Services / Consulting</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tell us about your data challenge</label>
+            <textarea name="message" rows="4" placeholder="What data do you have? What decisions are you struggling to make? What would you love to know about your business?" required></textarea>
+          </div>
+          <input type="hidden" name="_subject" value="New Nuvvio inquiry">
+          <button type="submit" class="submit-btn">Send Message →</button>
+          <div class="form-success" id="formSuccess">✓ Message sent! We'll reply within 1 hour.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="margin-bottom:16px">
+          <div class="logo-mark"><svg viewBox="0 0 18 18" style="width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M9 2L3 7v9h4v-5h4v5h4V7L9 2z"/></svg></div>
+          <div class="logo-name" style="color:#fff">NUV<span>VIO</span></div>
+        </div>
+        <p>Business Intelligence consultancy. We find where your business loses money and build the system that stops it. Mexico → Global.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#cases">Revenue Analysis</a>
+        <a href="#cases">BI Dashboard Build</a>
+        <a href="#cases">Audio Intelligence</a>
+        <a href="#cases">Automated Alerts</a>
+        <a href="#how">Data Forensics</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/525573764626" target="_blank">WhatsApp</a>
+        <a href="mailto:info@nuvvio.online">info@nuvvio.online</a>
+        <a href="https://www.fiverr.com/misael_depaz" target="_blank">Fiverr</a>
+        <a href="https://linkedin.com/in/misaeldepaz" target="_blank">LinkedIn</a>
+        <a href="#" onclick="openPrivacy();return false">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 NUVVIO · All rights reserved · nuvvio.online</div>
+      <button class="footer-privacy" onclick="openPrivacy()">Privacy Policy</button>
+    </div>
+  </div>
+</footer>
+
+<!-- PRIVACY MODAL -->
+<div class="modal-overlay" id="privacyModal" onclick="if(event.target===this)closePrivacy()">
+  <div class="modal">
+    <button class="modal-close" onclick="closePrivacy()">✕</button>
+    <h2>Privacy Policy</h2>
+    <div class="modal-date mono">Last updated: April 2026</div>
+    <p>Nuvvio ("we", "us", "our") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard the data you provide when using our website and services.</p>
+    <h3>1. Information We Collect</h3>
+    <p>We collect information you voluntarily provide through our contact form, including your name, email address, business type, and any details about your data challenges. We do not collect sensitive personal or financial data through this form.</p>
+    <h3>2. How We Use Your Information</h3>
+    <ul>
+      <li>To respond to your inquiry and provide the requested services</li>
+      <li>To send project updates and deliverables relevant to your engagement</li>
+      <li>To improve our services based on your feedback</li>
+      <li>We do not sell, rent, or share your personal information with third parties for marketing purposes</li>
+    </ul>
+    <h3>3. Data Storage and Security</h3>
+    <p>Form submissions are processed through Formspree, a secure third-party form service. Your data is transmitted via HTTPS encryption. We retain contact information only for the duration of our professional relationship.</p>
+    <h3>4. Client Data</h3>
+    <p>Any business data (Excel files, CSVs, databases) shared with us for analysis purposes is used exclusively for the agreed deliverable. We do not store, share, or use client business data for any other purpose. All client data files are deleted upon project completion unless otherwise agreed in writing.</p>
+    <h3>5. Your Rights</h3>
+    <p>You have the right to request access to, correction of, or deletion of your personal data at any time. Contact us at info@nuvvio.online to exercise these rights.</p>
+    <h3>6. Cookies</h3>
+    <p>This website does not use tracking cookies or third-party analytics tools. We use only essential technical cookies required for the website to function.</p>
+    <h3>7. Contact</h3>
+    <p>For privacy-related questions or requests, contact us at: <b>info@nuvvio.online</b> or via WhatsApp at +52 55 7376 4626.</p>
+  </div>
+</div>
+
+<script>
+// ── TERMINAL ANIMATION
+const lines = [
+  {t:400, cls:'v', txt:'✓ Connection established · Google Sheets sync active'},
+  {t:900, cls:'', txt:'<span class="p">Scanning</span> 7,924 transactions across 5 locations...'},
+  {t:1500, cls:'w', txt:'⚠ Revenue anomaly detected in Sucursal Polanco'},
+  {t:2100, cls:'', txt:'<span class="p">Running</span> margin_analysis() · category breakdown'},
+  {t:2700, cls:'b', txt:'→ Top product: Sérum Regenerador · +18.2% margin'},
+  {t:3200, cls:'w', txt:'⚠ Friday sales 34% below weekly average — alert queued'},
+  {t:3800, cls:'', txt:'<span class="p">Generating</span> audio_executive_briefing.mp3'},
+  {t:4400, cls:'v', txt:'✓ Audio ready · Telegram alert sent · System live'},
+  {t:5000, cls:'b', txt:'→ Revenue Δ vs last month: <span class="v">+$8,240 (+17.2%)</span>'},
+  {t:5600, cls:'v', txt:'✓ All 5 locations reporting · Next sync in 60s'},
+];
+const tb = document.getElementById('termBody');
+lines.forEach(l => {
+  setTimeout(() => {
+    const d = document.createElement('div');
+    d.className = 'tl';
+    if(l.cls) d.innerHTML = `<span class="${l.cls}">${l.txt}</span>`;
+    else d.innerHTML = l.txt;
+    tb.appendChild(d);
+    tb.scrollTop = tb.scrollHeight;
+  }, l.t);
+});
+
+// ── SCROLL REVEAL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── FORM SUBMIT
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const btn = form.querySelector('.submit-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: {'Accept': 'application/json'}
+  }).then(r => {
+    if(r.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
+    }
+  }).catch(() => {
+    btn.textContent = 'Error — try again';
+    btn.disabled = false;
+  });
+}
+
+// ── PRIVACY MODAL
+function openPrivacy() {
+  document.getElementById('privacyModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePrivacy() {
+  document.getElementById('privacyModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closePrivacy(); });
+
+// ── NAV SCROLL EFFECT
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
+});
+</script>
+</body>
+</html>
