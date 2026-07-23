@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuvvio | Marine Intelligence & Engineering</title>
-    <meta name="description" content="Nuvvio is an engineering company focused on Marine Intelligence, combining bathymetric mapping, underwater surveying and simulation software for subsea mining robotics.">
+    <title>Nuvvio | Marine Intelligence & Subsea Digital Twins</title>
+    <meta name="description" content="Nuvvio delivers advanced marine intelligence, satellite-derived bathymetry via Varda Space orbital platforms, and physics-based digital twin simulation software tailored for enterprise subsea robotics and governmental marine operations.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* CSS Variables */
         :root {
             --bg-primary: #080808;
             --bg-secondary: #111111;
+            --bg-card: #141414;
             --text-primary: #FFFFFF;
             --text-secondary: #B5B5B5;
             --border: #242424;
@@ -47,13 +48,13 @@
         }
 
         h1 {
-            font-size: clamp(32px, 5vw, 76px);
+            font-size: clamp(28px, 4.5vw, 72px);
             line-height: 1.1;
             letter-spacing: -0.02em;
         }
 
         h2 {
-            font-size: clamp(26px, 3.5vw, 44px);
+            font-size: clamp(24px, 3.2vw, 42px);
             line-height: 1.2;
             letter-spacing: -0.01em;
         }
@@ -147,7 +148,7 @@
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 28px;
         }
 
         .nav-links a {
@@ -171,12 +172,12 @@
             z-index: 1001;
         }
 
-        /* Hero Section - Fixed Fullscreen Video */
+        /* Hero Section - Flexible Height / No Cropping */
         .hero {
-            height: 100vh;
-            width: 100vw;
+            min-height: 100vh;
+            width: 100%;
             position: relative;
-            padding: 0;
+            padding: 140px 0 80px 0;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -184,11 +185,8 @@
 
         .hero-bg {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            min-width: 100%;
-            min-height: 100%;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -198,7 +196,7 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(8, 8, 8, 0.9) 0%, rgba(8, 8, 8, 0.6) 60%, rgba(8, 8, 8, 0.4) 100%);
+            background: linear-gradient(135deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.8) 60%, rgba(8, 8, 8, 0.6) 100%);
             z-index: -1;
         }
 
@@ -208,21 +206,21 @@
         }
 
         .hero-content {
-            max-width: 750px;
+            max-width: 780px;
         }
 
         .hero-content p {
             font-size: clamp(16px, 2vw, 20px);
-            max-width: 650px;
+            max-width: 680px;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             width: 1px;
-            height: 50px;
+            height: 40px;
             background: rgba(255, 255, 255, 0.2);
             overflow: hidden;
             z-index: 1;
@@ -239,7 +237,37 @@
             animation: scrollDown 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        /* Section 01 */
+        /* Metrics Bar */
+        .metrics-bar {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+            padding: 40px 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            text-align: center;
+        }
+
+        .metric-item h3 {
+            font-size: clamp(28px, 3.5vw, 42px);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .metric-item p {
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        /* Section 01: Core Architecture */
         .three-columns {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -247,16 +275,21 @@
             margin-top: 48px;
         }
 
+        .col {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 40px 32px;
+        }
+
         .col p {
             font-size: 16px;
         }
 
-        /* Fullscreen Images */
+        /* Fullscreen / Flexible Image Sections */
         .fullscreen-image-section {
             position: relative;
-            height: 80vh;
-            min-height: 500px;
-            padding: 0;
+            min-height: 70vh;
+            padding: 100px 0;
             display: flex;
             align-items: center;
             overflow: hidden;
@@ -275,19 +308,19 @@
         .fs-gradient-left {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.6) 50%, rgba(8,8,8,0.2) 100%);
+            background: linear-gradient(to right, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.7) 60%, rgba(8,8,8,0.4) 100%);
             z-index: -1;
         }
         
         .fs-gradient-center {
             position: absolute;
             inset: 0;
-            background: rgba(8,8,8,0.65);
+            background: rgba(8,8,8,0.8);
             z-index: -1;
         }
 
         .fs-content {
-            max-width: 550px;
+            max-width: 580px;
             position: relative;
             z-index: 1;
         }
@@ -295,10 +328,10 @@
         .fs-content.centered {
             margin: 0 auto;
             text-align: center;
-            max-width: 750px;
+            max-width: 780px;
         }
 
-        /* Section 02 - Grid */
+        /* Section 02 - Grid / Capabilities */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -318,7 +351,7 @@
             transform: translateY(-4px);
         }
 
-        /* Section 03 - Split Layout */
+        /* Section 03 - Split Layout (Digital Twins) */
         .split-layout {
             display: flex;
             align-items: center;
@@ -365,7 +398,7 @@
             color: var(--text-primary);
         }
 
-        /* Section 04 - Pipeline Redesign */
+        /* Section 04 - Pipeline */
         .centered-section {
             text-align: center;
             max-width: 900px;
@@ -446,13 +479,13 @@
 
         /* Final Section */
         .final-section {
-            height: 85vh;
-            min-height: 500px;
+            min-height: 75vh;
             position: relative;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 100px 0;
         }
         
         .contact-info {
@@ -587,9 +620,9 @@
             opacity: 1;
         }
 
-        /* Responsive Design (PC, iPad, Mobile) - Strictly Preventing Overlaps */
-        @media (max-width: 1024px) {
-            .container { padding: 0 36px; }
+        /* Responsive Design Adjustments (Tablets & Mobiles) */
+        @media (max-width: 1100px) {
+            .container { padding: 0 32px; }
             .pipeline-grid { grid-template-columns: repeat(2, 1fr); }
             .split-layout { flex-direction: column; gap: 40px; }
             .feature-grid { grid-template-columns: repeat(2, 1fr); }
@@ -598,7 +631,11 @@
 
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
-            section { padding: 70px 0; }
+            section { padding: 60px 0; }
+            .hero { padding: 120px 0 60px 0; min-height: auto; }
+            .fullscreen-image-section { padding: 70px 0; min-height: auto; }
+            .final-section { padding: 70px 0; min-height: auto; }
+            
             .nav-links {
                 display: none;
                 position: absolute;
@@ -617,6 +654,7 @@
             .hamburger { display: block; }
             .pipeline-grid { grid-template-columns: 1fr; }
             .feature-grid, .three-columns { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; gap: 24px; }
             .footer-content { flex-direction: column; gap: 20px; text-align: center; }
             .modal-content { padding: 28px 20px; max-height: 80vh; }
             .hero-content h1 { font-size: 32px; }
@@ -630,10 +668,13 @@
     <nav id="navbar">
         <div class="container nav-container">
             <a href="#" class="logo">Nuvvio</a>
-            <button class="hamburger" id="menu-btn" aria-label="Toggle menu">☰</button>
+            <button class="hamburger" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
             <div class="nav-links" id="nav-links">
                 <a href="#technology">Technology</a>
-                <a href="#applications">Applications</a>
+                <a href="#governments">Governments</a>
+                <a href="#simulation">Digital Twins</a>
+                <a href="#mapping">Satellite & Mapping</a>
+                <a href="#applications">Enterprise</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -648,193 +689,215 @@
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content fade-up">
-                <h1>Understanding the Seabed.<br>Enabling Better Decisions.</h1>
-                <p>Nuvvio develops marine simulation software for subsea mining, generates bathymetric datasets and delivers underwater surveying solutions that help organizations understand complex marine environments with greater accuracy.</p>
-                <a href="#technology" class="btn">Explore</a>
+                <h1>Enterprise Marine Intelligence & Subsea Digital Twins.</h1>
+                <p>We deliver institutional-grade marine intelligence, combining high-resolution satellite-derived bathymetry via our strategic alliance with <strong>Varda Space Industries</strong> and physics-based simulation software engineered for subsea robotics and industrial offshore developments.</p>
+                <a href="#governments" class="btn">Explore Institutional Solutions</a>
             </div>
         </div>
         <div class="scroll-indicator"></div>
     </section>
 
-    <!-- Section 01: Marine Intelligence -->
+    <!-- Metrics Bar -->
+    <div class="metrics-bar">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-item fade-up">
+                    <h3>30,000+ m²</h3>
+                    <p>Northern Alaska Mapped via Varda Orbital Platforms</p>
+                </div>
+                <div class="metric-item fade-up">
+                    <h3>B2B & G</h3>
+                    <p>Corporate & Institutional Focus</p>
+                </div>
+                <div class="metric-item fade-up">
+                    <h3>Varda Alliance</h3>
+                    <p>Advanced Orbital Telemetry & Reentry Tech</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 01: Core Architecture -->
     <section id="technology" class="container">
         <div class="fade-up">
-            <h2>Marine Intelligence Built Around Real Data</h2>
-            <p style="max-width: 800px;">Nuvvio combines underwater mapping, environmental modeling and marine simulation into a unified engineering workflow. Rather than relying on generalized assumptions, our technologies are designed to represent real underwater environments through structured marine datasets that improve analysis, planning and simulation.</p>
+            <h2>Engineered for Industrial & Institutional Operations</h2>
+            <p style="max-width: 850px;">Nuvvio bridges cutting-edge orbital intelligence with physics-based underwater simulation. Through our high-impact alliance with <strong>Varda Space Industries</strong>—leaders in advanced spacecraft engineering, orbital platforms, and automated space manufacturing technology—we extract high-precision hydrographic data to provide corporations and government entities with exact parameters for deep-sea capital operations.</p>
         </div>
         
         <div class="three-columns fade-up">
             <div class="col">
-                <h3>Marine Simulation</h3>
-                <p>Simulation software specifically developed for subsea mining robotics. Our platform allows underwater robotic systems to be evaluated under configurable environmental conditions before field deployment.</p>
+                <h3>Subsea Digital Twins</h3>
+                <p>Advanced simulation suites enabling maritime organizations to build precise digital replicas of underwater environments. Test autonomous subsea robotics under physics-accurate environmental resistance before deployment.</p>
             </div>
             <div class="col">
-                <h3>Ocean Mapping</h3>
-                <p>Generation of high-quality bathymetric datasets through underwater surveying, terrain reconstruction and continuous marine data acquisition. Our work transforms raw underwater measurements into structured datasets that support engineering, research and operational planning.</p>
+                <h3>Varda Space Orbital Integration</h3>
+                <p>Leveraging state-of-the-art spacecraft bus architectures and orbital sensor payloads through our alliance with Varda Space to execute rapid multispectral water depth extraction and mapping in extreme environments like northern Alaska.</p>
             </div>
             <div class="col">
-                <h3>Marine Surveying</h3>
-                <p>Professional hydrographic surveys supporting offshore infrastructure, reservoirs, rivers, coastal engineering and environmental assessment. Every project produces reliable information for informed decision-making beneath the surface.</p>
+                <h3>Mineral & Terrain Intelligence</h3>
+                <p>Specialized computational frameworks designed to evaluate seabed composition, sediment dynamics, and offshore mineral distribution to support critical infrastructure planning.</p>
             </div>
         </div>
     </section>
 
     <!-- Fullscreen Image 1 -->
     <section class="fullscreen-image-section">
-        <img src="terreno.jpg" alt="Bathymetric Terrain" class="fs-bg" loading="lazy">
+        <img src="terreno.jpg" alt="Bathymetric Terrain Intelligence" class="fs-bg" loading="lazy">
         <div class="fs-gradient-left"></div>
         <div class="container">
             <div class="fs-content fade-up">
-                <h2>Every Map Reveals More Than Depth.</h2>
-                <p>Bathymetric mapping transforms underwater measurements into structured information. By understanding seabed morphology, geological formations and environmental conditions, organizations can make safer engineering decisions, improve operational planning and expand scientific knowledge.</p>
+                <h2>Orbital Excellence: The Varda Space Alliance.</h2>
+                <p>By integrating advanced spacecraft frameworks and high-cadence orbital data pipelines from Varda Space Industries, we bypass conventional maritime logistics barriers, delivering millimeter-accurate seabed morphology across remote sectors.</p>
             </div>
         </div>
     </section>
 
-    <!-- Section 02: Why Bathymetry Matters -->
-    <section class="container">
+    <!-- Section 02: Governments & Institutional Partnerships -->
+    <section id="governments" class="container">
         <div class="fade-up">
-            <h2>Why Bathymetry Matters</h2>
-            <p style="max-width: 800px;">The ocean floor contains critical information that cannot be observed from the surface. Bathymetric mapping reveals the shape of the seabed, identifies geological structures, supports engineering projects and improves our understanding of underwater environments. Reliable marine datasets become the foundation for safer infrastructure, scientific exploration and future subsea operations.</p>
+            <h2>Governmental & Institutional Maritime Intelligence</h2>
+            <p style="max-width: 850px;">National maritime authorities, defense agencies, and public infrastructure planners face intense operational challenges in remote marine zones. Nuvvio collaborates directly with governmental bodies by leveraging the orbital telemetry capabilities born from our alliance with <strong>Varda Space Industries</strong> to supply sovereign marine intelligence and baseline environmental mapping.</p>
         </div>
 
         <div class="feature-grid fade-up">
             <div class="card">
-                <h3>Seabed Morphology</h3>
-                <p class="small-text">Understand underwater terrain and geological formations.</p>
+                <h3>Northern Alaska Survey Initiative</h3>
+                <p class="small-text">In strategic alliance with Varda Space Industries, we have mapped over 30,000 square meters of complex marine territory in the northern region of Alaska, utilizing advanced spaceborne sensor arrays across severe Arctic conditions.</p>
             </div>
             <div class="card">
-                <h3>Sediment Distribution</h3>
-                <p class="small-text">Analyze seabed composition and sediment behavior.</p>
+                <h3>Sovereign Domain Awareness</h3>
+                <p class="small-text">Equipping public sector entities with high-resolution hydrographic spatial layers to govern coastal zones, monitor maritime boundaries, and manage national waters effectively.</p>
             </div>
             <div class="card">
-                <h3>Ocean Dynamics</h3>
-                <p class="small-text">Study how underwater terrain influences marine currents.</p>
+                <h3>Port & Coastal Infrastructure</h3>
+                <p class="small-text">Providing precise seabed mapping and hydrodynamic tracking required for the safe construction of state-managed ports, breakwaters, and maritime security installations.</p>
             </div>
             <div class="card">
-                <h3>Infrastructure Planning</h3>
-                <p class="small-text">Support offshore construction, ports, coastal engineering and marine development.</p>
+                <h3>Varda Space Orbital Constellations</h3>
+                <p class="small-text">Utilizing high-performance spacecraft and atmospheric reentry return vehicle technology expertise to secure continuous, high-fidelity spatial data feeds for government bodies.</p>
             </div>
             <div class="card">
-                <h3>Mineral Exploration</h3>
-                <p class="small-text">Provide terrain intelligence that assists subsea exploration projects.</p>
+                <h3>Environmental Baseline Assessment</h3>
+                <p class="small-text">Supplying governments with scientific terrain data to regulate subsea activities, preserve marine ecosystems, and enforce ecological protection policies.</p>
             </div>
             <div class="card">
-                <h3>Environmental Assessment</h3>
-                <p class="small-text">Generate reliable spatial information for marine ecosystems and environmental studies.</p>
+                <h3>Emergency & Disaster Planning</h3>
+                <p class="small-text">Delivering predictive seabed and current data to assist state authorities in disaster response preparation, coastal erosion studies, and hazard management.</p>
             </div>
         </div>
     </section>
 
-    <!-- Section 03: Split Layout -->
-    <section class="container">
+    <!-- Section 03: Split Layout - Digital Twins & Simulation -->
+    <section id="simulation" class="container">
         <div class="split-layout">
             <div class="split-content fade-up">
-                <h2>Simulation Based on Real Marine Conditions</h2>
-                <p>Every underwater environment behaves differently. Water density, salinity, currents and seabed composition directly influence robotic operations.</p>
-                <p>Our platform separates environmental datasets from the simulation engine, allowing every project to accurately represent its own marine conditions while maintaining computational consistency. This approach provides reliable simulations for subsea mining robotics while keeping the computational engine independent from environmental variables.</p>
+                <h2>Physics-Based Simulation for Subsea Robotics</h2>
+                <p>Deploying heavy subsea machinery without virtual pre-testing leads to severe capital loss. Our software engine decouples environmental variables—such as localized water currents, salinity, density, and seabed friction—from the hardware logic.</p>
+                <p>Government agencies and enterprise contractors utilize Nuvvio, powered by data feeds enhanced through our partnership with Varda Space Industries, to simulate full deep-sea missions, guaranteeing absolute mechanical and software resilience before deployment.</p>
                 
-                <h3 style="margin-top: 40px; font-size: 18px;">Built on Proven Technologies</h3>
-                <p class="small-text">Powered by NVIDIA simulation technologies and extended with proprietary marine computational models developed specifically for underwater applications.</p>
+                <h3 style="margin-top: 40px; font-size: 18px;">Enterprise Tech Stack</h3>
+                <p class="small-text">Built on industrial frameworks optimized for real-time physics calculations and geospatial intelligence handling.</p>
                 
                 <ul class="tech-stack">
-                    <li>NVIDIA Simulation Technologies</li>
-                    <li>Artificial Intelligence</li>
-                    <li>Computer Vision</li>
-                    <li>Bathymetric Processing</li>
-                    <li>GIS</li>
-                    <li>Hydrodynamic Modeling</li>
-                    <li>Machine Learning</li>
+                    <li>NVIDIA Simulation Frameworks</li>
+                    <li>Varda Space Orbital Data Pipelines</li>
+                    <li>Hydrodynamic Fluid Mechanics</li>
+                    <li>Subsea Digital Twin Architecture</li>
+                    <li>GIS & Bathymetric Data Pipelines</li>
+                    <li>Autonomous Robotics Control Logic</li>
                 </ul>
             </div>
             <div class="split-image fade-in">
-                <img src="interfaz.jpg" alt="Simulation Software Interface" loading="lazy">
+                <img src="interfaz.jpg" alt="Nuvvio Subsea Simulation Software Interface" loading="lazy">
             </div>
         </div>
     </section>
 
-    <!-- Section 04: Redesigned Pipeline (From Survey to Simulation) -->
-    <section class="container centered-section fade-up">
-        <h2>From Survey to Simulation</h2>
-        <p style="max-width: 750px; margin: 0 auto 16px auto;">Everything begins with reliable marine data. Marine surveys generate bathymetric information, which becomes structured environmental datasets to create realistic simulation environments that improve engineering decisions before deployment.</p>
+    <!-- Section 04: Redesigned Pipeline -->
+    <section id="mapping" class="container centered-section fade-up">
+        <h2>The Enterprise Intelligence Pipeline</h2>
+        <p style="max-width: 750px; margin: 0 auto 16px auto;">A robust engineering framework scaling seamlessly from Varda Space orbital architectures to deep-sea execution.</p>
         
         <div class="pipeline-grid">
             <div class="pipeline-card">
                 <span class="step-num">01</span>
-                <h3>Marine Survey</h3>
-                <p class="small-text">Hydrographic data acquisition across complex subsea terrain.</p>
+                <h3>Varda Orbital Capture</h3>
+                <p class="small-text">Advanced satellite telemetry and multispectral capture via our alliance with Varda Space Industries.</p>
             </div>
             <div class="pipeline-card">
                 <span class="step-num">02</span>
-                <h3>Bathymetry</h3>
-                <p class="small-text">Processing raw sensor inputs into high-resolution terrain models.</p>
+                <h3>Bathymetric Inversion</h3>
+                <p class="small-text">Processing optical spaceborne reflectance into high-resolution, institutional depth models.</p>
             </div>
             <div class="pipeline-card">
                 <span class="step-num">03</span>
-                <h3>Models</h3>
-                <p class="small-text">Integrating environmental variables like currents and sediment.</p>
+                <h3>Terrain & Mineral Analysis</h3>
+                <p class="small-text">Evaluating geological strata, sediment behavior, and structural composition.</p>
             </div>
             <div class="pipeline-card">
                 <span class="step-num">04</span>
-                <h3>Simulation</h3>
-                <p class="small-text">Executing robotic operations under realistic physical conditions.</p>
+                <h3>Digital Twin Simulation</h3>
+                <p class="small-text">Testing robotics and structural projects under realistic physical stress.</p>
             </div>
         </div>
     </section>
 
     <!-- Fullscreen Image 2 -->
-    <section class="fullscreen-image-section" style="height: 85vh;">
-        <img src="oceano.jpg" alt="Cinematic Ocean" class="fs-bg" loading="lazy">
+    <section class="fullscreen-image-section">
+        <img src="oceano.jpg" alt="Deep Ocean Marine Intelligence" class="fs-bg" loading="lazy">
         <div class="fs-gradient-center"></div>
         <div class="container">
             <div class="fs-content centered fade-up">
-                <h2>The Ocean Remains One of Earth’s Least Understood Environments.</h2>
-                <p>Every survey expands our understanding of underwater terrain. Every dataset improves engineering knowledge. Every simulation reduces uncertainty before real-world operations begin.</p>
+                <h2>Securing Subsea Operations for Industrial Leaders.</h2>
+                <p>We do not speculate; we quantify. By combining space-based assets from Varda Space Industries with deep-water digital twins, Nuvvio sets the global benchmark for corporate marine engineering.</p>
             </div>
         </div>
     </section>
 
-    <!-- Section 05: Applications -->
+    <!-- Section 05: Enterprise Applications -->
     <section id="applications" class="container">
         <div class="fade-up">
-            <h2>Applications</h2>
+            <h2>Industrial & Institutional Sectors</h2>
         </div>
         <div class="app-grid fade-up">
             <div class="app-item">
-                <h3>Subsea Mining</h3>
-                <p class="small-text">Simulation environments supporting underwater robotic operations.</p>
+                <h3>Subsea Mining Enterprises</h3>
+                <p class="small-text">Digital twin environments built to evaluate extraction robotics and seabed impact.</p>
             </div>
             <div class="app-item">
-                <h3>Offshore Infrastructure</h3>
-                <p class="small-text">Hydrographic information for engineering and construction.</p>
+                <h3>Offshore Energy & Oil/Gas</h3>
+                <p class="small-text">Precise bathymetry and seabed mechanics for drilling platform and pipeline placement.</p>
             </div>
             <div class="app-item">
-                <h3>Scientific Research</h3>
-                <p class="small-text">Marine datasets supporting oceanographic investigations.</p>
+                <h3>Governmental & Defense Agencies</h3>
+                <p class="small-text">Strategic maritime domain awareness, hydrographic mapping, and coastal intelligence backed by orbital tech.</p>
             </div>
             <div class="app-item">
-                <h3>Environmental Assessment</h3>
-                <p class="small-text">Reliable underwater terrain information for environmental analysis.</p>
+                <h3>Subsea Infrastructure Contractors</h3>
+                <p class="small-text">Engineering data solutions for fiber-optic cable routing and port construction.</p>
             </div>
             <div class="app-item">
-                <h3>Rivers & Reservoirs</h3>
-                <p class="small-text">Bathymetric surveys for inland water environments.</p>
+                <h3>Marine Scientific Research Institutes</h3>
+                <p class="small-text">High-resolution spatial databases supporting long-term oceanographic studies.</p>
             </div>
             <div class="app-item">
                 <h3>Digital Marine Models</h3>
-                <p class="small-text">Structured underwater datasets supporting digital engineering workflows.</p>
+                <p class="small-text">Proprietary datasets integrated directly into enterprise engineering pipelines.</p>
             </div>
         </div>
     </section>
 
     <!-- Final Section -->
     <section id="contact" class="final-section">
-        <img src="buzo.jpg" alt="Diver" class="fs-bg" loading="lazy">
+        <video autoplay muted loop playsinline class="fs-bg">
+            <source src="mar.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
         <div class="fs-gradient-center"></div>
         <div class="container centered-section fade-up">
-            <h2>Building Better Marine Intelligence.</h2>
-            <p>Nuvvio transforms underwater environments into reliable engineering knowledge through mapping, simulation and marine data analysis. We collaborate with industrial partners, engineering companies and research organizations that require accurate information beneath the surface.</p>
-            <a href="mailto:contacto@nuvvio.online" class="btn">Contact</a>
+            <h2>Initiate an Enterprise Collaboration.</h2>
+            <p>We collaborate exclusively with corporate entities, industrial contractors, and government agencies requiring high-precision marine intelligence powered by Varda Space orbital assets and subsea simulation infrastructure. Contact our engineering division to discuss your institutional project requirements.</p>
+            <a href="mailto:contacto@nuvvio.online" class="btn">Contact Engineering Team</a>
             <span class="contact-info">contacto@nuvvio.online</span>
         </div>
     </section>
@@ -854,22 +917,22 @@
         </div>
     </footer>
 
-    <!-- Privacy Policy Modal (Comprehensive US Corporate & Legal Protection Framework) -->
-    <div id="modal-privacy" class="modal">
+    <!-- Privacy Policy Modal -->
+    <div id="modal-privacy" class="modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title">
         <div class="modal-content">
             <button class="close-btn" id="close-privacy" aria-label="Close modal">&times;</button>
-            <h2>Privacy Policy & Information Governance Framework</h2>
+            <h2 id="privacy-title">Privacy Policy & Information Governance Framework</h2>
             <p class="small-text">Effective Date: July 2026 | Comprehensive U.S. Compliance & Data Protection Standard</p>
             
             <h3>1. Purpose and Scope of Privacy Governance</h3>
-            <p>This Privacy Policy ("Policy") governs the collection, processing, retention, transfer, and disclosure of information by Nuvvio and its affiliated operational entities ("Company", "we", "our", or "us") in connection with the access, usage, and interaction with our website, software interfaces, and marine intelligence services. This document is specifically structured to comply with and afford maximum corporate legal protection under United States federal guidelines, industry standards, and applicable state-level privacy statutes, including the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), the Virginia Consumer Data Protection Act (VCDPA), and other comprehensive state data security frameworks.</p>
-            <p>By accessing this website, submitting inquiries, or engaging with our proprietary simulation systems, you expressly acknowledge, understand, and consent to the data practices and legal protections outlined herein. If you do not agree with every clause and restriction detailed in this Policy, you are strictly required to terminate your use of this website immediately.</p>
+            <p>This Privacy Policy ("Policy") governs the collection, processing, retention, transfer, and disclosure of information by Nuvvio and its affiliated operational entities ("Company", "we", "our", or "us") in connection with the access, usage, and interaction with our website, enterprise software interfaces, and marine intelligence services. This document is specifically structured to comply with and afford maximum corporate legal protection under United States federal guidelines, industry standards, and applicable state-level privacy statutes, including the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), the Virginia Consumer Data Protection Act (VCDPA), and other comprehensive state data security frameworks.</p>
+            <p>By accessing this website, submitting corporate inquiries, or engaging with our proprietary simulation systems, you expressly acknowledge, understand, and consent to the data practices and legal protections outlined herein. If you do not agree with every clause and restriction detailed in this Policy, you are strictly required to terminate your use of this website immediately.</p>
 
             <h3>2. Information Categories Collected</h3>
-            <p>To facilitate corporate communications, commercial evaluations, and advanced engineering consultations, we collect distinct tiers of information, categorized as follows:</p>
+            <p>To facilitate corporate communications, commercial evaluations, and advanced engineering consultations with enterprise and governmental clients, we collect distinct tiers of information, categorized as follows:</p>
             <ul>
                 <li><strong>Direct Identifiers:</strong> Full legal name, corporate title, professional electronic mail addresses, direct telephone contact numbers, and corporate mailing addresses voluntarily provided via direct electronic correspondence or inquiry channels.</li>
-                <li><strong>Organizational & Commercial Credentials:</strong> Business entity name, industry classification, structural subsea project parameters, technical scope requirements, and corporate affiliation details necessary for assessing B2B operational feasibility.</li>
+                <li><strong>Organizational & Commercial Credentials:</strong> Business entity name, industry classification, structural subsea project parameters, technical scope requirements, and corporate affiliation details necessary for assessing B2B and B2G operational feasibility.</li>
                 <li><strong>Technical Telemetry & Log Data:</strong> Standard server logs, IP addresses, browser types, operating systems, referring URLs, access timestamps, and device fingerprints automatically recorded to maintain system security, network integrity, and diagnostic analytics.</li>
                 <li><strong>Proprietary Inquiry Data:</strong> Specific technical datasets, bathymetric parameters, or proprietary operational inquiries submitted by prospective enterprise clients for software simulation testing and engineering evaluation.</li>
             </ul>
@@ -915,11 +978,11 @@
         </div>
     </div>
 
-    <!-- Terms of Use Modal (Comprehensive US Corporate & Legal Protection Framework) -->
-    <div id="modal-terms" class="modal">
+    <!-- Terms of Use Modal -->
+    <div id="modal-terms" class="modal" role="dialog" aria-modal="true" aria-labelledby="terms-title">
         <div class="modal-content">
             <button class="close-btn" id="close-terms" aria-label="Close modal">&times;</button>
-            <h2>Terms of Use & Legal Liability Disclaimer</h2>
+            <h2 id="terms-title">Terms of Use & Legal Liability Disclaimer</h2>
             <p class="small-text">Effective Date: July 2026 | Comprehensive Commercial & Enterprise Liability Agreement</p>
 
             <h3>1. Acceptance of Binding Agreement</h3>
@@ -947,7 +1010,7 @@
             <p>These Terms of Use and any commercial disputes, claims, or controversies arising out of or relating to them shall be governed by, construed, and enforced in accordance with the commercial laws of the United States and applicable state legal frameworks, without regard to conflict of law principles. Any legal action, lawsuit, or equitable proceeding arising from these Terms must be brought exclusively in courts of competent jurisdiction, and you hereby consent to the personal jurisdiction and venue of such courts.</p>
 
             <h3>8. Severability and Integration</h3>
-            <p>If any provision of these Terms of Use is found by a court of competent jurisdiction to be invalid, illegal, or unenforceable, that provision shall be modified to the minimum extent necessary to make it valid and enforceable, and the remaining provisions shall remain in full force and effect. These Terms constitute the entire agreement between you and the Company regarding your use of the website, superseding any prior or contemporaneous electronic or oral communications.</p>
+            <p>If any provision of these Terms of Use is found by a court of competent jurisdiction to be invalid, illegal, or unenforceable, that provision shall be modified to the minimum extent necessary to make it valid and enforceable, and the remaining provisions shall remain in full force and effect.These Terms constitute the entire agreement between you and the Company regarding your use of the website, superseding any prior or contemporaneous electronic or oral communications.</p>
 
             <h3>9. Modifications to Terms</h3>
             <p>We reserve the unilateral right to modify, amend, or replace these Terms of Use at any given time without prior individual notification. It is your sole responsibility to review this page periodically for updates. Continued utilization of the website following the posting of modifications constitutes your binding agreement to all revised terms.</p>
@@ -983,21 +1046,26 @@
             }
         });
 
-        // Hamburger Menu Toggle
+        // Hamburger Menu Toggle & ARIA attributes
         const menuBtn = document.getElementById('menu-btn');
         const navLinks = document.getElementById('nav-links');
+        
         menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+            const isOpen = navLinks.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', isOpen);
+            menuBtn.textContent = isOpen ? '✕' : '☰';
         });
 
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.textContent = '☰';
             });
         });
 
-        // Modal Logic for Privacy Policy & Terms
+        // Modal Logic for Privacy Policy & Terms with Escape key support
         const privacyModal = document.getElementById('modal-privacy');
         const termsModal = document.getElementById('modal-terms');
         
@@ -1021,13 +1089,21 @@
             document.body.style.overflow = 'auto';
         });
 
-        // Close modal on outside click
+        // Close modal on outside click and Escape key
         window.addEventListener('click', (e) => {
             if (e.target === privacyModal) {
                 privacyModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
             if (e.target === termsModal) {
+                termsModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                privacyModal.classList.remove('active');
                 termsModal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
