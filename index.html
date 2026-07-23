@@ -137,6 +137,13 @@
             align-items: center;
         }
 
+        /* Modified Logo Styles */
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
         .logo {
             font-size: 18px;
             font-weight: 500;
@@ -144,11 +151,25 @@
             text-transform: uppercase;
             color: var(--text-primary);
             text-decoration: none;
+            /* Recuadro estilo reference image_4d6f42.png */
+            border: 1px solid var(--text-primary);
+            padding: 4px 8px;
+            display: inline-block;
+            width: fit-content;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: #9A9A9A;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
         }
 
         .nav-links {
             display: flex;
             gap: 28px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -191,19 +212,16 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
-            /* Optimizacion de nitidez para video de fondo */
             transform: translateZ(0);
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             image-rendering: -webkit-optimize-contrast;
-            /* Brillo incrementado */
             filter: brightness(1.8);
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            /* Opacidad reducida para que el video destaque */
             background: linear-gradient(135deg, rgba(8, 8, 8, 0.6) 0%, rgba(8, 8, 8, 0.4) 60%, rgba(8, 8, 8, 0.2) 100%);
             z-index: -1;
         }
@@ -214,23 +232,21 @@
         }
 
         .hero-content {
-            max-width: 780px;
+            max-width: 900px; /* Ampliado sutilmente para acomodar el título largo de forma elegante */
         }
 
-        .hero-content p {
-            font-size: clamp(16px, 2vw, 20px);
-            max-width: 680px;
-        }
-
-        /* MEJORA DE LEGIBILIDAD (Opción 1): Sombra de texto difuminada para fondos brillantes */
+        /* MEJORA DE LEGIBILIDAD: Sombra de texto difuminada para fondos brillantes */
         .hero-content h1,
-        .hero-content p,
         .fs-content h2,
         .fs-content p,
         .final-section h2,
         .final-section p,
         .final-section .contact-info {
             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 10px 24px rgba(0, 0, 0, 0.6);
+        }
+        
+        .hero-content h1 {
+            margin-bottom: 0; /* Removido el margen inferior ya que no hay párrafo debajo */
         }
 
         .scroll-indicator {
@@ -322,14 +338,12 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
-            /* Brillo incrementado */
             filter: brightness(1.8);
         }
 
         .fs-gradient-left {
             position: absolute;
             inset: 0;
-            /* Opacidad reducida */
             background: linear-gradient(to right, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.4) 60%, rgba(8,8,8,0.2) 100%);
             z-index: -1;
         }
@@ -337,7 +351,6 @@
         .fs-gradient-center {
             position: absolute;
             inset: 0;
-            /* Opacidad reducida */
             background: rgba(8,8,8,0.4);
             z-index: -1;
         }
@@ -397,7 +410,6 @@
             border-radius: 8px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             border: 1px solid var(--border);
-            /* Brillo incrementado en la imagen interior */
             filter: brightness(1.5);
         }
 
@@ -683,7 +695,6 @@
             .footer-content { flex-direction: column; gap: 20px; text-align: center; }
             .modal-content { padding: 28px 20px; max-height: 80vh; }
             .hero-content h1 { font-size: 32px; }
-            .hero-content p { font-size: 16px; }
         }
     </style>
 </head>
@@ -692,7 +703,12 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">Nuvvio</a>
+            <!-- Updated Logo Container -->
+            <div class="logo-wrapper">
+                <a href="#" class="logo">Nuvvio</a>
+                <span class="logo-subtitle">powered by Selixor Technologies</span>
+            </div>
+            
             <button class="hamburger" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">☰</button>
             <div class="nav-links" id="nav-links">
                 <a href="#technology">Technology</a>
@@ -705,7 +721,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Modified Hero Section -->
     <section class="hero">
         <video autoplay muted loop playsinline preload="auto" class="hero-bg">
             <source src="oceano_video.mp4" type="video/mp4">
@@ -714,9 +730,7 @@
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content fade-up">
-                <h1>Enterprise Marine Intelligence & Subsea Digital Twins.</h1>
-                <p>We deliver institutional-grade marine intelligence, combining high-resolution satellite-derived bathymetry via our strategic alliance with <strong>Varda Space Industries</strong> and physics-based simulation software engineered for subsea robotics and industrial offshore developments.</p>
-                <a href="#governments" class="btn">Explore Institutional Solutions</a>
+                <h1>Engineering Marine Intelligence for Enterprise & Government</h1>
             </div>
         </div>
         <div class="scroll-indicator"></div>
