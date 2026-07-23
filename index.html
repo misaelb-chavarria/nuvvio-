@@ -196,12 +196,15 @@
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
             image-rendering: -webkit-optimize-contrast;
+            /* Brillo incrementado */
+            filter: brightness(1.8);
         }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(8, 8, 8, 0.95) 0%, rgba(8, 8, 8, 0.8) 60%, rgba(8, 8, 8, 0.6) 100%);
+            /* Opacidad reducida para que el video destaque */
+            background: linear-gradient(135deg, rgba(8, 8, 8, 0.6) 0%, rgba(8, 8, 8, 0.4) 60%, rgba(8, 8, 8, 0.2) 100%);
             z-index: -1;
         }
 
@@ -308,19 +311,23 @@
             height: 100%;
             object-fit: cover;
             z-index: -2;
+            /* Brillo incrementado */
+            filter: brightness(1.8);
         }
 
         .fs-gradient-left {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.7) 60%, rgba(8,8,8,0.4) 100%);
+            /* Opacidad reducida */
+            background: linear-gradient(to right, rgba(8,8,8,0.6) 0%, rgba(8,8,8,0.4) 60%, rgba(8,8,8,0.2) 100%);
             z-index: -1;
         }
         
         .fs-gradient-center {
             position: absolute;
             inset: 0;
-            background: rgba(8,8,8,0.8);
+            /* Opacidad reducida */
+            background: rgba(8,8,8,0.4);
             z-index: -1;
         }
 
@@ -379,6 +386,8 @@
             border-radius: 8px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             border: 1px solid var(--border);
+            /* Brillo incrementado en la imagen interior */
+            filter: brightness(1.5);
         }
 
         .tech-stack {
