@@ -1,961 +1,781 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Nuvvio — Revenue Intelligence Systems</title>
-<meta name="description" content="We identify hidden profit leaks and install decision systems that eliminate them permanently. Real results: +17% revenue, $793K in losses found.">
-<meta property="og:title" content="Nuvvio — We Find What Your Business Is Losing">
-<meta property="og:description" content="Not dashboards. Revenue Intelligence Systems. $793K in profit destruction found. +17% revenue increase. One payment. Full ownership.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://nuvvio.online">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="robots" content="index, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --ink:#0d0d0d;--ink2:#1c1c1c;
-  --paper:#f6f3ee;--paper2:#edeae3;--paper3:#e2ddd5;
-  --green:#1a6b4a;--green2:#22895f;
-  --gdim:rgba(26,107,74,0.1);--gborder:rgba(26,107,74,0.25);
-  --red:#b03a2e;--rdim:rgba(176,58,46,0.1);
-  --muted:rgba(13,13,13,0.45);--dim:rgba(13,13,13,0.12);
-  --r:4px;--r2:10px;
-  --shadow:0 2px 20px rgba(0,0,0,0.06);
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:'Outfit',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::selection{background:var(--green);color:#fff}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--green)}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;font-family:'Outfit',sans-serif}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuvvio | Marine Intelligence & Engineering</title>
+    <meta name="description" content="Nuvvio is an engineering company focused on Marine Intelligence, combining bathymetric mapping, underwater surveying and simulation software for subsea mining robotics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border: #242424;
+            --font-family: 'Inter', sans-serif; /* Fallback for Geist */
+            --max-width: 1240px;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
 
-.container{max-width:1140px;margin:0 auto;padding:0 40px}
-section{padding:88px 0}
-h1,h2,h3{font-family:'Playfair Display',serif;letter-spacing:-0.02em;line-height:1.05}
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;
-  background:rgba(246,243,238,0.96);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--dim);display:flex;align-items:center}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;
-  width:100%;max-width:1140px;margin:0 auto;padding:0 40px}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-mark{width:32px;height:32px;background:var(--ink);border-radius:6px;
-  display:flex;align-items:center;justify-content:center}
-.logo-mark svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.logo-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:900}
-.logo-name span{color:var(--green)}
-.nav-links{display:flex;gap:32px}
-.nav-links a{font-size:13px;font-weight:500;color:var(--muted);transition:.2s}
-.nav-links a:hover{color:var(--ink)}
-.nav-btn{background:var(--ink);color:var(--paper);font-size:13px;font-weight:600;
-  padding:10px 22px;border-radius:var(--r);border:none;transition:.2s}
-.nav-btn:hover{background:var(--ink2)}
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 19px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
 
-/* ── HERO ── */
-#hero{min-height:100vh;padding-top:60px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-.hl{display:flex;flex-direction:column;justify-content:center;
-  padding:80px 56px 80px 80px;position:relative;z-index:2}
-.hr{background:var(--ink);display:flex;align-items:center;justify-content:center;
-  padding:72px 60px;position:relative;overflow:hidden}
-.hr-grid{position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
-  background-size:52px 52px}
-.hr-glow{position:absolute;top:-120px;right:-80px;width:500px;height:500px;
-  background:radial-gradient(circle,rgba(26,107,74,0.18) 0%,transparent 60%);pointer-events:none}
-.hr-glow2{position:absolute;bottom:-80px;left:-60px;width:380px;height:380px;
-  background:radial-gradient(circle,rgba(26,107,74,0.08) 0%,transparent 60%);pointer-events:none}
-.hr-top{position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--green),rgba(26,107,74,0.15),transparent)}
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+        }
 
-.eyebrow{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;
-  letter-spacing:0.22em;text-transform:uppercase;color:var(--green);
-  border:1px solid var(--gborder);display:inline-flex;align-items:center;
-  gap:8px;padding:7px 16px;border-radius:2px;margin-bottom:28px;width:fit-content}
-.edot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+        h1 {
+            font-size: clamp(48px, 5vw, 84px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
 
-.hl h1{font-size:clamp(40px,5vw,66px);font-weight:900;color:var(--ink);margin-bottom:22px}
-.hl h1 em{font-style:italic;color:var(--green)}
-.hl h1 span{display:block}
-.hero-sub{font-size:17px;font-weight:300;color:var(--muted);line-height:1.75;
-  max-width:460px;margin-bottom:36px}
-.hero-sub b{color:var(--ink);font-weight:600}
+        h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
 
-.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px}
-.btn-dark{background:var(--ink);color:var(--paper);font-size:14px;font-weight:600;
-  padding:14px 32px;border-radius:var(--r);border:none;transition:.2s;display:inline-flex;align-items:center;gap:8px}
-.btn-dark:hover{background:var(--ink2);transform:translateY(-1px)}
-.btn-ghost{border:1.5px solid var(--dim);color:var(--muted);font-size:14px;font-weight:500;
-  padding:13px 26px;border-radius:var(--r);background:transparent;transition:.2s}
-.btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+        h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
 
-.hero-nums{display:flex;gap:28px;flex-wrap:wrap}
-.hn{border-left:2px solid var(--green);padding-left:14px}
-.hn-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;line-height:1}
-.g{color:var(--green)}.r{color:var(--red)}
-.hn-label{font-size:11px;color:var(--muted);margin-top:3px}
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+        }
 
-/* Terminal */
-.term{width:100%;max-width:440px;border-radius:var(--r2);overflow:hidden;
-  position:relative;z-index:2;box-shadow:0 24px 80px rgba(0,0,0,0.5)}
-.term-bar{background:rgba(255,255,255,0.07);padding:12px 16px;
-  display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
-.dots{display:flex;gap:6px}
-.d{width:10px;height:10px;border-radius:50%}
-.d1{background:#ff5f57}.d2{background:#febc2e}.d3{background:#28c840}
-.tname{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);margin-left:8px}
-.term-body{background:rgba(255,255,255,0.04);padding:18px 18px 22px;
-  font-family:'DM Mono',monospace;font-size:12px;line-height:1.9;min-height:260px}
-.tl{color:rgba(255,255,255,0.3)}
-.tl .p{color:var(--green)}.tl .v{color:#4ade80}.tl .w{color:#fbbf24}
-.tl .e{color:#f87171}.tl .b{color:#60a5fa}
-.cur{display:inline-block;width:7px;height:13px;background:var(--green);
-  animation:cur .8s infinite;vertical-align:text-bottom}
-@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+        .small-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
 
-/* ── STRIP ── */
-.strip{background:var(--ink);padding:18px 40px;
-  display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
-.si{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.28);
-  letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
-.si b{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:0}
+        /* Layout Utility */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 96px;
+            width: 100%;
+        }
 
-/* ── BEFORE / AFTER ── */
-#ba{background:var(--ink);padding:88px 0}
-.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;
-  background:rgba(255,255,255,0.06);border-radius:var(--r2);overflow:hidden;margin-top:52px}
-.ba-col{padding:48px 44px}
-.ba-before{background:rgba(176,58,46,0.07)}
-.ba-after{background:rgba(26,107,74,0.07)}
-.ba-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.2em;
-  text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:8px}
-.ba-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.ba-items{display:flex;flex-direction:column;gap:16px}
-.ba-item{display:flex;gap:14px;align-items:flex-start}
-.ba-icon{font-size:16px;flex-shrink:0;margin-top:1px;width:20px;text-align:center}
-.ba-text-title{font-size:15px;font-weight:600;margin-bottom:3px}
-.ba-text-sub{font-size:13px;line-height:1.55}
+        section {
+            padding: 120px 0;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-/* ── WHAT WE DO ── */
-#what{background:var(--paper2);border-top:1px solid var(--dim);border-bottom:1px solid var(--dim)}
-.what-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.what-right{display:flex;flex-direction:column;gap:14px}
-.what-card{background:var(--paper);border:1px solid var(--dim);
-  border-radius:var(--r2);padding:22px 26px;transition:.2s}
-.what-card:hover{border-color:var(--green);box-shadow:var(--shadow)}
-.wc-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--green);
-  letter-spacing:.14em;margin-bottom:8px}
-.wc-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
-.wc-desc{font-size:13px;color:var(--muted);line-height:1.65}
-.wc-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tag{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);
-  border:1px solid var(--gborder);padding:3px 9px;border-radius:2px;letter-spacing:.06em}
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            text-decoration: none;
+            font-size: 15px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all 0.4s var(--ease);
+            cursor: pointer;
+            margin-top: 16px;
+        }
 
-/* ── OFFER ── */
-#offer{background:var(--paper)}
-.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px}
-.offer-card{border-radius:var(--r2);overflow:hidden;border:1px solid var(--dim)}
-.oc-header{padding:32px 36px;background:var(--ink);position:relative;overflow:hidden}
-.oc-glow{position:absolute;top:-80px;right:-60px;width:280px;height:280px;
-  background:radial-gradient(circle,rgba(26,107,74,0.2) 0%,transparent 60%);pointer-events:none}
-.oc-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;
-  text-transform:uppercase;margin-bottom:10px}
-.oc-tag-green{color:rgba(26,107,74,0.7)}
-.oc-tag-gold{color:rgba(184,146,42,0.7)}
-.oc-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;
-  color:#fff;line-height:1.15;margin-bottom:6px}
-.oc-price{font-family:'DM Mono',monospace;font-size:13px;color:rgba(255,255,255,0.4);margin-top:8px}
-.oc-body{padding:28px 36px;background:var(--paper2)}
-.oc-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.oc-item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--ink)}
-.oc-item span{color:var(--green);flex-shrink:0;margin-top:1px;font-size:15px}
-.oc-note{font-size:12px;color:var(--muted);line-height:1.6;
-  border-top:1px solid var(--dim);padding-top:14px;font-style:italic}
-.oc-cta{display:block;background:var(--ink);color:var(--paper);font-size:14px;
-  font-weight:700;padding:14px;border-radius:var(--r);border:none;
-  text-align:center;transition:.2s;margin-top:16px;width:100%}
-.oc-cta:hover{background:var(--ink2)}
+        .btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
 
-/* ── AUDIO ADVANTAGE ── */
-#audio{background:var(--ink);padding:88px 0}
-.audio-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.audio-left .eyebrow{color:rgba(26,107,74,0.7);border-color:rgba(26,107,74,0.25)}
-.audio-left h2{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,52px);
-  font-weight:900;color:#fff;line-height:1.05;margin-bottom:20px}
-.audio-left h2 em{font-style:italic;color:var(--green)}
-.audio-left p{font-size:16px;font-weight:300;color:rgba(255,255,255,0.42);
-  line-height:1.8;margin-bottom:14px}
-.audio-left p b{color:rgba(255,255,255,0.75);font-weight:500}
-.audio-player{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
-  border-radius:var(--r2);overflow:hidden}
-.ap-header{background:rgba(255,255,255,0.05);padding:16px 20px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(255,255,255,0.06)}
-.ap-title{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:rgba(255,255,255,0.6)}
-.ap-live{display:flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;
-  font-size:9px;color:var(--green);letter-spacing:.12em}
-.ap-live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
-.ap-body{padding:20px}
-.ap-transcript{font-family:'DM Mono',monospace;font-size:11px;line-height:1.9;
-  color:rgba(255,255,255,0.35);min-height:120px;margin-bottom:16px}
-.ap-transcript .hi{color:var(--green)}.ap-transcript .gn{color:#4ade80}.ap-transcript .al{color:#fbbf24}
-.ap-controls{display:flex;align-items:center;gap:14px}
-.play-btn{width:42px;height:42px;background:var(--green);border:none;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:15px;
-  cursor:pointer;transition:.2s;flex-shrink:0}
-.play-btn:hover{background:var(--green2);transform:scale(1.05)}
-.ap-progress{flex:1;height:3px;background:rgba(255,255,255,0.1);border-radius:2px}
-.ap-fill{height:100%;background:var(--green);border-radius:2px;width:0%;transition:.1s}
-.ap-time{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.3)}
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.4s var(--ease);
+            padding: 24px 0;
+        }
 
-/* ── CASES ── */
-#cases{background:var(--paper2);border-top:1px solid var(--dim)}
-.case{border:1px solid var(--dim);border-radius:var(--r2);overflow:hidden;
-  margin-bottom:28px;box-shadow:var(--shadow)}
-.case:last-child{margin-bottom:0}
-.case-top{display:grid;grid-template-columns:1fr 1fr;background:var(--ink)}
-.case-info{padding:36px 44px;position:relative;overflow:hidden}
-.case-glow{position:absolute;top:-80px;right:-60px;width:280px;height:280px;
-  background:radial-gradient(circle,rgba(26,107,74,0.18) 0%,transparent 60%);pointer-events:none}
-.case-etag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px}
-.case-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;
-  color:#fff;margin-bottom:10px;line-height:1.15}
-.case-risk{font-size:13px;font-weight:300;line-height:1.6;margin-bottom:16px}
-.case-risk-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;
-  color:rgba(239,68,68,0.65);text-transform:uppercase;margin-bottom:4px}
-.case-badge{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;
-  font-size:9px;padding:5px 12px;border-radius:2px}
-.badge-green{color:rgba(26,107,74,0.75);border:1px solid rgba(26,107,74,0.25)}
-.badge-gold{color:rgba(184,146,42,0.75);border:1px solid rgba(184,146,42,0.25)}
-.case-metrics{padding:36px 44px;display:flex;flex-direction:column;justify-content:center;
-  gap:12px;border-left:1px solid rgba(255,255,255,0.06)}
-.cm{display:flex;gap:16px;align-items:flex-start;padding:14px 18px;
-  background:rgba(255,255,255,0.04);border-radius:var(--r);border:1px solid rgba(255,255,255,0.06)}
-.cm-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;
-  line-height:1;min-width:80px;flex-shrink:0}
-.cm-val.gn{color:#4ade80}.cm-val.rd{color:#f87171}.cm-val.yl{color:#fbbf24}.cm-val.wh{color:#fff}
-.cm-title{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:2px}
-.cm-desc{font-size:11px;color:rgba(255,255,255,0.3);line-height:1.5}
-.case-bottom{padding:24px 44px;background:var(--paper2);border-top:1px solid var(--dim);
-  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.case-outcome{font-size:14px;color:var(--muted);line-height:1.65;max-width:560px}
-.case-outcome b{color:var(--ink);font-weight:600}
-.case-links{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.btn-sm{background:var(--ink);color:var(--paper);font-size:13px;font-weight:600;
-  padding:10px 22px;border-radius:var(--r);white-space:nowrap;transition:.2s;border:none}
-.btn-sm:hover{background:var(--ink2)}
-.case-creds{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);line-height:1.8}
+        nav.scrolled {
+            padding: 16px 0;
+            background: rgba(8, 8, 8, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
 
-/* ── REFUSE + WHO ── */
-#standards{background:var(--paper);border-top:1px solid var(--dim)}
-.std-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:0}
-.std-list{display:flex;flex-direction:column;gap:10px;margin-top:28px}
-.std-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;
-  background:var(--paper2);border:1px solid var(--dim);border-radius:var(--r);transition:.2s}
-.std-item:hover{border-color:var(--green)}
-.std-icon{font-size:15px;flex-shrink:0;margin-top:1px;width:20px;text-align:center}
-.std-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
-.std-desc{font-size:12px;color:var(--muted);line-height:1.5}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* ── ABOUT ── */
-#about{background:var(--ink)}
-.about-glow{position:absolute;top:-150px;right:-100px;width:600px;height:600px;
-  background:radial-gradient(circle,rgba(26,107,74,0.14) 0%,transparent 60%);pointer-events:none}
-.about-wrap{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
-.about-left .eyebrow{color:rgba(26,107,74,0.7);border-color:rgba(26,107,74,0.25)}
-.about-left h2{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,52px);
-  font-weight:900;color:#fff;line-height:1.05;margin-bottom:24px}
-.about-left h2 em{font-style:italic;color:var(--green)}
-.about-story{font-size:15px;font-weight:300;color:rgba(255,255,255,0.42);
-  line-height:1.85;margin-bottom:18px}
-.about-story b{color:rgba(255,255,255,0.75);font-weight:500}
-.about-right{display:flex;flex-direction:column;gap:14px}
-.ac{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
-  border-radius:var(--r2);padding:24px 28px;transition:.2s}
-.ac:hover{background:rgba(255,255,255,0.06)}
-.ac-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:3px}
-.ac-role{font-family:'DM Mono',monospace;font-size:9px;color:rgba(26,107,74,0.65);
-  letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
-.ac-bio{font-size:13px;color:rgba(255,255,255,0.38);line-height:1.7}
-.skill-tags{display:flex;flex-wrap:wrap;gap:8px}
-.stag{font-family:'DM Mono',monospace;font-size:9px;color:var(--green);
-  border:1px solid var(--gborder);padding:4px 10px;border-radius:2px;letter-spacing:.06em;
-  background:var(--gdim)}
+        .logo {
+            font-size: 20px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
 
-/* ── CONTACT ── */
-#contact{background:var(--paper2);border-top:1px solid var(--dim)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:48px}
-.contact-opts{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
-.co{display:flex;align-items:center;gap:16px;padding:16px 20px;
-  background:var(--paper);border:1px solid var(--dim);border-radius:var(--r2);
-  transition:.2s;text-decoration:none;color:inherit}
-.co:hover{border-color:var(--ink);box-shadow:var(--shadow)}
-.co-ico{width:40px;height:40px;border-radius:var(--r);display:flex;align-items:center;
-  justify-content:center;font-size:18px;flex-shrink:0}
-.co-ico.g{background:var(--gdim)}.co-ico.w{background:rgba(37,211,102,0.1)}.co-ico.f{background:rgba(29,191,115,0.1)}
-.co-label{font-size:11px;color:var(--muted);margin-bottom:2px}
-.co-val{font-size:14px;font-weight:600;color:var(--ink)}
-.contact-note{font-size:13px;color:var(--muted);line-height:1.7}
-.contact-note strong{color:var(--green);font-weight:600}
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
 
-.form-box{background:var(--paper);border:1px solid var(--dim);border-radius:var(--r2);
-  padding:36px;box-shadow:var(--shadow)}
-.form-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px}
-.form-sub{font-size:14px;color:var(--muted);margin-bottom:26px}
-.field{margin-bottom:16px}
-.field label{display:block;font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);
-  letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;background:var(--paper2);
-  border:1px solid var(--dim);border-radius:var(--r);padding:11px 14px;
-  color:var(--ink);font-size:14px;font-family:'Outfit',sans-serif;outline:none;transition:.2s;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--green);background:var(--paper)}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.submit{width:100%;background:var(--ink);color:var(--paper);font-size:15px;font-weight:700;
-  padding:14px;border-radius:var(--r);border:none;transition:.2s;margin-top:4px}
-.submit:hover{background:var(--ink2)}
-.form-ok{display:none;text-align:center;padding:28px;color:var(--green);font-weight:500;font-size:15px}
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
 
-/* ── FOOTER ── */
-footer{background:var(--ink);padding:44px 40px 28px}
-.foot-inner{max-width:1140px;margin:0 auto}
-.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
-.foot-brand p{font-size:13px;color:rgba(255,255,255,0.28);line-height:1.7;max-width:300px;margin-top:14px}
-.foot-col h4{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;
-  text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px}
-.foot-col a,.foot-col button{display:block;font-size:13px;color:rgba(255,255,255,0.35);
-  margin-bottom:9px;transition:.2s;background:none;border:none;text-align:left;padding:0;cursor:pointer}
-.foot-col a:hover,.foot-col button:hover{color:#fff}
-.foot-bottom{border-top:1px solid rgba(255,255,255,0.06);padding-top:22px;
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.foot-copy{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:.04em}
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
 
-/* ── MODAL ── */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;
-  display:none;align-items:center;justify-content:center;padding:20px}
-.overlay.open{display:flex}
-.modal{background:var(--paper);border-radius:var(--r2);max-width:680px;width:100%;
-  max-height:85vh;overflow-y:auto;padding:44px;position:relative}
-.modal-close{position:absolute;top:18px;right:18px;background:none;border:1px solid var(--dim);
-  border-radius:var(--r);width:34px;height:34px;font-size:16px;color:var(--muted);
-  cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}
-.modal-close:hover{border-color:var(--ink);color:var(--ink)}
-.modal h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:6px}
-.modal-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.1em;margin-bottom:24px}
-.modal h3{font-size:15px;font-weight:600;margin:18px 0 7px}
-.modal p,.modal li{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:8px}
-.modal ul{padding-left:18px}
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
 
-/* ── SECTION HEADERS (shared) ── */
-.sec-ey{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;
-  letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
-.sec-h{font-family:'Playfair Display',serif;font-size:clamp(34px,4.5vw,54px);
-  font-weight:900;letter-spacing:-.02em;line-height:1.0;margin-bottom:48px}
-.sec-h em{font-style:italic;color:var(--green)}
-.sec-h-wh{color:#fff}
-.sec-intro{font-size:16px;font-weight:300;color:var(--muted);line-height:1.75;
-  max-width:540px;margin-bottom:52px}
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  #hero{grid-template-columns:1fr}.hr{display:none}
-  .hl{padding:60px 40px}
-  .about-wrap,.audio-grid,.contact-grid,.what-inner,.std-grid,.offer-grid{grid-template-columns:1fr}
-  .case-top{grid-template-columns:1fr}
-  .case-metrics{border-left:none;border-top:1px solid rgba(255,255,255,0.06)}
-  .ba-grid{grid-template-columns:1fr}
-  .foot-top{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-  .container{padding:0 20px}
-  section{padding:60px 0}
-  .nav-inner{padding:0 20px}
-  .nav-links{display:none}
-  .strip{gap:20px;padding:16px 20px}
-  .foot-top{grid-template-columns:1fr}
-  .foot-bottom{flex-direction:column;text-align:center}
-  footer{padding:40px 20px 24px}
-  .frow{grid-template-columns:1fr}
-  .hl{padding:44px 20px}
-}
-</style>
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            animation: slowZoom 30s infinite alternate linear;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            max-width: 700px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: var(--text-primary);
+            animation: scrollDown 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        /* Section 01 */
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            margin-top: 64px;
+        }
+
+        .col p {
+            font-size: 17px;
+        }
+
+        /* Fullscreen Images */
+        .fullscreen-image-section {
+            position: relative;
+            height: 85vh;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .fs-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .fs-gradient-left {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.6) 40%, rgba(8,8,8,0) 70%);
+            z-index: -1;
+        }
+        
+        .fs-gradient-center {
+            position: absolute;
+            inset: 0;
+            background: rgba(8,8,8,0.6);
+            z-index: -1;
+        }
+
+        .fs-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .fs-content.centered {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* Section 02 - Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 64px;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 48px 40px;
+            transition: border-color 0.4s ease;
+        }
+
+        .card:hover {
+            border-color: #444;
+        }
+
+        /* Section 03 - Split Layout */
+        .split-layout {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .split-content {
+            flex: 1;
+        }
+
+        .split-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            animation: softFloat 6s ease-in-out infinite;
+            border: 1px solid var(--border);
+        }
+
+        .tech-stack {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .tech-stack li {
+            font-size: 15px;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tech-stack li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-stack li::before {
+            content: '•';
+            margin-right: 12px;
+            color: var(--text-primary);
+        }
+
+        /* Section 04 - Timeline */
+        .centered-section {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            margin-top: 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .timeline-item {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .timeline-arrow {
+            color: var(--text-secondary);
+            font-size: 24px;
+        }
+
+        /* Section 05 - Applications */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 64px;
+        }
+
+        .app-item h3 {
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .app-item p {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        /* Final Section */
+        .final-section {
+            height: 90vh;
+            position: relative;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-info {
+            margin-top: 24px;
+            display: block;
+            font-size: 15px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Animations */
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        @keyframes scrollDown {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(200%); }
+        }
+
+        @keyframes softFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s var(--ease), transform 1s var(--ease);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.2s var(--ease);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .container { padding: 0 56px; }
+            .split-layout { flex-direction: column; }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .three-columns { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 24px;
+                text-align: center;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 24px; }
+            .feature-grid, .three-columns { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 24px; text-align: center; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <div class="logo">
-      <div class="logo-mark" style="background:transparent;border:1px solid rgba(26,107,74,0.25)"><svg width="48" height="48" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M26 3 L49 26 L26 49 L3 26 Z" fill="none" stroke="rgba(26,107,74,0.5)" stroke-width="1.4"/>
-  <path d="M26 13 L39 26 L26 39 L13 26 Z" fill="#1a6b4a"/>
-  <line x1="3" y1="26" x2="49" y2="26" stroke="#1a6b4a" stroke-width="0.8" opacity="0.2"/>
-</svg></div>
-      <div class="logo-name">NUV<span>VIO</span></div>
-    </div>
-    <div class="nav-links">
-      <a href="#what">What We Do</a>
-      <a href="#cases">Cases</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Revenue Diagnosis →</button>
-  </div>
-</nav>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Nuvvio</a>
+            <button class="hamburger" id="menu-btn">☰</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#technology">Technology</a>
+                <a href="#applications">Applications</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hl">
-    <div class="eyebrow"><div class="edot"></div>Revenue Intelligence Systems</div>
-    <h1>
-      <span>You're making decisions</span>
-      <span>with incomplete data.</span>
-      <span><em>That's costing you.</em></span>
-    </h1>
-    <p class="hero-sub">Most businesses are losing <b>5–15% of their margin</b> without realizing it. We identify hidden profit leaks and install decision systems that eliminate them — <b>permanently.</b></p>
-    <div class="cta-row">
-      <button class="btn-dark" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Revenue Leak Diagnosis — Limited →</button>
-      <button class="btn-ghost" onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">See Real Results</button>
-    </div>
-    <div class="hero-nums">
-      <div class="hn"><div class="hn-val r">$793K</div><div class="hn-label">In profit destruction found</div></div>
-      <div class="hn"><div class="hn-val g">+17%</div><div class="hn-label">Revenue increase · verified</div></div>
-      <div class="hn"><div class="hn-val">59K+</div><div class="hn-label">Transactions analyzed</div></div>
-    </div>
-  </div>
-  <div class="hr">
-    <div class="hr-grid"></div><div class="hr-glow"></div><div class="hr-glow2"></div><div class="hr-top"></div>
-    <div class="term">
-      <div class="term-bar">
-        <div class="dots"><div class="d d1"></div><div class="d d2"></div><div class="d d3"></div></div>
-        <div class="tname">nuvvio_leak_detection.py</div>
-      </div>
-      <div class="term-body" id="termBody">
-        <div class="tl"><span class="p">❯</span> python detect.py --client=retail_5loc</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <video autoplay muted loop playsinline class="hero-bg">
+            <source src="oceano_video.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content fade-up">
+                <h1>Understanding the Seabed.<br>Enabling Better Decisions.</h1>
+                <p>Nuvvio develops marine simulation software for subsea mining, generates bathymetric datasets and delivers underwater surveying solutions that help organizations understand complex marine environments with greater accuracy.</p>
+                <a href="#technology" class="btn">Explore</a>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </section>
 
-<!-- STRIP -->
-<div class="strip">
-  <div class="si"><b class="r">$793K</b> profit destruction found</div>
-  <div class="si"><b class="g">+17%</b> revenue increase · verified</div>
-  <div class="si"><b>59K+</b> transactions analyzed</div>
-  <div class="si"><b>$0</b> subscriptions required</div>
-</div>
+    <!-- Section 01: Marine Intelligence -->
+    <section id="technology" class="container">
+        <div class="fade-up">
+            <h2>Marine Intelligence Built Around Real Data</h2>
+            <p style="max-width: 800px;">Nuvvio combines underwater mapping, environmental modeling and marine simulation into a unified engineering workflow. Rather than relying on generalized assumptions, our technologies are designed to represent real underwater environments through structured marine datasets that improve analysis, planning and simulation.</p>
+        </div>
+        
+        <div class="three-columns fade-up">
+            <div class="col">
+                <h3>Marine Simulation</h3>
+                <p>Simulation software specifically developed for subsea mining robotics. Our platform allows underwater robotic systems to be evaluated under configurable environmental conditions before field deployment.</p>
+            </div>
+            <div class="col">
+                <h3>Ocean Mapping</h3>
+                <p>Generation of high-quality bathymetric datasets through underwater surveying, terrain reconstruction and continuous marine data acquisition. Our work transforms raw underwater measurements into structured datasets that support engineering, research and operational planning.</p>
+            </div>
+            <div class="col">
+                <h3>Marine Surveying</h3>
+                <p>Professional hydrographic surveys supporting offshore infrastructure, reservoirs, rivers, coastal engineering and environmental assessment. Every project produces reliable information for informed decision-making beneath the surface.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- BEFORE / AFTER -->
-<section id="ba">
-  <div class="container">
-    <div style="text-align:center">
-      <div class="sec-ey" style="color:rgba(26,107,74,0.65)">What actually changes</div>
-      <div class="sec-h sec-h-wh" style="margin-bottom:12px">Specific decisions.<br><em>Measurable outcomes.</em></div>
-      <p style="font-size:16px;color:rgba(255,255,255,0.3);max-width:500px;margin:0 auto;font-weight:300">Not charts. Not presentations. The exact decisions that stop losses and improve margin.</p>
-    </div>
-    <div class="ba-grid">
-      <div class="ba-col ba-before">
-        <div class="ba-label" style="color:rgba(176,58,46,0.6)"><div class="ba-dot" style="background:#b03a2e"></div>Without Nuvvio</div>
-        <div class="ba-items">
-          <div class="ba-item"><div class="ba-icon" style="color:#b03a2e">✗</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.65)">You discount blindly</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.28)">No visibility on which discount levels destroy margin vs generate real profit</div></div></div>
-          <div class="ba-item"><div class="ba-icon" style="color:#b03a2e">✗</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.65)">You scale unprofitable products</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.28)">More sales, more losses — because nobody connected revenue to real cost</div></div></div>
-          <div class="ba-item"><div class="ba-icon" style="color:#b03a2e">✗</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.65)">You react weeks too late</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.28)">By the time a spreadsheet catches a trend, the damage is already done</div></div></div>
-          <div class="ba-item"><div class="ba-icon" style="color:#b03a2e">✗</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.65)">Your best opportunities stay invisible</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.28)">The highest-margin market gets zero attention because nobody looked at the data right</div></div></div>
+    <!-- Fullscreen Image 1 -->
+    <section class="fullscreen-image-section">
+        <img src="terreno.jpg" alt="Bathymetric Terrain" class="fs-bg" loading="lazy">
+        <div class="fs-gradient-left"></div>
+        <div class="container">
+            <div class="fs-content fade-up">
+                <h2>Every Map Reveals More Than Depth.</h2>
+                <p>Bathymetric mapping transforms underwater measurements into structured information. By understanding seabed morphology, geological formations and environmental conditions, organizations can make safer engineering decisions, improve operational planning and expand scientific knowledge.</p>
+            </div>
         </div>
-      </div>
-      <div class="ba-col ba-after">
-        <div class="ba-label" style="color:rgba(26,107,74,0.65)"><div class="ba-dot" style="background:var(--green)"></div>After Nuvvio</div>
-        <div class="ba-items">
-          <div class="ba-item"><div class="ba-icon" style="color:#4ade80">✓</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.85)">You know exactly which discounts destroy margin</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.38)">Alerts fire before a bad promotional decision goes live</div></div></div>
-          <div class="ba-item"><div class="ba-icon" style="color:#4ade80">✓</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.85)">You stop losses before they scale</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.38)">Margin by product, segment and category — visible in real time, every day</div></div></div>
-          <div class="ba-item"><div class="ba-icon" style="color:#4ade80">✓</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.85)">You're alerted before problems get expensive</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.38)">Telegram and email alerts fire the moment a KPI crosses a defined threshold</div></div></div>
-          <div class="ba-item"><div class="ba-icon" style="color:#4ade80">✓</div><div><div class="ba-text-title" style="color:rgba(255,255,255,0.85)">Your highest-margin opportunities surface automatically</div><div class="ba-text-sub" style="color:rgba(255,255,255,0.38)">The system finds what you'd miss — and tells you what to do about it</div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- WHAT WE DO -->
-<section id="what">
-  <div class="container">
-    <div class="what-inner">
-      <div>
-        <div class="sec-ey">What we do</div>
-        <div class="sec-h" style="margin-bottom:20px">We install<br><em>Revenue Intelligence</em><br>Systems.</div>
-        <p style="font-size:16px;font-weight:300;color:var(--muted);line-height:1.8;margin-bottom:20px">We don't build dashboards. We install <strong style="color:var(--ink);font-weight:600">Revenue Intelligence Systems</strong> that make better decisions inevitable.</p>
-        <p style="font-size:16px;font-weight:300;color:var(--muted);line-height:1.8">We use advanced analysis to detect what most businesses never see — then translate it into clear, high-impact decisions.<br><br>Our work focuses on one thing: <strong style="color:var(--ink);font-weight:600">finding where your business leaks profit and stopping it.</strong></p>
-      </div>
-      <div class="what-right">
-        <div class="what-card">
-          <div class="wc-num">Nuvvio Revenue Intelligence Framework™ · Layer 01</div>
-          <div class="wc-title">Leak Detection Layer</div>
-          <div class="wc-desc">We detect hidden profit leaks across pricing, operations, and demand patterns — before they cost you another month.</div>
-          <div class="wc-tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Statistical Analysis</span><span class="tag">Anomaly Detection</span></div>
+    <!-- Section 02: Why Bathymetry Matters -->
+    <section class="container">
+        <div class="fade-up">
+            <h2>Why Bathymetry Matters</h2>
+            <p style="max-width: 800px;">The ocean floor contains critical information that cannot be observed from the surface. Bathymetric mapping reveals the shape of the seabed, identifies geological structures, supports engineering projects and improves our understanding of underwater environments. Reliable marine datasets become the foundation for safer infrastructure, scientific exploration and future subsea operations.</p>
         </div>
-        <div class="what-card">
-          <div class="wc-num">Nuvvio Revenue Intelligence Framework™ · Layer 02</div>
-          <div class="wc-title">Decision Modeling Layer</div>
-          <div class="wc-desc">We translate data into clear, high-impact decisions. Executives detect problems in under 3 seconds — no scanning, no misreading, no guesswork.</div>
-          <div class="wc-tags"><span class="tag">Visual Design</span><span class="tag">Colorblind-safe</span><span class="tag">WCAG AA</span><span class="tag">Pre-attentive UX</span></div>
-        </div>
-        <div class="what-card">
-          <div class="wc-num">Nuvvio Revenue Intelligence Framework™ · Layer 03</div>
-          <div class="wc-title">Execution &amp; Alert Layer</div>
-          <div class="wc-desc">We implement systems that monitor, alert, and guide actions automatically — so you always know before it becomes expensive.</div>
-          <div class="wc-tags"><span class="tag">Telegram Alerts</span><span class="tag">Email Automation</span><span class="tag">Google Sheets</span><span class="tag">Real-time</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- OFFER -->
-<section id="offer" style="background:var(--paper2);border-top:1px solid var(--dim)">
-  <div class="container">
-    <div class="sec-ey">Our core offer</div>
-    <div class="sec-h" style="margin-bottom:12px">Two engagements.<br><em>One objective.</em></div>
-    <p class="sec-intro">We offer a limited number of initial diagnostics at launch pricing to validate results across different business models.</p>
-    <div class="offer-grid">
-      <div class="offer-card">
-        <div class="oc-header">
-          <div class="oc-glow"></div>
-          <div class="oc-tag oc-tag-green">Engagement 01</div>
-          <div class="oc-title">Revenue Leak<br>Diagnosis</div>
-          <div class="oc-price">Starting at $500 USD · Early-stage pricing</div>
+        <div class="feature-grid fade-up">
+            <div class="card">
+                <h3>Seabed Morphology</h3>
+                <p class="small-text">Understand underwater terrain and geological formations.</p>
+            </div>
+            <div class="card">
+                <h3>Sediment Distribution</h3>
+                <p class="small-text">Analyze seabed composition and sediment behavior.</p>
+            </div>
+            <div class="card">
+                <h3>Ocean Dynamics</h3>
+                <p class="small-text">Study how underwater terrain influences marine currents.</p>
+            </div>
+            <div class="card">
+                <h3>Infrastructure Planning</h3>
+                <p class="small-text">Support offshore construction, ports, coastal engineering and marine development.</p>
+            </div>
+            <div class="card">
+                <h3>Mineral Exploration</h3>
+                <p class="small-text">Provide terrain intelligence that assists subsea exploration projects.</p>
+            </div>
+            <div class="card">
+                <h3>Environmental Assessment</h3>
+                <p class="small-text">Generate reliable spatial information for marine ecosystems and environmental studies.</p>
+            </div>
         </div>
-        <div class="oc-body">
-          <p style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.65">In 5–7 days, you receive a decision tool — not a report. Your top 3 profit leaks, their financial impact, and the exact actions to fix them.</p>
-          <div class="oc-list">
-            <div class="oc-item"><span>✦</span> Your top 3 profit leaks identified</div>
-            <div class="oc-item"><span>✦</span> Estimated financial impact per leak</div>
-            <div class="oc-item"><span>✦</span> Specific actions to stop each one</div>
-            <div class="oc-item"><span>✦</span> 1–2 data sources · Focused scope</div>
-          </div>
-          <div class="oc-note">This is not a report. This is not a presentation. This is a decision tool with a direct line to your margin.</div>
-          <button class="oc-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request Diagnosis →</button>
-        </div>
-      </div>
-      <div class="offer-card">
-        <div class="oc-header" style="background:rgba(13,13,13,0.95)">
-          <div class="oc-glow" style="background:radial-gradient(circle,rgba(184,146,42,0.2) 0%,transparent 60%)"></div>
-          <div class="oc-tag oc-tag-gold">Engagement 02</div>
-          <div class="oc-title">Revenue Operating<br>System</div>
-          <div class="oc-price">$200–$400 USD · One payment · Full ownership</div>
-        </div>
-        <div class="oc-body">
-          <p style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.65">We make it impossible to miss when your business is losing money. A system that monitors, detects risk, alerts you, and guides decisions — automatically.</p>
-          <div class="oc-list">
-            <div class="oc-item"><span>✦</span> Live intelligence dashboard — yours forever</div>
-            <div class="oc-item"><span>✦</span> Audio executive briefing — every morning</div>
-            <div class="oc-item"><span>✦</span> Automated alerts via Telegram or email</div>
-            <div class="oc-item"><span>✦</span> No subscriptions · No Power BI · No lock-in</div>
-          </div>
-          <div class="oc-note">Full code ownership. Full data ownership. One payment — and the system works while you sleep.</div>
-          <button class="oc-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Your System →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- AUDIO ADVANTAGE -->
-<section id="audio">
-  <div class="container">
-    <div class="audio-grid">
-      <div class="audio-left">
-        <div class="eyebrow"><div class="edot"></div>Executive Advantage</div>
-        <h2>Your business talks<br>to you <em>every morning.</em></h2>
-        <p>You receive a <b>60-second spoken briefing</b> — what needs attention, where you’re losing money, what decision to make next. No dashboards. No digging. No guesswork.</p>
-        <p>This isn’t a feature. It’s a different relationship with your business. <b>You always know before it becomes a problem.</b></p>
-        <p style="font-size:14px;font-weight:300;color:rgba(255,255,255,0.3);margin-top:8px">Demo uses your browser's speech synthesis. Press play.</p>
-      </div>
-      <div class="audio-player">
-        <div class="ap-header">
-          <div class="ap-title">Executive Intelligence Briefing</div>
-          <div class="ap-live"><div class="ap-live-dot"></div>LIVE SYSTEM</div>
+    <!-- Section 03: Split Layout -->
+    <section class="container">
+        <div class="split-layout">
+            <div class="split-content fade-up">
+                <h2>Simulation Based on Real Marine Conditions</h2>
+                <p>Every underwater environment behaves differently. Water density, salinity, currents and seabed composition directly influence robotic operations.</p>
+                <p>Our platform separates environmental datasets from the simulation engine, allowing every project to accurately represent its own marine conditions while maintaining computational consistency. This approach provides reliable simulations for subsea mining robotics while keeping the computational engine independent from environmental variables.</p>
+                
+                <h3 style="margin-top: 48px; font-size: 20px;">Built on Proven Technologies</h3>
+                <p class="small-text">Powered by NVIDIA simulation technologies and extended with proprietary marine computational models developed specifically for underwater applications.</p>
+                
+                <ul class="tech-stack">
+                    <li>NVIDIA Simulation Technologies</li>
+                    <li>Artificial Intelligence</li>
+                    <li>Computer Vision</li>
+                    <li>Bathymetric Processing</li>
+                    <li>GIS</li>
+                    <li>Hydrodynamic Modeling</li>
+                    <li>Machine Learning</li>
+                </ul>
+            </div>
+            <div class="split-image fade-in">
+                <img src="interfaz.jpg" alt="Simulation Software Interface" loading="lazy">
+            </div>
         </div>
-        <div class="ap-body">
-          <div class="ap-transcript" id="apTranscript"><span style="color:rgba(255,255,255,0.2);font-style:italic">Press play to hear your morning briefing...</span></div>
-          <div class="ap-controls">
-            <button class="play-btn" id="playBtn" onclick="toggleAudio()">▶</button>
-            <div class="ap-progress"><div class="ap-fill" id="apFill"></div></div>
-            <div class="ap-time" id="apTime">0:00</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- CASES -->
-<section id="cases">
-  <div class="container">
-    <div class="sec-ey">Real work · Verified outcomes</div>
-    <div class="sec-h">Two diagnoses.<br><em>Two transformations.</em></div>
-
-    <!-- Case 1 -->
-    <div class="case">
-      <div class="case-top">
-        <div class="case-info">
-          <div class="case-glow"></div>
-          <div class="case-etag">Case 01 · Retail · 5 Locations · Mexico City</div>
-          <div class="case-title">Verdantía — Revenue Operating System</div>
-          <div class="case-risk-label">Situation &amp; Hidden Risk</div>
-          <div class="case-risk" style="color:rgba(255,255,255,0.4)">Retail business scaling aggressively without clear margin visibility. Revenue growing — but profits unstable and deteriorating. Without intervention, they would have continued scaling unprofitable products.</div>
-          <div class="case-badge badge-green">✦ Outcome: +17% revenue increase · Verified · Q1 2026</div>
+    <!-- Section 04: Centered Timeline -->
+    <section class="container centered-section fade-up">
+        <h2>From Survey to Simulation</h2>
+        <p>Everything begins with reliable marine data. Marine surveys generate bathymetric information. That information becomes structured environmental datasets. Those datasets create realistic simulation environments. Simulation improves engineering decisions before deployment.</p>
+        
+        <div class="timeline">
+            <div class="timeline-item">Marine Survey</div>
+            <div class="timeline-arrow">↓</div>
+            <div class="timeline-item">Bathymetric Processing</div>
+            <div class="timeline-arrow">↓</div>
+            <div class="timeline-item">Environmental Models</div>
+            <div class="timeline-arrow">↓</div>
+            <div class="timeline-item">Simulation</div>
+            <div class="timeline-arrow">↓</div>
+            <div class="timeline-item">Engineering Decisions</div>
         </div>
-        <div class="case-metrics">
-          <div class="cm"><div class="cm-val gn">+17%</div><div><div class="cm-title">Revenue increase — verified</div><div class="cm-desc">Data-driven decisions directly improved revenue trajectory within the first quarter.</div></div></div>
-          <div class="cm"><div class="cm-val wh">5×</div><div><div class="cm-title">Locations unified in real time</div><div class="cm-desc">All 5 branches feed one live dashboard with automated Google Sheets sync.</div></div></div>
-          <div class="cm"><div class="cm-val" style="color:#60a5fa;font-size:22px">🔊</div><div><div class="cm-title">Audio executive briefing — daily</div><div class="cm-desc">Spoken summary every morning. Revenue, alerts, top product, recommended action.</div></div></div>
-          <div class="cm"><div class="cm-val yl">24h</div><div><div class="cm-title">From raw data to live system</div><div class="cm-desc">Including automated Telegram alerts, KPI tracking and multi-location comparison.</div></div></div>
-        </div>
-      </div>
-      <div class="case-bottom">
-        <div class="case-outcome"><b>Discovery:</b> Detected pricing patterns eroding margins. <b>Decision change:</b> Adjusted pricing structure and stopped scaling low-margin items. <b>Outcome: +17% margin increase in 6 weeks.</b> No subscriptions. One payment — full ownership forever.</div>
-        <div class="case-links">
-          <a href="https://verdantia-seven.vercel.app/" target="_blank" class="btn-sm">View Live Demo →</a>
-          <div class="case-creds">User: <b>VERDANTIA</b><br>Pass: <b>12345c</b></div>
-        </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Case 2 -->
-    <div class="case">
-      <div class="case-top">
-        <div class="case-info" style="background:rgba(255,255,255,0.01)">
-          <div class="case-glow" style="background:radial-gradient(circle,rgba(184,146,42,0.15) 0%,transparent 60%)"></div>
-          <div class="case-etag">Case 02 · Global Retail · 147 Countries · Python + Pandas</div>
-          <div class="case-title">SuperStore Global — Executive Intelligence</div>
-          <div class="case-risk-label">Situation &amp; Hidden Risk</div>
-          <div class="case-risk" style="color:rgba(255,255,255,0.4)">A global operation scaling revenue while destroying profit. 4 years of compounding losses that looked like growth — because the data existed but nobody read it correctly.</div>
-          <div class="case-badge badge-gold">✦ 51,290 transactions · 147 countries · 4 years of data</div>
+    <!-- Fullscreen Image 2 -->
+    <section class="fullscreen-image-section" style="height: 90vh;">
+        <img src="oceano.jpg" alt="Cinematic Ocean" class="fs-bg" loading="lazy">
+        <div class="fs-gradient-center"></div>
+        <div class="container">
+            <div class="fs-content centered fade-up">
+                <h2>The Ocean Remains One of Earth’s Least Understood Environments.</h2>
+                <p>Every survey expands our understanding of underwater terrain. Every dataset improves engineering knowledge. Every simulation reduces uncertainty before real-world operations begin.</p>
+            </div>
         </div>
-        <div class="case-metrics">
-          <div class="cm"><div class="cm-val rd">$793K</div><div><div class="cm-title">Profit destroyed by their own policy</div><div class="cm-desc">At 50%+ discount, for every $1 sold the company lost $1.11. A "growth" strategy was a black hole.</div></div></div>
-          <div class="cm"><div class="cm-val rd">-$64K</div><div><div class="cm-title">Hidden loss machine — Tables category</div><div class="cm-desc">Selling more meant losing more. They were actively promoting it for years.</div></div></div>
-          <div class="cm"><div class="cm-val yl">26.6%</div><div><div class="cm-title">Canada: highest margin — ignored</div><div class="cm-desc">Best-performing market of 147. Receiving zero strategic attention. Expansion opportunity found.</div></div></div>
-          <div class="cm"><div class="cm-val wh">$12.6M</div><div><div class="cm-title">Total revenue mapped and analyzed</div><div class="cm-desc">All markets, segments, categories — with margin, growth rate and color-coded alerts.</div></div></div>
+    </section>
+
+    <!-- Section 05: Applications -->
+    <section id="applications" class="container">
+        <div class="fade-up">
+            <h2>Applications</h2>
         </div>
-      </div>
-      <div class="case-bottom">
-        <div class="case-outcome">Delivered a <b>custom Executive Intelligence Dashboard</b> — dark corporate design, pre-attentive visual attributes, 6 interactive charts, color-coded loss alerts. <b>Decisions a CEO can make in 30 seconds.</b></div>
-        <a href="https://super-store-eight.vercel.app/" target="_blank" class="btn-sm">View Live Dashboard →</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REFUSE + WHO -->
-<section id="standards" style="background:var(--paper);border-top:1px solid var(--dim)">
-  <div class="container">
-    <div class="std-grid">
-      <div>
-        <div class="sec-ey">Our standards</div>
-        <div class="sec-h" style="font-size:clamp(28px,3.5vw,44px);margin-bottom:8px">What we<br><em>refuse to do.</em></div>
-        <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px">This isn't a list of limitations. It's a commitment to quality. We'd rather not work with you than deliver something that doesn't move your numbers.</p>
-        <div class="std-list">
-          <div class="std-item"><div class="std-icon" style="color:var(--red)">✗</div><div><div class="std-title">Build dashboards without diagnosis</div><div class="std-desc">Pretty charts without understanding the business problem first</div></div></div>
-          <div class="std-item"><div class="std-icon" style="color:var(--red)">✗</div><div><div class="std-title">Track vanity metrics</div><div class="std-desc">If it doesn't connect to revenue, margin or cost — we don't measure it</div></div></div>
-          <div class="std-item"><div class="std-icon" style="color:var(--red)">✗</div><div><div class="std-title">Deliver reports nobody uses</div><div class="std-desc">Everything we build is designed to be acted on, not filed away</div></div></div>
-          <div class="std-item"><div class="std-icon" style="color:var(--red)">✗</div><div><div class="std-title">Lock you into subscriptions</div><div class="std-desc">One payment. Full ownership. No dependency on us or anyone else — ever</div></div></div>
+        <div class="app-grid fade-up">
+            <div class="app-item">
+                <h3>Subsea Mining</h3>
+                <p class="small-text">Simulation environments supporting underwater robotic operations.</p>
+            </div>
+            <div class="app-item">
+                <h3>Offshore Infrastructure</h3>
+                <p class="small-text">Hydrographic information for engineering and construction.</p>
+            </div>
+            <div class="app-item">
+                <h3>Scientific Research</h3>
+                <p class="small-text">Marine datasets supporting oceanographic investigations.</p>
+            </div>
+            <div class="app-item">
+                <h3>Environmental Assessment</h3>
+                <p class="small-text">Reliable underwater terrain information for environmental analysis.</p>
+            </div>
+            <div class="app-item">
+                <h3>Rivers & Reservoirs</h3>
+                <p class="small-text">Bathymetric surveys for inland water environments.</p>
+            </div>
+            <div class="app-item">
+                <h3>Digital Marine Models</h3>
+                <p class="small-text">Structured underwater datasets supporting digital engineering workflows.</p>
+            </div>
         </div>
-      </div>
-      <div>
-        <div class="sec-ey">Who this is for</div>
-        <div class="sec-h" style="font-size:clamp(28px,3.5vw,44px);margin-bottom:8px">We work best with<br><em>these businesses.</em></div>
-        <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px">We only take engagements where the data problem is real and the impact is measurable. <strong style="color:var(--ink)">Not for early-stage startups with no data.</strong></p>
-        <div class="std-list">
-          <div class="std-item"><div class="std-icon" style="color:var(--green)">✦</div><div><div class="std-title">E-commerce &amp; Shopify stores</div><div class="std-desc">$20K–$500K/month revenue with product catalog and transaction data</div></div></div>
-          <div class="std-item"><div class="std-icon" style="color:var(--green)">✦</div><div><div class="std-title">Multi-location retail</div><div class="std-desc">2+ locations with fragmented reporting across branches</div></div></div>
-          <div class="std-item"><div class="std-icon" style="color:var(--green)">✦</div><div><div class="std-title">Logistics &amp; transport operations</div><div class="std-desc">Route data, cost per unit, margin by client or destination</div></div></div>
-          <div class="std-item"><div class="std-icon" style="color:var(--green)">✦</div><div><div class="std-title">Service businesses with recurring revenue</div><div class="std-desc">Clinics, agencies, consultancies with invoice or transaction history</div></div></div>
+    </section>
+
+    <!-- Final Section -->
+    <section id="contact" class="final-section">
+        <img src="oceano.jpg" alt="Cinematic Ocean Deep" class="fs-bg" loading="lazy">
+        <div class="fs-gradient-center"></div>
+        <div class="container centered-section fade-up">
+            <h2>Building Better Marine Intelligence.</h2>
+            <p>Nuvvio transforms underwater environments into reliable engineering knowledge through mapping, simulation and marine data analysis. We collaborate with industrial partners, engineering companies and research organizations that require accurate information beneath the surface.</p>
+            <a href="mailto:contacto@nuvvio.online" class="btn">Contact</a>
+            <span class="contact-info">contacto@nuvvio.online</span>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container" style="position:relative">
-    <div class="about-glow"></div>
-    <div class="about-wrap">
-      <div class="about-left">
-        <div class="eyebrow"><div class="edot"></div>About Nuvvio</div>
-        <h2>Built to eliminate<br><em>profit leaks.</em></h2>
-        <p class="about-story">Nuvvio was built from a simple observation: <b>businesses were drowning in data and starving for answers.</b> Every company we encountered had spreadsheets, exports, and monthly reports — yet nobody could tell us which product was actually profitable, or which client was quietly costing them money.</p>
-        <p class="about-story">We started with one question: <b>what if the intelligence that Fortune 500 companies pay millions for could be delivered to any business, at a fraction of the cost, without subscriptions?</b> The answer became Nuvvio.</p>
-        <p class="about-story">We don't sell software. We don't sell dashboards. <b>We sell clarity.</b> The kind that changes decisions.</p>
-      </div>
-      <div class="about-right">
-        <div class="ac">
-          <div class="ac-name">Misael Depaz</div>
-          <div class="ac-role">Founder · Revenue Intelligence Analyst</div>
-          <div class="ac-bio">5 years as Cabin Crew at Aeromexico — executing critical procedures under pressure with zero margin for error across 40+ routes. That discipline for structured decision-making and operational clarity is now applied to business data. Currently studying at Tecnológico de Monterrey. Real results across retail, logistics and e-commerce clients globally.</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content fade-in">
+            <div>
+                <div class="logo" style="font-size: 16px;">NUVVIO</div>
+                <div class="small-text" style="margin-top: 8px;">A Selixor Technologies Company</div>
+            </div>
+            <div class="footer-links">
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
         </div>
-        <div class="ac" style="background:rgba(26,107,74,0.1);border-color:rgba(26,107,74,0.2)">
-          <div class="ac-name" style="font-size:15px;color:rgba(255,255,255,0.8)">🔊 "Your business talks to you every morning."</div>
-          <div class="ac-bio" style="margin-top:8px">One client receives a 60-second audio briefing before opening — revenue, alerts, top product, what to decide today. No charts. No logging in. Just intelligence that arrives automatically, every single day.</div>
-        </div>
-        <div class="skill-tags">
-          <span class="stag">Python · Pandas</span>
-          <span class="stag">Statistical Analysis</span>
-          <span class="stag">HTML · CSS · JS</span>
-          <span class="stag">Google Sheets APIs</span>
-          <span class="stag">Telegram · Email Automation</span>
-          <span class="stag">WCAG Accessibility</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="sec-ey">Start here</div>
-    <div class="sec-h" style="margin-bottom:12px">Request your<br><em>revenue leak diagnosis.</em></div>
-    <p style="font-size:16px;color:var(--muted);max-width:520px;margin-bottom:0;line-height:1.7">We are only taking <strong style="color:var(--ink)">3–5 businesses this month</strong> for initial diagnostics. If you suspect your business is losing money and can’t clearly see where — this is your next step. We’ll show you exactly where, and what to do about it.</p>
-    <div class="contact-grid">
-      <div>
-        <div class="contact-opts">
-          <a href="https://wa.me/525573764626?text=Hi%2C%20I%20found%20Nuvvio%20and%20I'd%20like%20a%20revenue%20leak%20diagnosis" target="_blank" class="co">
-            <div class="co-ico w">💬</div>
-            <div><div class="co-label">WhatsApp — Fastest response</div><div class="co-val">+52 55 7376 4626</div></div>
-          </a>
-          
-          <a href="https://www.fiverr.com/misael_depaz" target="_blank" class="co">
-            <div class="co-ico f">🛒</div>
-            <div><div class="co-label">Fiverr — Secure payment guaranteed</div><div class="co-val">fiverr.com/misael_depaz</div></div>
-          </a>
-        </div>
-        <p class="contact-note">Reply within 1 hour. Free initial diagnosis — no commitment.<br>Fixed price: $200–$400 USD depending on scope.<br><br><strong>Only 3–5 spots available this month.</strong> We work best with businesses generating $10K+/month or 500+ transactions. Not there yet? We’ll point you in the right direction — free.</p>
-      </div>
-      <div class="form-box">
-        <div class="form-title">Request your diagnosis</div>
-        <div class="form-sub">Tell us about your business. We identify your biggest profit leak — free, within 48 hours.</div>
-        <form id="cf" action="https://formspree.io/f/xkokwlge" method="POST" onsubmit="handleForm(event)">
-          <div class="frow">
-            <div class="field"><label>First Name</label><input type="text" name="firstName" placeholder="John" required></div>
-            <div class="field"><label>Last Name</label><input type="text" name="lastName" placeholder="Smith" required></div>
-          </div>
-          <div class="field"><label>Email</label><input type="email" name="email" placeholder="john@company.com" required></div>
-          <div class="field"><label>Business Type</label>
-            <select name="businessType">
-              <option value="">Select industry</option>
-              <option>Retail / E-commerce</option><option>Restaurant / Food</option>
-              <option>Logistics / Transport</option><option>Healthcare</option>
-              <option>Manufacturing</option><option>Services / Consulting</option><option>Other</option>
-            </select>
-          </div>
-          <div class="field"><label>Your data challenge</label><textarea name="message" rows="4" placeholder="What data do you have? What decisions are you struggling to make? What would you love to know about your business?" required></textarea></div>
-          <input type="hidden" name="_subject" value="New Nuvvio revenue diagnosis request">
-          <button type="submit" class="submit">Request Revenue Diagnosis →</button>
-          <div class="form-ok" id="formOk">✓ Request received. We'll be in touch within 1 hour.</div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+    <!-- Scripts -->
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-inner">
-    <div class="foot-top">
-      <div class="foot-brand">
-        <div class="logo">
-          <div class="logo-mark" style="background:transparent;border:1px solid rgba(26,107,74,0.25)"><svg width="48" height="48" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M26 3 L49 26 L26 49 L3 26 Z" fill="none" stroke="rgba(26,107,74,0.5)" stroke-width="1.4"/>
-  <path d="M26 13 L39 26 L26 39 L13 26 Z" fill="#1a6b4a"/>
-  <line x1="3" y1="26" x2="49" y2="26" stroke="#1a6b4a" stroke-width="0.8" opacity="0.2"/>
-</svg></div>
-          <div class="logo-name" style="color:#fff">NUV<span>VIO</span></div>
-        </div>
-        <p>Revenue Intelligence Systems. We find where your business loses money and install the system that stops it. Mexico → Global.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Services</h4>
-        <a href="#offer">Revenue Leak Diagnosis</a>
-        <a href="#offer">Revenue Operating System</a>
-        <a href="#what">Leak Detection</a>
-        <a href="#what">Decision Modeling</a>
-        <a href="#audio">Audio Intelligence</a>
-      </div>
-      <div class="foot-col">
-        <h4>Contact</h4>
-        <a href="https://wa.me/525573764626" target="_blank">WhatsApp</a>
-        <a href="https://www.fiverr.com/misael_depaz" target="_blank">Fiverr</a>
-        <a href="https://linkedin.com/in/misaeldepaz" target="_blank">LinkedIn</a>
-        <button onclick="openPrivacy()">Privacy Policy</button>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <div class="foot-copy">© 2026 NUVVIO · All rights reserved · nuvvio.online</div>
-      <button class="foot-copy" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.25)" onclick="openPrivacy()">Privacy Policy</button>
-    </div>
-  </div>
-</footer>
+        // Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
 
-<!-- PRIVACY MODAL -->
-<div class="overlay" id="privacyModal" onclick="if(event.target===this)closePrivacy()">
-  <div class="modal">
-    <button class="modal-close" onclick="closePrivacy()">✕</button>
-    <h2>Privacy Policy</h2>
-    <div class="modal-date">Last updated: April 2026</div>
-    <p>Nuvvio ("we", "us", "our") is committed to protecting your personal information. This Privacy Policy explains how we collect, use, and safeguard data you provide when using our website and services.</p>
-    <h3>1. Information We Collect</h3>
-    <p>We collect information you voluntarily provide through our contact form: name, email address, business type, and details about your data challenges. We do not collect sensitive personal or financial data through this form.</p>
-    <h3>2. How We Use Your Information</h3>
-    <ul><li>To respond to your inquiry and provide the requested services</li><li>To send project updates and deliverables relevant to your engagement</li><li>We do not sell, rent, or share your personal information with third parties for marketing purposes</li></ul>
-    <h3>3. Data Storage and Security</h3>
-    <p>Form submissions are processed through Formspree, a secure third-party form service. Data is transmitted via HTTPS encryption. We retain contact information only for the duration of our professional relationship.</p>
-    <h3>4. Client Data</h3>
-    <p>Any business data (Excel files, CSVs, databases) shared with us is used exclusively for the agreed deliverable. We do not store, share, or use client business data for any other purpose. All client data files are deleted upon project completion unless otherwise agreed in writing.</p>
-    <h3>5. Your Rights</h3>
-    <p>You have the right to request access to, correction of, or deletion of your personal data at any time. Contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3daddd5dcf3ddc6c5c5dadc9ddcdddfdaddd6">[email&#160;protected]</a>.</p>
-    <h3>6. Cookies</h3>
-    <p>This website does not use tracking cookies or third-party analytics. We use only essential technical cookies required for the website to function.</p>
-    <h3>7. Contact</h3>
-    <p>Privacy questions: <b><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="462f28202906283330302f296829282a2f2823">[email&#160;protected]</a></b> · WhatsApp: +52 55 7376 4626</p>
-  </div>
-</div>
+        // Hamburger Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-(function(){
-  var tb=document.getElementById('termBody');
-  if(!tb)return;
-  var tl=[
-    {t:400,c:'#4ade80',x:'&#10003; Connection established &middot; Sheets sync active'},
-    {t:900,c:null,x:'<span style="color:#1a6b4a">Scanning</span> 7,924 transactions...'},
-    {t:1500,c:'#fbbf24',x:'&#9888; Margin anomaly &mdash; Sucursal Polanco'},
-    {t:2100,c:null,x:'<span style="color:#1a6b4a">Running</span> leak_detection()'},
-    {t:2700,c:'#60a5fa',x:'&rarr; Top: S&eacute;rum &middot; +18.2% margin'},
-    {t:3300,c:'#fbbf24',x:'&#9888; Friday sales 34% below weekly avg'},
-    {t:3900,c:null,x:'<span style="color:#1a6b4a">Generating</span> audio_briefing.mp3'},
-    {t:4500,c:'#4ade80',x:'&#10003; System live &middot; Telegram alert sent'},
-    {t:5100,c:'#60a5fa',x:'&rarr; Revenue vs last month: <span style="color:#4ade80">+$8,240 (+17.2%)</span>'},
-  ];
-  tl.forEach(function(l){
-    setTimeout(function(){
-      var d=document.createElement('div');d.className='tl';
-      d.innerHTML=l.c?'<span style="color:'+l.c+'">'+l.x+'</span>':l.x;
-      tb.appendChild(d);tb.scrollTop=tb.scrollHeight;
-    },l.t);
-  });
-})();
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
 
-var _play=false,_el=0,_dur=26,_tmr=null;
-var _al=[
-  {t:0,h:'<span style="color:#1a6b4a">Good morning.</span> Executive revenue briefing...'},
-  {t:3,h:'Revenue: <span style="color:#4ade80">$47,200</span> &mdash; <span style="color:#1a6b4a">+12%</span> vs last week.'},
-  {t:7,h:'<span style="color:#fbbf24">&#9888;</span> Polanco <span style="color:#fbbf24">-34%</span> Fridays. Review staffing.'},
-  {t:12,h:'Top: <span style="color:#1a6b4a">Regenerating Serum</span> &middot; <span style="color:#4ade80">+18.2% margin</span>.'},
-  {t:17,h:'<span style="color:#1a6b4a">Opportunity:</span> Tuesdays <span style="color:#4ade80">+40% conversion</span>.'},
-  {t:22,h:'<span style="color:rgba(255,255,255,0.2)">End of briefing. Powered by Nuvvio.</span>'},
-];
-var _as='Good morning. Here is your daily revenue intelligence briefing. This week, total revenue reached forty-seven thousand, two hundred dollars — up twelve percent from last week. One alert requires your attention: the Polanco location is underperforming on Fridays, down thirty-four percent below the weekly average. We recommend reviewing staffing and inventory for that shift. Your top performer continues to be the Regenerating Serum, running at an eighteen-point-two percent margin, well above your category average. There is also a growth opportunity worth noting: Tuesday evenings are converting forty percent higher than the rest of the week. Consider targeted promotions for that window. That concludes your briefing. Powered by Nuvvio Intelligence.';
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-window.toggleAudio=function(){
-  if(!window.speechSynthesis){alert('Use Chrome or Edge for audio.');return;}
-  if(_play){
-    speechSynthesis.cancel();_play=false;clearInterval(_tmr);
-    var b=document.getElementById('playBtn');if(b)b.textContent='\u25B6';
-    return;
-  }
-  var u=new SpeechSynthesisUtterance(_as);
-  u.rate=0.92;u.pitch=1.0;u.lang='en-US';u.volume=1;
-  var all=speechSynthesis.getVoices();
-  var preferred=['Google US English','Google English','Microsoft Aria Online','Microsoft Guy Online','Alex','Samantha','Karen'];
-  var chosen=null;
-  for(var i=0;i<preferred.length;i++){
-    var match=all.find(function(v){return v.name===preferred[i];});
-    if(match){chosen=match;break;}
-  }
-  if(!chosen){
-    var usEn=all.filter(function(v){return v.lang==='en-US';});
-    chosen=usEn.find(function(v){return v.name.indexOf('Google')>=0;})||usEn[0];
-  }
-  if(!chosen){
-    chosen=all.filter(function(v){return v.lang.startsWith('en');})[0];
-  }
-  if(chosen)u.voice=chosen;
-  u.onend=function(){
-    _play=false;clearInterval(_tmr);
-    var b=document.getElementById('playBtn');if(b)b.textContent='\u25B6';
-  };
-  speechSynthesis.speak(u);
-  _play=true;
-  var b=document.getElementById('playBtn');if(b)b.textContent='\u25A0';
-  var tr=document.getElementById('apTranscript');if(tr)tr.innerHTML='';
-  _el=0;
-  _tmr=setInterval(function(){
-    _el++;
-    var f=document.getElementById('apFill');
-    var ti=document.getElementById('apTime');
-    var tr2=document.getElementById('apTranscript');
-    if(f)f.style.width=Math.min((_el/_dur)*100,100)+'%';
-    if(ti){var m=Math.floor(_el/60),s=_el%60;ti.textContent=m+':'+(s<10?'0':'')+s;}
-    _al.forEach(function(l){
-      if(_el===l.t&&tr2){
-        var d=document.createElement('div');
-        d.style.marginBottom='6px';
-        d.innerHTML=l.h;
-        tr2.appendChild(d);
-      }
-    });
-  },1000);
-};
-if(window.speechSynthesis){speechSynthesis.onvoiceschanged=function(){};}
-
-window.handleForm=function(e){
-  e.preventDefault();
-  var btn=e.target.querySelector('.submit');
-  if(!btn)return;
-  btn.textContent='Sending...';
-  btn.disabled=true;
-  fetch(e.target.action,{
-    method:'POST',
-    body:new FormData(e.target),
-    headers:{'Accept':'application/json'}
-  }).then(function(r){
-    if(r.ok){
-      var cf=document.getElementById('cf');
-      var ok=document.getElementById('formOk');
-      if(cf)cf.style.display='none';
-      if(ok)ok.style.display='block';
-    } else {
-      btn.textContent='Error — try again';
-      btn.disabled=false;
-    }
-  }).catch(function(){
-    btn.textContent='Error — try again';
-    btn.disabled=false;
-  });
-};
-
-window.openPrivacy=function(){
-  var m=document.getElementById('privacyModal');
-  if(m){m.classList.add('open');document.body.style.overflow='hidden';}
-};
-window.closePrivacy=function(){
-  var m=document.getElementById('privacyModal');
-  if(m){m.classList.remove('open');document.body.style.overflow='';}
-};
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape')window.closePrivacy();
-});
-window.addEventListener('scroll',function(){
-  var n=document.querySelector('nav');
-  if(n)n.style.boxShadow=window.scrollY>20?'0 2px 20px rgba(0,0,0,0.07)':'none';
-});
-</script>
+        document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
