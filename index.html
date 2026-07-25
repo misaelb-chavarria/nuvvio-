@@ -90,8 +90,8 @@
             justify-content: center;
         }
 
-        /* Video Header / Banner */
-        .video-banner {
+        /* Clean Header / Logo Zone */
+        .header-banner {
             position: fixed;
             top: 0;
             left: 0;
@@ -99,29 +99,11 @@
             padding: 20px 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border);
-            overflow: hidden;
+            background-color: rgba(8, 8, 8, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             align-items: center;
-        }
-
-        .video-banner .bg-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            object-fit: cover;
-        }
-
-        .video-banner .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(8, 8, 8, 0.65);
-            z-index: -1;
         }
 
         .logo-wrapper {
@@ -441,12 +423,40 @@
         .app-item h3 { margin-bottom: 8px; font-size: 18px; }
         .app-item p { font-size: 15px; margin-bottom: 0; }
 
-        /* Vision Section */
+        /* Vision Section with Video Background */
         .vision-section {
+            position: relative;
             padding: 120px 0;
-            background: var(--bg-secondary);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .vision-bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        .vision-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(8, 8, 8, 0.75);
+            z-index: -1;
+        }
+
+        .vision-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         .vision-content {
@@ -605,13 +615,8 @@
 </head>
 <body>
 
-    <!-- Cinematic Video Header -->
-    <header class="video-banner">
-        <video autoplay muted loop playsinline class="bg-video">
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-        <div class="overlay"></div>
+    <!-- Clean Solid/Gradient Header -->
+    <header class="header-banner">
         <div class="container">
             <div class="logo-wrapper">
                 <a href="index.html" class="logo">Nuvvio</a>
@@ -825,8 +830,13 @@
         </div>
     </section>
 
-    <!-- Our Vision Section -->
+    <!-- Our Vision Section with Video Background -->
     <section id="vision" class="vision-section">
+        <video autoplay muted loop playsinline class="vision-bg-video">
+            <source src="mar.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="vision-overlay"></div>
         <div class="container">
             <div class="vision-content fade-up">
                 <h2 style="margin-bottom: 32px;">Our Vision</h2>
@@ -869,9 +879,6 @@
         </div>
     </footer>
 
-    <!-- (Keep the existing Privacy Policy & Terms of Use Modals code here identically as provided in your original file) -->
-    <!-- ... Modals Code Omitted for Brevity but should remain in production ... -->
-
     <!-- Scripts -->
     <script>
         // Intersection Observer for scroll animations
@@ -892,8 +899,6 @@
         document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
             observer.observe(el);
         });
-
-        // (Include modal logic for Privacy/Terms here as previously implemented)
     </script>
 </body>
 </html>
