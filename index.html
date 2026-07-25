@@ -423,7 +423,7 @@
         .app-item h3 { margin-bottom: 8px; font-size: 18px; }
         .app-item p { font-size: 15px; margin-bottom: 0; }
 
-        /* Vision Section with Video Background */
+        /* Vision Section with Video Background - BRIGHTNESS ADJUSTED */
         .vision-section {
             position: relative;
             padding: 120px 0;
@@ -445,12 +445,13 @@
             transform: translate(-50%, -50%);
             z-index: -2;
             object-fit: cover;
+            filter: brightness(1.25); /* Se aumentó el brillo del video un 25% */
         }
 
         .vision-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(8, 8, 8, 0.75);
+            background: rgba(8, 8, 8, 0.60); /* Se redujo la opacidad de 0.75 a 0.60 para dejar pasar más luz */
             z-index: -1;
         }
 

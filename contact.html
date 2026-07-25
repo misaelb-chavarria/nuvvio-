@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Channels & Contact | Nuvvio Marine Intelligence</title>
+    <meta name="description" content="Secure communication channels, institutional routing, academic research grants, and government liaison desks for Nuvvio Marine Intelligence.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #111111;
+            --bg-card: #141414;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border: #242424;
+            --font-family: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.25;
+            margin-top: 60px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 24px;
+            margin-bottom: 10px;
+            color: #D0D0D0;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 4px 8px;
+            display: inline-block;
+            width: fit-content;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: #A0A0A0;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Area */
+        .page-hero {
+            padding: 160px 0 60px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .meta-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Documentation Sections & Channels */
+        article {
+            padding: 60px 0 100px 0;
+        }
+
+        .channel-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--text-primary);
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .channel-card.gov {
+            border-left-color: #888;
+        }
+
+        .email-tag {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border: 1px solid var(--border);
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        /* Forms Styling */
+        .contact-form {
+            margin-top: 20px;
+            display: grid;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        input, textarea {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #666;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border: none;
+            padding: 12px 24px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            width: fit-content;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.85;
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            margin-top: 16px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #C0C0C0;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo">Nuvvio</a>
+                <span class="logo-subtitle">powered by Selixor Technologies</span>
+            </div>
+            <a href="index.html" class="back-link">← Back to Platform</a>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="meta-tag">Communications // Institutional Routing Desks</span>
+            <h1>Direct Channels & Operational Desks</h1>
+            <p style="text-align: left; max-width: 850px;">Nuvvio operates via specialized, compartmentalized communications routing. Select the appropriate operational desk below to connect directly with commercial, scientific, or sovereign defense infrastructure teams.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <article class="container">
+
+        <!-- Channel 1: Commercial & General -->
+        <div class="channel-card">
+            <span class="meta-tag">Channel Desk 01 // Commercial & Platform Inquiries</span>
+            <h3>General & Commercial Partnerships</h3>
+            <p>Dedicated to enterprise software licensing, platform access credentials, media requests, and commercial integration inquiries.</p>
+            <div class="email-tag">contact@nuvvio.online</div>
+
+            <form class="contact-form" action="mailto:contact@nuvvio.online" method="POST" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="c-name">Full Name / Entity</label>
+                        <input type="text" id="c-name" name="name" placeholder="e.g. Marcus Vance (Global Maritime Corp)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-email">Corporate Email</label>
+                        <input type="email" id="c-email" name="email" placeholder="m.vance@globalmaritime.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="c-msg">Inquiry Details</label>
+                    <textarea id="c-msg" name="message" placeholder="Specify platform tier or partnership scope..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Transmit to Commercial Desk</button>
+            </form>
+        </div>
+
+        <!-- Channel 2: Scientific & Academic -->
+        <div class="channel-card">
+            <span class="meta-tag">Channel Desk 02 // Academic Grants & Research Consortia</span>
+            <h3>Scientific Collaboration & Research</h3>
+            <p>Reserved for principal investigators, university research departments, and doctoral candidates applying for spatial data grants or joint scientific initiatives.</p>
+            <div class="email-tag">science@nuvvio.online</div>
+
+            <form class="contact-form" action="mailto:science@nuvvio.online" method="POST" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="s-name">Principal Investigator / Researcher</label>
+                        <input type="text" id="s-name" name="name" placeholder="Dr. Elena Rostova" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="s-inst">Academic Institution / Laboratory</label>
+                        <input type="text" id="s-inst" name="institution" placeholder="Institute of Oceanographic Sciences" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="s-msg">Research Scope & Dataset Requirements</label>
+                    <textarea id="s-msg" name="research_abstract" placeholder="Provide geographic bounds, target ecosystem, and intended publication/grant tier..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Transmit to Scientific Desk</button>
+            </form>
+        </div>
+
+        <!-- Channel 3: Government & Sovereign Defense (Another Level) -->
+        <div class="channel-card gov">
+            <span class="meta-tag">Channel Desk 03 // Sovereign Defense & Institutional Oversight</span>
+            <h3>Governmental & Sovereign Frameworks</h3>
+            <p>Restricted secure channel for national defense ministries, maritime authorities, naval defense commands, and regulatory oversight bodies requiring sovereign subsea digital twins and classified telemetry integrations.</p>
+            <div class="email-tag">government@nuvvio.online</div>
+
+            <div class="code-block">
+                [SECURE PROTOCOL NOTICE — LEVEL 4 CLEARANCE]<br>
+                Direct web forms are disabled for sovereign and defense-grade communications to maintain cryptographic integrity and compliance with international state data protocols. <br><br>
+                • Authorized institutional delegates must initiate contact exclusively via <strong>government@nuvvio.online</strong> using PGP-encrypted channels or institutional diplomatic courier protocols.<br>
+                • Direct secure voice and teleconference handshakes are scheduled post-credential verification by Selixor Technologies defense compliance officers.
+            </div>
+        </div>
+
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="logo" style="font-size: 15px; padding: 4px 8px; display: inline-block;">NUVVIO</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">powered by selixor technologies.</div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms-of-use.html">Terms of Use</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
