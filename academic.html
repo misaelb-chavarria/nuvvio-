@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Access & Research Program | Nuvvio Marine Intelligence</title>
+    <meta name="description" content="Academic access programs, dataset grants, and scientific collaboration frameworks for universities and research institutions partnering with Nuvvio.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #111111;
+            --bg-card: #141414;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border: #242424;
+            --font-family: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1100px;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.25;
+            margin-top: 60px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 32px;
+            margin-bottom: 10px;
+            color: #D0D0D0;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 4px 8px;
+            display: inline-block;
+            width: fit-content;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: #A0A0A0;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Area */
+        .page-hero {
+            padding: 160px 0 60px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .meta-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Documentation Sections */
+        article {
+            padding: 60px 0 100px 0;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--text-primary);
+            padding: 24px 32px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #DCDCDC;
+            line-height: 1.6;
+        }
+
+        ul {
+            margin: 20px 0 20px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo">Nuvvio</a>
+                <span class="logo-subtitle">powered by Selixor Technologies</span>
+            </div>
+            <a href="index.html" class="back-link">← Back to Platform</a>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="meta-tag">Research Initiative // Academic & Institutional Grants</span>
+            <h1>Academic Access & Scientific Collaboration Program</h1>
+            <p style="text-align: left; max-width: 850px;">Supporting oceanographic research institutes, universities, and doctoral candidates with specialized data grants, sandbox compute environments, and high-resolution bathymetric telemetry.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <article class="container">
+
+        <!-- Section 1 -->
+        <h2>1. Overview of the Academic Grant Program</h2>
+        <p>Nuvvio Marine Intelligence and Selixor Technologies believe that advancing marine science requires open collaboration between commercial engineering entities and academic institutions. Through our Academic Access Program, accredited universities, marine laboratories, and graduate research groups can apply for sponsored data grants, granting them access to high-resolution bathymetric rasters, benthic classification grids, and historical satellite telemetry archives.</p>
+        <p>The program is specifically structured to eliminate financial barriers for researchers studying coastal geomorphology, climate change impacts on shallow aquatic ecosystems, sea-level rise dynamics, and marine habitat conservation.</p>
+
+        <!-- Section 2 -->
+        <h2>2. Grant Tiers & Available Resources</h2>
+        <p>Qualified research projects receive access scaled to their computational and geographical requirements:</p>
+        <ul>
+            <li><strong>Tier 1: Research Sandbox Access:</strong> Provision of pre-processed regional sample datasets (Cloud Optimized GeoTIFFs) and limited API query credits for master's and undergraduate student theses.</li>
+            <li><strong>Tier 2: Institutional Research Grants:</strong> Dedicated high-performance spatial processing pipelines and expanded regional data access for doctoral dissertations and university-led oceanographic expeditions.</li>
+            <li><strong>Tier 3: Joint Scientific Consortia:</strong> Collaborative research initiatives co-authored by Selixor engineering teams and academic faculty, focusing on algorithmic improvements in physics-informed neural network (PINN) inversion models.</li>
+        </ul>
+
+        <!-- Section 3 -->
+        <h2>3. Eligibility Criteria & Application Process</h2>
+        <p>To qualify for an academic grant, applicant institutions and principal investigators must meet the following baseline requirements:</p>
+        <ul>
+            <li>Must be affiliated with an accredited degree-granting higher education institution or a recognized public marine research foundation.</li>
+            <li>Research proposals must focus on non-commercial scientific inquiry, environmental conservation, academic publishing, or public policy advisory.</li>
+            <li>Commitment to citing Nuvvio / Selixor Technologies telemetry frameworks in resulting peer-reviewed publications and technical papers.</li>
+        </ul>
+
+        <div class="code-block">
+            # To submit a research proposal for grant evaluation:<br>
+            # Send institutional credentials, project abstract, and geographic bounding box to:<br>
+            academic@nuvvio.online
+        </div>
+
+        <!-- Section 4 -->
+        <h2>4. Data Licensing & Open Science Commitments</h2>
+        <p>Datasets provided under the Academic Access Program are licensed under specialized research frameworks that permit unrestricted academic publication, visualization in thesis documents, and presentation at scientific symposia, while ensuring proper attribution to Nuvvio’s spatial telemetry pipelines.</p>
+
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="logo" style="font-size: 15px; padding: 4px 8px; display: inline-block;">NUVVIO</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">powered by selixor technologies.</div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="methodology.html">Methodology</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="mailto:contacto@nuvvio.online">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

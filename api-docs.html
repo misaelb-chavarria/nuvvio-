@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portal & API Documentation | Nuvvio Marine Intelligence</title>
+    <meta name="description" content="Technical API documentation, geospatial endpoints, authentication protocols, and Python integration guides for accessing Nuvvio's marine intelligence and bathymetric datasets.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #111111;
+            --bg-card: #141414;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border: #242424;
+            --font-family: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1100px;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.25;
+            margin-top: 60px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 32px;
+            margin-bottom: 10px;
+            color: #D0D0D0;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 4px 8px;
+            display: inline-block;
+            width: fit-content;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: #A0A0A0;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Area */
+        .page-hero {
+            padding: 160px 0 60px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .meta-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Documentation Sections */
+        article {
+            padding: 60px 0 100px 0;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--text-primary);
+            padding: 24px 32px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #DCDCDC;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .endpoint-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            font-weight: 600;
+            background: #1A3A2A;
+            color: #4ADE80;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 12px;
+        }
+
+        ul {
+            margin: 20px 0 20px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo">Nuvvio</a>
+                <span class="logo-subtitle">powered by Selixor Technologies</span>
+            </div>
+            <a href="index.html" class="back-link">← Back to Platform</a>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="meta-tag">Developer Portal // REST & OGC Web Services</span>
+            <h1>Nuvvio Marine Intelligence API Documentation</h1>
+            <p style="text-align: left; max-width: 850px;">Complete reference guide for integrating programmatic access to Nuvvio's bathymetric layers, benthic habitat grids, and real-time hydrodynamic model streams into external enterprise software and GIS pipelines.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <article class="container">
+
+        <!-- Section 1 -->
+        <h2>1. Authentication & Security</h2>
+        <p>All requests to the Nuvvio Spatial API require secure token-based authentication via HTTP headers. Institutional and enterprise partners are issued unique API tokens tied to scoped security roles. Tokens must be transmitted in the <code>Authorization</code> header using the Bearer schema.</p>
+        
+        <div class="code-block">
+            curl -X GET "https://api.nuvvio.online/v1/spatial/metadata?region=north_sea" \<br>
+            &nbsp;&nbsp;-H "Authorization: Bearer nuv_live_98374a58bc2910f" \<br>
+            &nbsp;&nbsp;-H "Accept: application/json"
+        </div>
+
+        <!-- Section 2 -->
+        <h2>2. Core Spatial Endpoints</h2>
+        
+        <h3>Bathymetry Retrieval Grid</h3>
+        <p><span class="endpoint-badge">GET</span><code>/v1/bathymetry/raster</code></p>
+        <p>Retrieves high-resolution depth grids derived from AI bathymetric inversion models for a specified bounding box (WGS 84 coordinate reference system / EPSG:4326).</p>
+        
+        <div class="code-block">
+            # Query Parameters:<br>
+            # - bbox: min_lon,min_lat,max_lon,max_lat (Required)<br>
+            # - resolution: target resolution in meters per pixel [default: 10]<br>
+            # - format: output format (geotiff, netcdf4, cog)<br><br>
+            GET /v1/bathymetry/raster?bbox=4.2,52.1,4.8,52.8&resolution=10&format=cog
+        </div>
+
+        <h3>Benthic Habitat Segmentation</h3>
+        <p><span class="endpoint-badge">GET</span><code>/v1/benthic/classification</code></p>
+        <p>Accesses classified semantic layers detailing seabed substrates (coral matrices, seagrass beds, sedimentary floors) evaluated via spectral mixture analysis.</p>
+
+        <!-- Section 3 -->
+        <h2>3. Python Integration Example</h2>
+        <p>For data scientists and researchers integrating Nuvvio pipelines directly into localized Python or Jupyter Notebook environments, standard geospatial libraries such as <code>requests</code> and <code>rasterio</code> can be utilized to stream Cloud Optimized GeoTIFFs (COGs) directly from our servers.</p>
+
+        <div class="code-block">
+            import requests<br>
+            import rasterio<br>
+            from rasterio.plot import show<br><br>
+            API_KEY = "nuv_live_98374a58bc2910f"<br>
+            url = "https://api.nuvvio.online/v1/bathymetry/raster"<br><br>
+            params = {<br>
+            &nbsp;&nbsp;"bbox": "4.2,52.1,4.8,52.8",<br>
+            &nbsp;&nbsp;"format": "cog"<br>
+            }<br>
+            headers = {"Authorization": f"Bearer {API_KEY}"}<br><br>
+            response = requests.get(url, params=params, headers=headers)<br>
+            if response.status_code == 200:<br>
+            &nbsp;&nbsp;print("Spatial tile retrieved successfully.")
+        </div>
+
+        <!-- Section 4 -->
+        <h2>4. OGC Web Services & Standards</h2>
+        <p>To ensure total interoperability with traditional Geographic Information Systems (such as QGIS, ArcGIS Pro, and open-source spatial data stacks), Nuvvio fully supports Open Geospatial Consortium (OGC) standard protocols:</p>
+        <ul>
+            <li><strong>WMS (Web Map Service):</strong> For dynamic raster rendering and visualization of depth layers.</li>
+            <li><strong>WFS (Web Feature Service):</strong> For vector-based boundary layers, survey tracks, and infrastructure corridors.</li>
+            <li><strong>WCS (Web Coverage Service):</strong> For direct multi-dimensional grid data extraction.</li>
+        </ul>
+
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="logo" style="font-size: 15px; padding: 4px 8px; display: inline-block;">NUVVIO</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">powered by selixor technologies.</div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="methodology.html">Methodology</a>
+                <a href="case-studies.html">Case Studies</a>
+                <a href="mailto:contacto@nuvvio.online">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

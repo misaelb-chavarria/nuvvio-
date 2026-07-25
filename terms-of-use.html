@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use & Intellectual Property Protection | Aethel Neural Labs</title>
+    <meta name="description" content="Legally binding Terms of Use, intellectual property rights, proprietary protection of code and neural models, and third-party mapped data usage rights by Aethel Neural Labs, S.A.P.I. de C.V.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #111111;
+            --bg-card: #141414;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border: #242424;
+            --font-family: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1100px;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.25;
+            margin-top: 60px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 32px;
+            margin-bottom: 10px;
+            color: #D0D0D0;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 4px 8px;
+            display: inline-block;
+            width: fit-content;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: #A0A0A0;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Area */
+        .page-hero {
+            padding: 160px 0 60px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .meta-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Documentation Sections */
+        article {
+            padding: 60px 0 100px 0;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--text-primary);
+            padding: 24px 32px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #DCDCDC;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin: 20px 0 20px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo">Aethel</a>
+                <span class="logo-subtitle">Neural Labs, S.A.P.I. de C.V.</span>
+            </div>
+            <a href="index.html" class="back-link">← Back to Platform</a>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="meta-tag">Legal Framework // Intellectual Property & Service Terms</span>
+            <h1>Terms of Use & Proprietary Asset Protection Agreement</h1>
+            <p style="text-align: left; max-width: 850px;">A legally binding agreement establishing absolute proprietary ownership of intellectual assets, neural network architectures, source code, and telemetry by Aethel Neural Labs, S.A.P.I. de C.V., alongside mandatory provisions governing third-party mapped area licensing and data utilization rights.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <article class="container">
+
+        <!-- Section 1 -->
+        <h2>1. Acceptance of Terms and Corporate Identity</h2>
+        <p>These Terms of Use ("Terms") constitute a legally binding agreement between you (whether as an individual or acting on behalf of an enterprise entity) and <strong>Aethel Neural Labs, S.A.P.I. de C.V.</strong> (hereinafter referred to as "Aethel", "the Company", "We", or "Us"). By accessing, browsing, integrating with, or utilizing our software platforms, application programming interfaces (APIs), neural processing pipelines, hardware interfaces, or web portals, you expressly acknowledge that you have read, understood, and unconditionally agreed to be bound by all provisions contained herein.</p>
+        <p>If you do not accept these Terms in their entirety, you are strictly prohibited from accessing or utilizing any component of Aethel’s technological infrastructure. Any unauthorized utilization constitutes a direct breach of contract, industrial espionage laws, and international intellectual property treaties.</p>
+
+        <!-- Section 2 -->
+        <h2>2. Absolute Intellectual Property Ownership</h2>
+        <p>All intellectual property rights, title, interest, proprietary frameworks, patents, patent applications, industrial designs, trademarks, trade secrets, software code (source and object code), algorithms, neural network architectures, machine learning weights, data processing methodologies, analytical dashboards, documentation, and graphical assets associated with Aethel are and shall remain the exclusive, unencumbered property of <strong>Aethel Neural Labs, S.A.P.I. de C.V.</strong></p>
+        <div class="code-block">
+            # STATUTORY IP RESERVATION & EXCLUSIVITY NOTICE<br>
+            # Under the Federal Law for the Protection of Industrial Property (Ley Federal de Protección a la Propiedad Industrial) and international Berne and TRIPS conventions, all elements of Aethel's infrastructure are legally protected. No title or ownership rights are transferred to any user, licensee, or third-party corporate entity under any circumstance.
+        </div>
+        <p>Users are granted a strictly limited, revocable, non-exclusive, non-transferable, and non-sublicensable license to access the platform solely for authorized business operations, subject to continuous compliance with these Terms.</p>
+
+        <!-- Section 3 -->
+        <h2>3. Prohibited Uses and Strict Operational Limitations</h2>
+        <p>The technological ecosystem provided by Aethel is proprietary and confidential. Users, clients, and corporate subscribers are expressly prohibited from engaging in any of the following restricted activities:</p>
+        <ul>
+            <li><strong>Reverse Engineering & Decompilation:</strong> Disassembling, decompiling, reverse engineering, decrypting, or otherwise attempting to extract source code, neural network parameters, or underlying algorithmic logic from any software or API endpoint.</li>
+            <li><strong>Derivative Works & Cloning:</strong> Creating derivative products, competing machine learning models, or mirroring platforms inspired by, derived from, or utilizing Aethel’s proprietary architecture.</li>
+            <li><strong>Unauthorized Commercial Exploitation:</strong> Reselling, sublicensing, renting, leasing, or commercializing access to Aethel’s intelligence platform to external third parties without prior explicit written authorization executed by authorized corporate officers of Aethel.</li>
+            <li><strong>Scraping and Automated Extraction:</strong> Utilizing unauthorized automated bots, crawlers, or scrapers to extract data packets, spatial rasters, or model outputs outside standard documented API boundaries.</li>
+        </ul>
+
+        <!-- Section 4 -->
+        <h2>4. Rights to Third-Party Mapped Areas and Spatial Data</h2>
+        <p>To ensure continuous algorithmic optimization, spatial accuracy, and system intelligence refinement, specific provisions govern data generated or processed through third-party service contracts:</p>
+        <p>When a third-party client, enterprise partner, or contractor engages Aethel to execute spatial mapping, bathymetric inversion, topographical scanning, or environmental telemetry surveys within designated geographic or operational areas (hereinafter referred to as "Mapped Areas"), the client explicitly grants Aethel an irrevocable, worldwide, perpetual, royalty-free, transferable license to:</p>
+        <ul>
+            <li><strong>Data Utilization & Aggregation:</strong> Access, store, process, analyze, and aggregate all telemetry, spatial coordinates, environmental vectors, and derived analytical datasets extracted from the Mapped Areas.</li>
+            <li><strong>Model Training & Improvement:</strong> Incorporate anonymized or generalized data patterns derived from third-party Mapped Areas into Aethel's core neural network training datasets, machine learning models, and global intelligence repositories.</li>
+            <li><strong>Commercial and Proprietary Exploitation:</strong> Utilize insights, meta-analyses, and aggregated spatial intelligence derived from any Mapped Area to enhance platform capabilities, develop generalized commercial products, and offer benchmarking services to other enterprise entities, without restriction or financial obligation to the original contracting third party.</li>
+        </ul>
+
+        <!-- Section 5 -->
+        <h2>5. Confidentiality and Protection of Trade Secrets</h2>
+        <p>All non-public information, technical specifications, API structures, pricing models, and proprietary methodologies disclosed by Aethel constitute confidential trade secrets protected under the Federal Law for the Protection of Industrial Property and civil/penal codes. Clients and users agree to maintain strict confidentiality regarding all proprietary interactions and to prevent unauthorized disclosure to any competitor or third party.</p>
+
+        <!-- Section 6 -->
+        <h2>6. Breach, Indemnification, and Legal Remedies</h2>
+        <p>Any violation of these Terms—specifically including unauthorized intellectual property extraction, reverse engineering, or breach of data ownership provisions—shall result in the immediate revocation of access rights, termination of active contracts, and exposure to severe legal liability.</p>
+        <p>The breaching user or corporate entity agrees to defend, indemnify, and hold harmless Aethel Neural Labs, S.A.P.I. de C.V., its directors, officers, employees, and agents from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or in any way connected with the breach of these Terms or unauthorized exploitation of proprietary assets.</p>
+
+        <!-- Section 7 -->
+        <h2>7. Governing Law and Jurisdiction</h2>
+        <p>These Terms of Use, as well as any legal dispute, controversy, or claim arising out of or relating to their subject matter, shall be governed by, construed, and enforced exclusively in accordance with the substantive and procedural laws of the Mexican United States. The parties hereby expressly submit to the exclusive jurisdiction of the competent federal courts located in Mexico City, irrevocably waiving any other jurisdiction or forum that might correspond to them by reason of their present or future domiciles.</p>
+
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="logo" style="font-size: 15px; padding: 4px 8px; display: inline-block;">AETHEL</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">Neural Labs, S.A.P.I. de C.V. All rights reserved.</div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="security.html">Security</a>
+                <a href="mailto:legal@aethelneural.com">Legal Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

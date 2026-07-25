@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy & Legal Compliance | Aethel Neural Labs</title>
+    <meta name="description" content="Comprehensive privacy policy, legal data processing framework, and statutory compliance framework under Mexican Federal Law (LFPDPPP), GDPR, and international data protection standards by Aethel Neural Labs, S.A.P.I. de C.V.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #080808;
+            --bg-secondary: #111111;
+            --bg-card: #141414;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border: #242424;
+            --font-family: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --max-width: 1100px;
+            --ease: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 17px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(32px, 4vw, 56px);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: clamp(22px, 2.8vw, 30px);
+            line-height: 1.25;
+            margin-top: 60px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 32px;
+            margin-bottom: 10px;
+            color: #D0D0D0;
+            font-family: var(--font-mono);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+        }
+
+        /* Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 4px 8px;
+            display: inline-block;
+            width: fit-content;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: #A0A0A0;
+            margin-top: 4px;
+            letter-spacing: 0.02em;
+        }
+
+        .back-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Area */
+        .page-hero {
+            padding: 160px 0 60px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg-secondary);
+        }
+
+        .meta-tag {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Documentation Sections */
+        article {
+            padding: 60px 0 100px 0;
+        }
+
+        .code-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--text-primary);
+            padding: 24px 32px;
+            margin: 24px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #DCDCDC;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        ul {
+            margin: 20px 0 20px 24px;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-content">
+            <div class="logo-wrapper">
+                <a href="index.html" class="logo">Aethel</a>
+                <span class="logo-subtitle">Neural Labs, S.A.P.I. de C.V.</span>
+            </div>
+            <a href="index.html" class="back-link">← Back to Platform</a>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+        <div class="container">
+            <span class="meta-tag">Legal Framework // Statutory Compliance & Data Governance</span>
+            <h1>Privacy Policy & Legal Terms of Processing</h1>
+            <p style="text-align: left; max-width: 850px;">A legally binding disclosure detailing the collection, processing, transfer, and protection of personal and telemetry data under the Federal Law on Protection of Personal Data Held by Private Parties (LFPDPPP), GDPR compliance frameworks, and corporate risk mitigation protocols.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <article class="container">
+
+        <!-- Section 1 -->
+        <h2>1. Identity and Corporate Domicile of the Responsible Party</h2>
+        <p>In strict compliance with the provisions set forth in the <strong>Federal Law on Protection of Personal Data Held by Private Parties</strong> (Ley Federal de Protección de Datos Personales en Posesión de los Particulares - LFPDPPP), its accompanying Regulations, and applicable international data protection standards (including the General Data Protection Regulation - GDPR where applicable), <strong>Aethel Neural Labs, S.A.P.I. de C.V.</strong> (hereinafter referred to as "the Responsible Party", "Aethel", or "We"), acts as the data controller responsible for the collection, handling, storage, use, transfer, and ultimate deletion of your personal data.</p>
+        <p>For all legal intents, notices, and communications regarding the exercise of privacy rights or data governance inquiries, our official corporate domicile is established within the Mexican United States. Data privacy inquiries, ARCO requests (Access, Rectification, Cancellation, and Opposition), and compliance audits must be formally addressed to our designated Data Protection Officer (DPO) via electronic mail at: <strong>legal@aethelneural.com</strong>.</p>
+
+        <!-- Section 2 -->
+        <h2>2. Categories and Classification of Collected Data</h2>
+        <p>To execute our core neural intelligence operations, telemetry processing, API integrations, and enterprise platform services, Aethel collects distinct tiers of data depending on user interaction models. We strictly limit collection to data necessary for fulfilling explicit commercial, computational, and regulatory obligations:</p>
+        <ul>
+            <li><strong>Identification and Contact Data:</strong> Full legal name, corporate affiliation, institutional designation, professional electronic mail addresses, direct telephone contacts, and encrypted billing telemetry.</li>
+            <li><strong>Technical and Telemetry Data:</strong> IP addresses, browser fingerprints, API access tokens, hardware identification strings, session logs, cryptographic signatures, and execution timestamps associated with platform interaction.</li>
+            <li><strong>Derived Neural and Analytical Data:</strong> Parametric configurations, model optimization parameters, structural telemetry matrices, and proprietary computational inputs processed through our neural processing pipelines. We expressly do not collect sensitive personal data (datos personales sensibles) as defined under Article 3, Fraction VI of the LFPDPPP unless explicitly mandated by specialized contractual frameworks with heightened security clearances.</li>
+        </ul>
+
+        <!-- Section 3 -->
+        <h2>3. Primary and Secondary Purposes of Data Processing</h2>
+        <p>The personal and technical data gathered by Aethel Neural Labs, S.A.P.I. de C.V. is processed under strict operational necessity, contractual execution, and legitimate business interest frameworks, categorized into primary and secondary purposes:</p>
+        
+        <h3>Primary Purposes (Necessary for Legal and Contractual Existence)</h3>
+        <p>Data utilization is strictly bound to: (i) Provision, maintenance, scaling, and security auditing of Aethel’s neural intelligence and telemetry architectures; (ii) Execution and enforcement of software licensing, enterprise agreements, and Terms of Service contracts; (iii) Authentication of API endpoints, prevention of unauthorized system intrusions, and mitigation of cybersecurity vectors; (iv) Fulfillment of statutory tax, accounting, judicial, and regulatory mandates imposed by Mexican and international jurisdictions.</p>
+
+        <h3>Secondary Purposes (Optional Commercial Optimization)</h3>
+        <p>Subject to explicit user consent or opt-out mechanisms, data may be utilized for: (i) Dissemination of technical whitepapers, research briefings, platform updates, and technological newsletters; (ii) Internal aggregative analytics, neural network training optimization, and machine learning parameter refinement using anonymized or pseudonymous telemetry vectors. Refusal to consent to secondary processing shall under no circumstances impede the delivery of primary contractual services.</p>
+
+        <!-- Section 4 -->
+        <h2>4. Mechanisms for ARCO Rights Exercise</h2>
+        <p>In accordance with Chapter II of the LFPDPPP, data subjects hold permanent rights regarding their personal data: <strong>Access</strong> to personal records, <strong>Rectification</strong> of inaccurate data, <strong>Cancellation</strong> upon statutory expiration or unlawful processing, and <strong>Opposition</strong> to specific processing activities.</p>
+        <p>To exercise ARCO rights, data subjects must submit a formal written request to <strong>legal@aethelneural.com</strong> containing: (1) Full legal name and verified electronic mail address; (2) Documents substantiating legal identity (official government-issued identification or corporate power of attorney); (3) A clear, unambiguous description of the specific personal data concerning which rights are exercised; and (4) Any supplementary element facilitating data location. Aethel shall issue a determination within a maximum timeframe of twenty (20) business days from receipt, executing valid requests within fifteen (15) subsequent business days.</p>
+
+        <!-- Section 5 -->
+        <h2>5. Data Transfers, National and International Disclosure</h2>
+        <p>Aethel Neural Labs, S.A.P.I. de C.V. implements stringent non-disclosure and data minimization policies. Personal data is never sold, leased, or commercially traded to third parties. Data transfers are strictly executed pursuant to Article 37 of the LFPDPPP under the following narrow exceptions:</p>
+        <ul>
+            <li><strong>Subsidiaries and Affiliated Entities:</strong> Transfer to corporate affiliates, holding entities, or technical infrastructure partners operating under identical internal data governance standards and binding corporate rules.</li>
+            <li><strong>Cloud Infrastructure & Processing Partners:</strong> Disclosure to certified cloud computing, encryption, and neural processing vendors bound by strict data processing agreements (DPAs) requiring equivalent security controls.</li>
+            <li><strong>Legal and Judicial Compliance:</strong> Mandatory disclosure to competent administrative authorities, judicial tribunals, or regulatory bodies pursuant to a legally binding subpoena, court order, or statutory mandate.</li>
+        </ul>
+
+        <!-- Section 6 -->
+        <h2>6. Limitation of Liability and Risk Mitigation Framework</h2>
+        <p>By accessing, integrating with, or utilizing Aethel’s platform infrastructure, the user, client, or corporate entity expressly acknowledges and agrees that:</p>
+        <div class="code-block">
+            # LIMITATION OF LIABILITY & RISK EXCLUSION CLAUSE<br>
+            # Aethel Neural Labs, S.A.P.I. de C.V. shall maintain zero liability for indirect, incidental, consequential, special, or punitive damages arising from unauthorized interception, third-party cyber intrusion, zero-day vulnerabilities, or external data corruption beyond reasonable administrative and technical security controls (Article 164 Federal Civil Code & LFPDPPP compliance standards).<br>
+            # Maximum aggregate liability is strictly capped at the total aggregate fees paid by the client to Aethel over the preceding twelve (12) months.
+        </div>
+        <p>Aethel deploys advanced cryptographic protocols, end-to-end transport layer security (TLS 1.3), AES-256 bit storage encryption, and strict access control lists (ACLs) to safeguard data integrity. However, no digital transmission medium can guarantee absolute immunity from sophisticated threat vectors.</p>
+
+        <!-- Section 7 -->
+        <h2>7. Modifications, Updates, and Governing Jurisdiction</h2>
+        <p>Aethel Neural Labs, S.A.P.I. de C.V. reserves the absolute right to unilaterally modify, update, amend, or supplement this Privacy Policy at any time to reflect evolving technological architectures, statutory revisions, or regulatory mandates. Notice of material modifications shall be disseminated via publication on our official domain platform accompanied by an updated revision timestamp.</p>
+        <p>This Privacy Policy and all legal disputes, claims, or controversies arising herefrom shall be exclusively governed, construed, and enforced in accordance with the substantive and procedural laws of the Mexican United States. Any legal action or judicial proceeding must be submitted exclusively to the competent federal courts located in Mexico City, expressly waiving any other domestic or international forum jurisdiction.</p>
+
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div>
+                <div class="logo" style="font-size: 15px; padding: 4px 8px; display: inline-block;">AETHEL</div>
+                <div style="font-size: 13px; color: var(--text-secondary); margin-top: 6px;">Neural Labs, S.A.P.I. de C.V. All rights reserved.</div>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="security.html">Security</a>
+                <a href="mailto:legal@aethelneural.com">Legal Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
