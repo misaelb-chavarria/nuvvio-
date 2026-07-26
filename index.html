@@ -27,24 +27,24 @@ html { scroll-behavior: smooth; background: var(--bg); }
 body { min-width: 320px; overflow-x: hidden; background: var(--bg); color: var(--text-main); font-family: Inter, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration: none; }
 img, video { display: block; max-width: 100%; height: auto; }
-.container { width: min(var(--max), calc(100% - 80px)); margin: auto; }
+.container { width: min(var(--max), calc(100% - 64px)); margin: auto; }
 .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
 .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--text-muted); font-size: 11px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
 .eyebrow:before { width: 24px; height: 1px; background: #555; content: ""; }
 
 /* Top Header */
-.site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: rgba(3,3,3,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; }
+.site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: rgba(3,3,3,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; }
 .nav { height: 70px; display: flex; align-items: center; justify-content: space-between; }
 .brand { display: flex; flex-direction: column; text-decoration: none; justify-content: center; }
 .brand-box { color: var(--accent); font-size: 16px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,1); line-height: 1.1; }
 .brand-powered { color: var(--text-dim); font-size: 9px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
 
-/* Minimalist Hero - BRILLO AJUSTADO VIDEOS */
+/* Minimalist Hero */
 .hero { height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); }
 .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.5) contrast(1.15); }
-.hero-shade { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.3) 100%), linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.4) 100%); }
+.hero-shade { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 100%), linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.5) 100%); }
 .hero-content { position: relative; z-index: 2; width: 100%; text-align: center; padding-top: 60px; }
-.hero-title { font-size: clamp(40px, 6vw, 90px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8); }
+.hero-title { font-size: clamp(34px, 5.5vw, 90px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8); }
 .hero-title span { display: block; color: #d0d0d0; }
 
 /* Data Strip */
@@ -56,81 +56,93 @@ img, video { display: block; max-width: 100%; height: auto; }
 .data-value { font-size: 15px; font-weight: 400; color: #d0d0d0; line-height: 1.4; }
 
 /* Sections */
-.section { padding: 140px 0; border-bottom: 1px solid var(--line); }
-.grid-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
+.section { padding: 110px 0; border-bottom: 1px solid var(--line); }
+.grid-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: center; }
 .grid-layout.reversed { grid-template-columns: 1.1fr 0.9fr; }
 
 /* Typography blocks */
-.copy-block h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; margin: 24px 0; letter-spacing: -0.02em; color: var(--accent); line-height: 1.15; }
-.copy-block p { color: var(--text-muted); margin-bottom: 24px; line-height: 1.7; font-size: 16px; }
+.copy-block h2 { font-size: clamp(26px, 3.2vw, 44px); font-weight: 300; margin: 20px 0; letter-spacing: -0.02em; color: var(--accent); line-height: 1.15; }
+.copy-block p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; font-size: 15px; }
 .copy-block p:last-child { margin-bottom: 0; }
-.technical-list { margin-top: 32px; list-style: none; border-top: 1px solid var(--line); padding-top: 24px; }
-.technical-list li { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+.technical-list { margin-top: 28px; list-style: none; border-top: 1px solid var(--line); padding-top: 20px; }
+.technical-list li { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
 .technical-list strong { font-family: var(--mono); font-size: 11px; color: #aaa; letter-spacing: 0.05em; }
 .technical-list span { color: var(--text-dim); font-size: 14px; }
 
 /* Visual Containers */
 .visual-wrapper { border: 1px solid var(--line); background: #000; position: relative; overflow: hidden; }
 .visual-wrapper img { width: 100%; height: auto; display: block; filter: brightness(1.1) contrast(1.05); }
-.visual-caption { display: flex; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); }
+.visual-caption { display: flex; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); }
 
-/* Banner Oceano.jpg - MANTIENE BRILLO */
-.ocean-banner { position: relative; padding: 160px 0; overflow: hidden; border-bottom: 1px solid var(--line); background: #000; }
-.ocean-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(2.0) contrast(1.1); }
-.ocean-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,3,3,0.4) 0%, rgba(3,3,3,0.1) 50%, rgba(3,3,3,0.4) 100%); }
+/* Banner Oceano.jpg - Degradado corregido para máxima legibilidad */
+.ocean-banner { position: relative; padding: 130px 0; overflow: hidden; border-bottom: 1px solid var(--line); background: #000; }
+.ocean-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.2) contrast(1.15); }
+.ocean-shade { position: absolute; inset: 0; background: radial-gradient(circle at 50% 35%, rgba(3,3,3,0.88) 0%, rgba(3,3,3,0.96) 75%), linear-gradient(180deg, rgba(3,3,3,0.8) 0%, rgba(3,3,3,0.95) 100%); }
 .ocean-banner .container { position: relative; z-index: 2; max-width: 900px; text-align: center; }
-.ocean-banner h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 300; color: #fff; margin-bottom: 24px; text-shadow: 0 4px 20px rgba(0,0,0,0.95); }
-.ocean-banner p { font-size: 18px; color: #d0d0d0; line-height: 1.7; text-shadow: 0 2px 10px rgba(0,0,0,1); }
+.ocean-banner h2 { font-size: clamp(28px, 3.8vw, 52px); font-weight: 300; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.95); }
+.ocean-banner p { font-size: 17px; color: #d0d0d0; line-height: 1.7; text-shadow: 0 2px 10px rgba(0,0,0,1); }
 
-/* Integration Section Video - BRILLO AJUSTADO VIDEOS */
-.integration-section { position: relative; padding: 180px 0; overflow: hidden; background: #000; border-bottom: 1px solid var(--line); }
+/* Integration Section Video */
+.integration-section { position: relative; padding: 130px 0; overflow: hidden; background: #000; border-bottom: 1px solid var(--line); }
 .integration-section video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.5) contrast(1.15); }
-.integration-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.4) 100%); }
-.integration-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-.integration-panel { background: rgba(10,10,10,0.85); border: 1px solid rgba(255,255,255,0.1); padding: 48px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.integration-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%); }
+.integration-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.integration-panel { background: rgba(10,10,10,0.85); border: 1px solid rgba(255,255,255,0.1); padding: 40px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 
 /* Button */
-.btn { display: inline-flex; align-items: center; height: 48px; padding: 0 40px; background: #fff; color: #000; font-family: var(--mono); font-size: 11px; font-weight: 600; transition: background 0.2s; text-decoration: none; border-radius: 2px; margin-top: 32px; letter-spacing: 0.05em; cursor: pointer;}
+.btn { display: inline-flex; align-items: center; height: 46px; padding: 0 32px; background: #fff; color: #000; font-family: var(--mono); font-size: 11px; font-weight: 600; transition: background 0.2s; text-decoration: none; border-radius: 2px; margin-top: 24px; letter-spacing: 0.05em; cursor: pointer;}
 .btn:hover { background: #d0d0d0; }
 
 /* Footer */
-footer { background: #030303; padding: 80px 0; }
-.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
-.footer-col { display: flex; flex-direction: column; gap: 16px; }
-.footer-title { font-weight: 600; color: #fff; font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; font-size: 11px; margin-bottom: 8px; }
+footer { background: #030303; padding: 70px 0; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.footer-col { display: flex; flex-direction: column; gap: 14px; }
+.footer-title { font-weight: 600; color: #fff; font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; font-size: 11px; margin-bottom: 6px; }
 .footer-col a { color: var(--text-muted); font-size: 14px; transition: color 0.2s; display: block; cursor: pointer; }
 .footer-col a:hover { color: #fff; }
 
 /* Modal System */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease); padding: 20px; }
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease); padding: 16px; }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
-.modal-container { background: var(--panel); border: 1px solid var(--line); width: 100%; max-width: 800px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.4s var(--ease); padding: 60px; }
+.modal-container { background: var(--panel); border: 1px solid var(--line); width: 100%; max-width: 800px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.4s var(--ease); padding: 48px; }
 .modal-overlay.active .modal-container { transform: translateY(0); }
-.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; font-family: var(--mono); line-height: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: 0.5; transition: opacity 0.2s; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; font-family: var(--mono); line-height: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: 0.5; transition: opacity 0.2s; }
 .modal-close:hover { opacity: 1; }
-.modal-content h2 { font-size: 32px; font-weight: 300; margin-bottom: 24px; color: #fff; letter-spacing: -0.02em; }
-.modal-content h3 { font-size: 14px; font-family: var(--mono); color: var(--text-dim); text-transform: uppercase; margin: 32px 0 12px 0; letter-spacing: 0.05em; border-bottom: 1px solid var(--line); padding-bottom: 8px;}
-.modal-content p { color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; font-size: 15px; }
-.modal-content ul { color: var(--text-muted); margin-left: 20px; margin-bottom: 24px; line-height: 1.8; }
+.modal-content h2 { font-size: 28px; font-weight: 300; margin-bottom: 20px; color: #fff; letter-spacing: -0.02em; }
+.modal-content h3 { font-size: 13px; font-family: var(--mono); color: var(--text-dim); text-transform: uppercase; margin: 28px 0 10px 0; letter-spacing: 0.05em; border-bottom: 1px solid var(--line); padding-bottom: 6px;}
+.modal-content p { color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; font-size: 14px; }
+.modal-content ul { color: var(--text-muted); margin-left: 18px; margin-bottom: 20px; line-height: 1.7; }
 .hidden-data { display: none; }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-@media(max-width:1000px) {
+/* Responsive Adjustments for Tablets and Mobile (Up to 1024px) */
+@media(max-width: 1024px) {
+    .container { width: min(var(--max), calc(100% - 40px)); }
     .grid-layout { grid-template-columns: 1fr; gap: 40px; }
     .grid-layout.reversed .visual-wrapper { order: 2; }
     .grid-layout.reversed .copy-block { order: 1; }
-    .integration-content { grid-template-columns: 1fr; }
+    .integration-content { grid-template-columns: 1fr; gap: 40px; }
     .data-grid { grid-template-columns: 1fr 1fr; }
     .data-item:nth-child(n+3) { border-top: 1px solid var(--line); }
     .data-item:nth-child(even) { border-right: 0; }
-    .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 60px; }
-    .modal-container { padding: 40px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+    .modal-container { padding: 32px 20px; }
+    .section { padding: 80px 0; }
+    .ocean-banner, .integration-section { padding: 90px 0; }
 }
-@media(max-width:600px) {
+
+/* Specific Mobile Adjustments (Up to 600px) */
+@media(max-width: 600px) {
+    .container { width: calc(100% - 28px); }
     .data-grid, .footer-grid { grid-template-columns: 1fr; }
-    .data-item { border-right: 0; border-bottom: 1px solid var(--line); }
+    .data-item { border-right: 0; border-bottom: 1px solid var(--line); border-top: 0; }
+    .data-item:first-child { border-top: 1px solid var(--line); }
+    .hero-title { font-size: clamp(30px, 7.5vw, 46px); }
+    .integration-panel { padding: 28px 20px; }
+    .section { padding: 60px 0; }
+    .ocean-banner, .integration-section { padding: 75px 0; }
 }
 </style>
 </head>
@@ -228,7 +240,7 @@ footer { background: #030303; padding: 80px 0; }
     <img src="oceano.jpg" alt="Pacific Ocean Horizon at SPOA" loading="lazy">
     <div class="ocean-shade"></div>
     <div class="container reveal">
-        <div class="eyebrow" style="justify-content: center; margin-bottom: 24px; color: #aaa;">Environmental Constraints</div>
+        <div class="eyebrow" style="justify-content: center; margin-bottom: 20px; color: #aaa;">Environmental Constraints</div>
         <h2>Marine Impact & Oceanic Ecosystem Protection.</h2>
         <p>Beyond mathematical risk mitigation, precise footprint containment prevents toxic hypergolic residues and heavy structural metals from polluting sensitive marine ecosystems or maritime routes. The isolation of Point Nemo minimizes human risk, while Nuvvio’s rigorous ablation modeling minimizes the total surviving mass that reaches the ocean surface.</p>
     </div>
@@ -243,12 +255,12 @@ footer { background: #030303; padding: 80px 0; }
         <div class="copy-block reveal" style="text-shadow: 0 2px 10px rgba(0,0,0,1);">
             <div class="eyebrow" style="color: #ccc; border-color: rgba(255,255,255,0.3);">Industrial Deployment</div>
             <h2 style="color: #fff;">Verda Space Industries Integration.</h2>
-            <p style="color: #e0e0e0; font-size: 18px;">Verda Space Industries relies on Nuvvio's computational architecture to certify the end-of-life decommissioning of their Low Earth Orbit (LEO) assets.</p>
+            <p style="color: #e0e0e0; font-size: 17px;">Verda Space Industries relies on Nuvvio's computational architecture to certify the end-of-life decommissioning of their Low Earth Orbit (LEO) assets.</p>
             <p style="color: #ccc;">Through our API, Verda Space automatically processes destructive reentry protocols for massive orbital modules. Nuvvio models the localized atmospheric conditions and material ablation, generating the critical compliance documentation required by international regulatory bodies before any de-orbit burn is executed.</p>
         </div>
         <div class="integration-panel reveal">
             <div class="copy-block">
-                <h3 style="font-size: 20px; font-weight: 400; margin-bottom: 16px;">Compute the Footprint.</h3>
+                <h3 style="font-size: 18px; font-weight: 400; margin-bottom: 14px; color:#fff;">Compute the Footprint.</h3>
                 <p style="font-size: 14px; margin-bottom: 0;">Access the scientific engine for thermal stress simulation, structural fragmentation, and rigorous impact footprint analysis.</p>
                 <a href="contact.html" class="btn">REQUEST API CREDENTIALS</a>
             </div>
