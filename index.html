@@ -1,905 +1,485 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuvvio | Marine Intelligence & Subsea Digital Twins</title>
-    <meta name="description" content="Nuvvio develops advanced technologies for understanding the ocean through artificial intelligence, satellite observation, computational modeling, and digital twins.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Variables */
-        :root {
-            --bg-primary: #080808;
-            --bg-secondary: #111111;
-            --bg-card: #141414;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B5B5B5;
-            --border: #242424;
-            --font-family: 'Inter', sans-serif;
-            --max-width: 1240px;
-            --ease: cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            font-family: var(--font-family);
-            font-size: 18px;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-            width: 100%;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 24px;
-        }
-
-        h1 {
-            font-size: clamp(28px, 4.5vw, 72px);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        h2 {
-            font-size: clamp(24px, 3.2vw, 42px);
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-        }
-
-        h3 {
-            font-size: 22px;
-            margin-bottom: 16px;
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            word-wrap: break-word;
-        }
-
-        .small-text {
-            font-size: 15px;
-            color: var(--text-secondary);
-        }
-
-        .container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 48px;
-            width: 100%;
-        }
-
-        section {
-            padding: 100px 0;
-            min-height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        /* Clean Header / Logo Zone */
-        .header-banner {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border);
-            background-color: rgba(8, 8, 8, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-wrapper {
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-primary);
-            text-decoration: none;
-            border: 1px solid var(--text-primary);
-            padding: 4px 8px;
-            display: inline-block;
-            width: fit-content;
-            line-height: 1;
-        }
-
-        .logo-subtitle {
-            font-size: 11px;
-            color: #E0E0E0;
-            margin-top: 4px;
-            letter-spacing: 0.02em;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            min-height: 100vh;
-            width: 100%;
-            position: relative;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-            filter: brightness(1.3);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(8, 8, 8, 0.65) 0%, rgba(8, 8, 8, 0.45) 60%, rgba(8, 8, 8, 0.3) 100%);
-            z-index: -1;
-        }
-
-        .hero .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .hero-content h1,
-        .fs-content h2,
-        .fs-content p,
-        .vision-section h2,
-        .vision-section p {
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8), 0 10px 24px rgba(0, 0, 0, 0.6);
-        }
-        
-        .hero-content h1 {
-            margin-bottom: 0;
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 25px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: var(--text-primary);
-            animation: scrollDown 2s infinite cubic-bezier(0.65, 0, 0.35, 1);
-        }
-
-        /* Metrics Bar */
-        .metrics-bar {
-            border-bottom: 1px solid var(--border);
-            background: var(--bg-secondary);
-            padding: 40px 0;
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            text-align: center;
-        }
-
-        .metric-item h3 {
-            font-size: clamp(28px, 3.5vw, 42px);
-            font-weight: 500;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            letter-spacing: -0.02em;
-        }
-
-        .metric-item p {
-            font-size: 13px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin-bottom: 0;
-        }
-
-        /* Grids & Layouts */
-        .three-columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 36px;
-            margin-top: 48px;
-        }
-
-        .col {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 40px 32px;
-        }
-
-        .col p { font-size: 16px; }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 36px 32px;
-            transition: border-color 0.4s ease, transform 0.4s ease;
-        }
-
-        .card:hover {
-            border-color: #444;
-            transform: translateY(-4px);
-        }
-
-        /* Fullscreen Image Sections */
-        .fullscreen-image-section {
-            position: relative;
-            min-height: 70vh;
-            padding: 100px 0;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .fs-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
-            filter: brightness(1.5);
-        }
-
-        .fs-gradient-left {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, rgba(8,8,8,0.7) 0%, rgba(8,8,8,0.5) 60%, rgba(8,8,8,0.2) 100%);
-            z-index: -1;
-        }
-        
-        .fs-gradient-center {
-            position: absolute;
-            inset: 0;
-            background: rgba(8,8,8,0.5);
-            z-index: -1;
-        }
-
-        .fs-content {
-            max-width: 580px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .fs-content.centered {
-            margin: 0 auto;
-            text-align: center;
-            max-width: 780px;
-        }
-
-        /* Split Layout */
-        .split-layout {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-        }
-
-        .split-content { flex: 1; }
-        .split-image {
-            flex: 1;
-            position: relative;
-            width: 100%;
-        }
-
-        .split-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid var(--border);
-            filter: brightness(1.5);
-        }
-
-        .tech-stack {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .tech-stack li {
-            font-size: 15px;
-            color: var(--text-secondary);
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .tech-stack li:last-child { border-bottom: none; }
-        .tech-stack li::before {
-            content: '•';
-            margin-right: 12px;
-            color: var(--text-primary);
-        }
-
-        /* Pipeline */
-        .centered-section {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .pipeline-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 48px;
-        }
-
-        .pipeline-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 32px 20px;
-            text-align: left;
-            transition: all 0.3s var(--ease);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .pipeline-card:hover {
-            border-color: #444;
-            transform: translateY(-4px);
-        }
-
-        .step-num {
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            display: block;
-            margin-bottom: 12px;
-        }
-
-        .pipeline-card h3 { font-size: 16px; margin-bottom: 10px; }
-        .pipeline-card p { font-size: 13px; margin-bottom: 0; }
-
-        /* Applications Grid */
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .app-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 32px 28px;
-            transition: border-color 0.3s ease;
-        }
-
-        .app-item:hover { border-color: #444; }
-        .app-item h3 { margin-bottom: 8px; font-size: 18px; }
-        .app-item p { font-size: 15px; margin-bottom: 0; }
-
-        /* Vision Section with Video Background - BRIGHTNESS ADJUSTED */
-        .vision-section {
-            position: relative;
-            padding: 120px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-
-        .vision-bg-video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
-            z-index: -2;
-            object-fit: cover;
-            filter: brightness(1.25);
-        }
-
-        .vision-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(8, 8, 8, 0.60);
-            z-index: -1;
-        }
-
-        .vision-section .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .vision-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .vision-content p {
-            font-size: 18px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-        }
-        
-        .vision-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            padding: 80px 0 60px 0;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 40px;
-        }
-
-        .footer-brand {
-            max-width: 250px;
-        }
-
-        .footer-nav-grid {
-            display: flex;
-            gap: 80px;
-            flex-wrap: wrap;
-        }
-
-        .footer-col {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .footer-col h4 {
-            font-size: 13px;
-            color: var(--text-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 4px;
-        }
-        
-        .footer-col a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .footer-col a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Animations */
-        @keyframes scrollDown {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(200%); }
-        }
-
-        .fade-up {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Modals for Privacy & Terms */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.88);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal.active { display: flex; }
-
-        .modal-content {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            max-width: 950px;
-            width: 100%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 48px;
-            position: relative;
-            border-radius: 8px;
-        }
-
-        .modal-content h2 { font-size: 28px; margin-bottom: 20px; }
-        .modal-content h3 { font-size: 18px; margin-top: 28px; margin-bottom: 10px; color: var(--text-primary); }
-        .modal-content p, .modal-content li { font-size: 15px; color: var(--text-secondary); margin-bottom: 14px; }
-        .modal-content ul { margin-left: 20px; margin-bottom: 14px; }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-size: 28px;
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            transition: color 0.3s ease;
-            z-index: 10;
-        }
-
-        .close-btn:hover { color: var(--text-primary); }
-
-        /* Responsive Design Adjustments */
-        @media (max-width: 1100px) {
-            .container { padding: 0 32px; }
-            .pipeline-grid { grid-template-columns: repeat(2, 1fr); }
-            .split-layout { flex-direction: column; gap: 40px; }
-            .feature-grid { grid-template-columns: repeat(2, 1fr); }
-            .three-columns { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .container { padding: 0 20px; }
-            section { padding: 60px 0; }
-            .hero { height: 100vh; min-height: 100vh; }
-            .fullscreen-image-section { padding: 70px 0; min-height: auto; }
-            .pipeline-grid, .feature-grid, .three-columns { grid-template-columns: 1fr; }
-            .metrics-grid { grid-template-columns: 1fr; gap: 24px; }
-            .footer-content { flex-direction: column; gap: 40px; text-align: left; align-items: flex-start; }
-            .footer-nav-grid { flex-direction: column; gap: 40px; width: 100%; }
-            .modal-content { padding: 28px 20px; max-height: 80vh; }
-            .hero-content h1 { font-size: 32px; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Nuvvio: 6-DOF Reentry Trajectory, Aerothermodynamic Ablation & Fragmentation Engine.">
+<title>Nuvvio | Reentry & Fragmentation Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg: #030303;
+    --panel: #0a0a0a;
+    --line: #1f1f1f;
+    --text-main: #e0e0e0;
+    --text-muted: #888888;
+    --text-dim: #555555;
+    --accent: #ffffff;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --max: 1400px;
+    --ease: cubic-bezier(.16,1,.3,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: var(--bg); }
+body { min-width: 320px; overflow-x: hidden; background: var(--bg); color: var(--text-main); font-family: Inter, sans-serif; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img, video { display: block; max-width: 100%; height: auto; }
+.container { width: min(var(--max), calc(100% - 80px)); margin: auto; }
+.mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
+.eyebrow { display: flex; align-items: center; gap: 12px; color: var(--text-muted); font-size: 11px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
+.eyebrow:before { width: 24px; height: 1px; background: #555; content: ""; }
+
+/* Top Header */
+.site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: rgba(3,3,3,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; }
+.nav { height: 70px; display: flex; align-items: center; justify-content: space-between; }
+.brand { display: flex; flex-direction: column; text-decoration: none; justify-content: center; }
+.brand-box { color: var(--accent); font-size: 16px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,1); line-height: 1.1; }
+.brand-powered { color: var(--text-dim); font-size: 9px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+
+/* Minimalist Hero */
+.hero { height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); }
+.hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9) contrast(1.15); }
+.hero-shade { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%), linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.95) 100%); }
+.hero-content { position: relative; z-index: 2; width: 100%; text-align: center; padding-top: 60px; }
+.hero-title { font-size: clamp(40px, 6vw, 90px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,0.8); }
+.hero-title span { display: block; color: #a0a0a0; }
+
+/* Data Strip */
+.data-strip { background: var(--bg); border-bottom: 1px solid var(--line); }
+.data-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.data-item { min-height: 120px; padding: 24px; border-right: 1px solid var(--line); }
+.data-item:first-child { border-left: 1px solid var(--line); }
+.data-label { color: var(--text-dim); font-size: 10px; font-family: var(--mono); margin-bottom: 12px; }
+.data-value { font-size: 15px; font-weight: 400; color: #d0d0d0; line-height: 1.4; }
+
+/* Sections */
+.section { padding: 140px 0; border-bottom: 1px solid var(--line); }
+.grid-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
+.grid-layout.reversed { grid-template-columns: 1.1fr 0.9fr; }
+
+/* Typography blocks */
+.copy-block h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; margin: 24px 0; letter-spacing: -0.02em; color: var(--accent); line-height: 1.15; }
+.copy-block p { color: var(--text-muted); margin-bottom: 24px; line-height: 1.7; font-size: 16px; }
+.copy-block p:last-child { margin-bottom: 0; }
+.technical-list { margin-top: 32px; list-style: none; border-top: 1px solid var(--line); padding-top: 24px; }
+.technical-list li { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+.technical-list strong { font-family: var(--mono); font-size: 11px; color: #aaa; letter-spacing: 0.05em; }
+.technical-list span { color: var(--text-dim); font-size: 14px; }
+
+/* Visual Containers */
+.visual-wrapper { border: 1px solid var(--line); background: #000; position: relative; overflow: hidden; }
+.visual-wrapper img { width: 100%; height: auto; display: block; filter: brightness(1.1) contrast(1.05); }
+.visual-caption { display: flex; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); }
+
+/* Banner */
+.ocean-banner { position: relative; padding: 160px 0; overflow: hidden; border-bottom: 1px solid var(--line); background: #000; }
+.ocean-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6) contrast(1.2) grayscale(0.2); }
+.ocean-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(3,3,3,0.95) 0%, rgba(3,3,3,0.4) 50%, rgba(3,3,3,0.95) 100%); }
+.ocean-banner .container { position: relative; z-index: 2; max-width: 900px; text-align: center; }
+.ocean-banner h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 300; color: #fff; margin-bottom: 24px; text-shadow: 0 4px 20px rgba(0,0,0,0.9); }
+.ocean-banner p { font-size: 18px; color: #c0c0c0; line-height: 1.7; text-shadow: 0 2px 10px rgba(0,0,0,1); }
+
+/* Integration */
+.integration-section { position: relative; padding: 180px 0; overflow: hidden; background: #000; border-bottom: 1px solid var(--line); }
+.integration-section video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) contrast(1.3); }
+.integration-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,1) 100%); }
+.integration-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.integration-panel { background: rgba(10,10,10,0.85); border: 1px solid rgba(255,255,255,0.1); padding: 48px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+
+/* Button */
+.btn { display: inline-flex; align-items: center; height: 48px; padding: 0 40px; background: #fff; color: #000; font-family: var(--mono); font-size: 11px; font-weight: 600; transition: background 0.2s; text-decoration: none; border-radius: 2px; margin-top: 32px; letter-spacing: 0.05em; cursor: pointer;}
+.btn:hover { background: #d0d0d0; }
+
+/* Footer */
+footer { background: #030303; padding: 80px 0; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; }
+.footer-col { display: flex; flex-direction: column; gap: 16px; }
+.footer-title { font-weight: 600; color: #fff; font-family: var(--mono); letter-spacing: 0.1em; text-transform: uppercase; font-size: 11px; margin-bottom: 8px; }
+.footer-col a { color: var(--text-muted); font-size: 14px; transition: color 0.2s; display: block; cursor: pointer; }
+.footer-col a:hover { color: #fff; }
+
+/* Modal System */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 1000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.4s var(--ease); padding: 20px; }
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-container { background: var(--panel); border: 1px solid var(--line); width: 100%; max-width: 800px; max-height: 85vh; overflow-y: auto; position: relative; transform: translateY(20px); transition: transform 0.4s var(--ease); padding: 60px; }
+.modal-overlay.active .modal-container { transform: translateY(0); }
+.modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; font-family: var(--mono); line-height: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: 0.5; transition: opacity 0.2s; }
+.modal-close:hover { opacity: 1; }
+.modal-content h2 { font-size: 32px; font-weight: 300; margin-bottom: 24px; color: #fff; letter-spacing: -0.02em; }
+.modal-content h3 { font-size: 14px; font-family: var(--mono); color: var(--text-dim); text-transform: uppercase; margin: 32px 0 12px 0; letter-spacing: 0.05em; border-bottom: 1px solid var(--line); padding-bottom: 8px;}
+.modal-content p { color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; font-size: 15px; }
+.modal-content ul { color: var(--text-muted); margin-left: 20px; margin-bottom: 24px; line-height: 1.8; }
+.hidden-data { display: none; }
+
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+@media(max-width:1000px) {
+    .grid-layout { grid-template-columns: 1fr; gap: 40px; }
+    .grid-layout.reversed .visual-wrapper { order: 2; }
+    .grid-layout.reversed .copy-block { order: 1; }
+    .integration-content { grid-template-columns: 1fr; }
+    .data-grid { grid-template-columns: 1fr 1fr; }
+    .data-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .data-item:nth-child(even) { border-right: 0; }
+    .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 60px; }
+    .modal-container { padding: 40px 24px; }
+}
+@media(max-width:600px) {
+    .data-grid, .footer-grid { grid-template-columns: 1fr; }
+    .data-item { border-right: 0; border-bottom: 1px solid var(--line); }
+}
+</style>
 </head>
 <body>
 
-    <!-- Clean Solid/Gradient Header -->
-    <header class="header-banner">
-        <div class="container">
-            <div class="logo-wrapper">
-                <a href="index.html" class="logo">Nuvvio</a>
-                <span class="logo-subtitle">powered by Selixor Technologies</span>
-            </div>
-        </div>
-    </header>
+<header class="site-header">
+    <nav class="container nav">
+        <a class="brand" href="index.html">
+            <span class="brand-box">NUVVIO</span>
+            <span class="brand-powered">Powered by Selixor Technologies</span>
+        </a>
+    </nav>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <video autoplay muted loop playsinline preload="auto" class="hero-bg">
-            <source src="oceano_video.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="container">
-            <div class="hero-content fade-up">
-                <h1>Advanced Marine Intelligence & Subsea Digital Twins</h1>
-            </div>
-        </div>
-        <div class="scroll-indicator"></div>
-    </section>
+<main>
+<section class="hero">
+    <video class="hero-media" autoplay muted loop playsinline preload="metadata">
+        <source src="oceano_video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-shade"></div>
+    <div class="container hero-content reveal">
+        <h1 class="hero-title">Atmospheric Reentry<br><span>& Fragmentation Engine.</span></h1>
+    </div>
+</section>
 
-    <!-- Metrics Bar -->
-    <div class="metrics-bar">
-        <div class="container">
-            <div class="metrics-grid">
-                <div class="metric-item fade-up">
-                    <h3>30,000+ km²</h3>
-                    <p>Coastal Regions Analyzed via Satellite Telemetry</p>
-                </div>
-                <div class="metric-item fade-up">
-                    <h3>Global Scope</h3>
-                    <p>Research, Institutional & Enterprise Focus</p>
-                </div>
-                <div class="metric-item fade-up">
-                    <h3>Physics-Based</h3>
-                    <p>High-Fidelity Environment Simulation</p>
-                </div>
+<section class="data-strip">
+    <div class="container data-grid">
+        <div class="data-item reveal">
+            <div class="data-label">KINEMATICS</div>
+            <div class="data-value">6-DOF Rigid Body Dynamics with Variable Mass Matrices.</div>
+        </div>
+        <div class="data-item reveal">
+            <div class="data-label">ENVIRONMENT</div>
+            <div class="data-value">NRLMSISE-00 Atmosphere & HWM-14 Wind Models.</div>
+        </div>
+        <div class="data-item reveal">
+            <div class="data-label">THERMAL SOLVER</div>
+            <div class="data-value">Coupled Radiative-Convective Heat Flux & Ablation.</div>
+        </div>
+        <div class="data-item reveal">
+            <div class="data-label">STOCHASTICS</div>
+            <div class="data-value">Monte Carlo (n=100,000) Casualty Expectancy Mapping.</div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container grid-layout">
+        <div class="copy-block reveal">
+            <div class="eyebrow">Computational Architecture</div>
+            <h2>Deterministic Demise Modeling.</h2>
+            <p>End-of-life de-orbit procedures require mathematically rigorous evidence to satisfy international orbital debris mitigation standards (e.g., NASA-STD-8719.14). Standard propagation is insufficient for high-mass orbital infrastructure undergoing destructive reentry.</p>
+            <p>Nuvvio operates in the deterministic computational layer. Our engine resolves the coupled equations of motion and heat transfer. By treating the spacecraft as an Object-Oriented hierarchical assembly, we apply lumped-mass thermal network models to predict the exact altitude of structural yield, melt points, and the aerodynamic transition of sub-components.</p>
+            <ul class="technical-list">
+                <li>
+                    <strong>AEROTHERMODYNAMIC HEATING</strong>
+                    <span>Real-time calculation of stagnation point heat flux and wall temperatures based on varying ballistic coefficients.</span>
+                </li>
+                <li>
+                    <strong>EPHEMERIS INGESTION</strong>
+                    <span>Direct API integration for TLE (Two-Line Element) and high-fidelity covariance matrices.</span>
+                </li>
+            </ul>
+        </div>
+        <div class="visual-wrapper reveal">
+            <img src="entrada.png" alt="Reentry Simulation & Trajectory Telemetry" loading="lazy">
+            <div class="visual-caption">
+                <span>SYS.DISPLAY // 6-DOF TRAJECTORY SOLVER</span>
+                <span>STATE: HYPERSONIC TRANSITION</span>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Section 01: Core Architecture -->
-    <section class="container">
-        <div class="fade-up">
-            <h2>Engineered for Scientific & Industrial Understanding</h2>
-            <p style="max-width: 850px;">Nuvvio develops state-of-the-art computational frameworks to make marine intelligence more accessible. By leveraging satellite infrastructure from high-profile leaders like Intelsat and pairing it with our proprietary physics-based underwater modeling software, we extract high-precision hydrographic data to provide research institutions, environmental organizations, and enterprise operations with exact parameters for ocean mapping and exploration.</p>
-        </div>
-        
-        <div class="three-columns fade-up">
-            <div class="col">
-                <h3>Subsea Digital Twins</h3>
-                <p>Advanced simulation suites powered by Nuvvio's core software, enabling maritime organizations to build precise digital replicas of underwater environments. Model environmental resistance, currents, and salinity with scientific accuracy.</p>
-            </div>
-            <div class="col">
-                <h3>Satellite Observation Integrations</h3>
-                <p>Utilizing high-performance orbital telemetry sourced from high-profile satellite infrastructure providers like Intelsat, integrated seamlessly with Nuvvio's software engines to execute rapid, multispectral water depth extraction across extreme environments.</p>
-            </div>
-            <div class="col">
-                <h3>Benthic & Terrain Analysis</h3>
-                <p>Specialized computational frameworks designed by Nuvvio to evaluate seabed composition, sediment dynamics, and benthic ecosystems to support marine conservation and responsible infrastructure planning.</p>
+<section class="section" style="background: #060606;">
+    <div class="container grid-layout reversed">
+        <div class="visual-wrapper reveal">
+            <img src="basura.png" alt="Object recovery telemetry at Point Nemo" loading="lazy">
+            <div class="visual-caption">
+                <span>TARGET: SPOA (POINT NEMO)</span>
+                <span>DISPERSION: 99.998% CONFIDENCE</span>
             </div>
         </div>
-    </section>
+        <div class="copy-block reveal">
+            <div class="eyebrow">Terminal Dispersion Footprint</div>
+            <h2>SPOA Operational Intelligence.</h2>
+            <p>The South Pacific Ocean Uninhabited Area (SPOA), colloquially known as Point Nemo, is the mandated target for controlled spacecraft disposal. Reaching SPOA coordinates is a baseline; containing the resulting debris shower is the engineering challenge.</p>
+            <p>Upon atmospheric breakup, a spacecraft fragments into thousands of objects, each with unique aerodynamic characteristics (Cd, Cl). Nuvvio simulates the descent trajectory of every surviving component. We compute the Probability Density Function (PDF) of the debris footprint, guaranteeing that the maximum dispersion ellipse remains strictly confined within uninhabited oceanic boundaries.</p>
+            <p>This allows space agencies to certify that the Casualty Expectancy (E<sub>c</sub>) margin remains strictly below the 1 &times; 10<sup>-4</sup> threshold under all atmospheric perturbations.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- Fullscreen Image 1 -->
-    <section class="fullscreen-image-section">
-        <img src="terreno.jpg" alt="Bathymetric Terrain Intelligence" class="fs-bg" loading="lazy">
-        <div class="fs-gradient-left"></div>
-        <div class="container">
-            <div class="fs-content fade-up">
-                <h2>Precision Through Artificial Intelligence.</h2>
-                <p>By pairing high-profile satellite networks from Intelsat with Nuvvio's proprietary bathymetric inversion software, we bypass conventional maritime logistics barriers, delivering scientific-grade seabed morphology across remote global sectors.</p>
+<section class="ocean-banner">
+    <img src="oceano.jpg" alt="Pacific Ocean Horizon at SPOA" loading="lazy">
+    <div class="ocean-shade"></div>
+    <div class="container reveal">
+        <div class="eyebrow" style="justify-content: center; margin-bottom: 24px; color: #aaa;">Environmental Constraints</div>
+        <h2>Marine Impact & Oceanic Ecosystem Protection.</h2>
+        <p>Beyond mathematical risk mitigation, precise footprint containment prevents toxic hypergolic residues and heavy structural metals from polluting sensitive marine ecosystems or maritime routes. The isolation of Point Nemo minimizes human risk, while Nuvvio’s rigorous ablation modeling minimizes the total surviving mass that reaches the ocean surface.</p>
+    </div>
+</section>
+
+<section class="integration-section">
+    <video autoplay muted loop playsinline preload="metadata">
+        <source src="video.mp4" type="video/mp4">
+    </video>
+    <div class="integration-shade"></div>
+    <div class="container integration-content">
+        <div class="copy-block reveal" style="text-shadow: 0 2px 10px rgba(0,0,0,1);">
+            <div class="eyebrow" style="color: #ccc; border-color: rgba(255,255,255,0.3);">Industrial Deployment</div>
+            <h2 style="color: #fff;">Verda Space Industries Integration.</h2>
+            <p style="color: #e0e0e0; font-size: 18px;">Verda Space Industries relies on Nuvvio's computational architecture to certify the end-of-life decommissioning of their Low Earth Orbit (LEO) assets.</p>
+            <p style="color: #ccc;">Through our API, Verda Space automatically processes destructive reentry protocols for massive orbital modules. Nuvvio models the localized atmospheric conditions and material ablation, generating the critical compliance documentation required by international regulatory bodies before any de-orbit burn is executed.</p>
+        </div>
+        <div class="integration-panel reveal">
+            <div class="copy-block">
+                <h3 style="font-size: 20px; font-weight: 400; margin-bottom: 16px;">Compute the Footprint.</h3>
+                <p style="font-size: 14px; margin-bottom: 0;">Access the scientific engine for thermal stress simulation, structural fragmentation, and rigorous impact footprint analysis.</p>
+                <!-- Botón API enlazando directo a contact.html -->
+                <a href="contact.html" class="btn">REQUEST API CREDENTIALS</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+</main>
 
-    <!-- Section 02: Grid / Capabilities -->
-    <section class="container">
-        <div class="fade-up">
-            <h2>Institutional Marine Intelligence</h2>
-            <p style="max-width: 850px;">Universities, conservation organizations, and public infrastructure planners face intense operational challenges in remote marine zones. Nuvvio supplies sovereign marine intelligence, baseline environmental mapping, and advanced software pipelines powered by elite satellite telemetry from Intelsat to accelerate oceanographic research and protect marine biodiversity.</p>
+<footer>
+    <div class="container footer-grid">
+        <div class="footer-col">
+            <div class="footer-title">ENGINE</div>
+            <a data-modal="arch">Architecture Overview</a>
+            <a data-modal="aero">Aerothermodynamics</a>
+            <a data-modal="stochastic">Stochastic Modeling</a>
+            <a data-modal="release">Release Notes</a>
         </div>
-
-        <div class="feature-grid fade-up">
-            <div class="card">
-                <h3>High-Latitude Survey Initiatives</h3>
-                <p class="small-text">Mapping complex marine territories in extreme regions utilizing high-profile spaceborne constellations like Intelsat alongside Nuvvio's light attenuation models.</p>
-            </div>
-            <div class="card">
-                <h3>Environmental Baseline Assessment</h3>
-                <p class="small-text">Supplying scientists and governments with verifiable terrain data via Nuvvio software to monitor marine ecosystems and enforce ecological protection policies.</p>
-            </div>
-            <div class="card">
-                <h3>Sovereign Domain Awareness</h3>
-                <p class="small-text">Equipping public sector entities with high-resolution hydrographic spatial layers processed through Nuvvio's computational engines.</p>
-            </div>
-            <div class="card">
-                <h3>Orbital Constellation Integration</h3>
-                <p class="small-text">Leveraging elite satellite telecommunications and observation infrastructure from Intelsat to secure continuous, high-fidelity data feeds for critical research.</p>
-            </div>
-            <div class="card">
-                <h3>Predictive Disaster Modeling</h3>
-                <p class="small-text">Delivering computational seabed and wave data through Nuvvio's software to assist authorities in studying coastal erosion and hazard management.</p>
-            </div>
-            <div class="card">
-                <h3>Responsible Infrastructure Planning</h3>
-                <p class="small-text">Providing precise seabed mapping required for the safe, ecologically conscious development of ports and renewable energy installations.</p>
-            </div>
+        <div class="footer-col">
+            <div class="footer-title">RESOURCES</div>
+            <a data-modal="api-doc">API Documentation</a>
+            <a data-modal="telemetry">Telemetry Integration</a>
+            <a data-modal="research">Research & Papers</a>
         </div>
-    </section>
-
-    <!-- Section 03: Split Layout - Digital Twins -->
-    <section class="container">
-        <div class="split-layout">
-            <div class="split-content fade-up">
-                <h2>Physics-Based Simulation for Marine Environments</h2>
-                <p>Understanding the deep ocean requires software models that accurately reflect reality. Nuvvio's core software engine processes environmental variables—such as localized water currents, optical attenuation, density gradients, and seabed friction—creating highly accurate virtual environments fueled by high-profile satellite feeds from Intelsat.</p>
-                <p>Scientists and enterprise engineers utilize Nuvvio's digital twins to simulate complex marine scenarios, allowing for extensive testing of submersible technologies and environmental impact studies prior to any physical deployment.</p>
-                
-                <h3 style="margin-top: 40px; font-size: 18px;">Core Technology Stack</h3>
-                <p class="small-text">Built on institutional frameworks optimized for geospatial intelligence and real-time physics calculations.</p>
-                
-                <ul class="tech-stack">
-                    <li>Nuvvio AI-Driven Bathymetric Inversion Models</li>
-                    <li>Intelsat High-Performance Satellite Telemetry</li>
-                    <li>Hydrodynamic Fluid Mechanics Software</li>
-                    <li>Subsea Digital Twin Architecture</li>
-                    <li>Geospatial Intelligence (GIS) Processing</li>
-                    <li>Benthic Ecosystem Modeling Engines</li>
-                </ul>
-            </div>
-            <div class="split-image fade-in">
-                <img src="interfaz.jpg" alt="Nuvvio Subsea Simulation Software Interface" loading="lazy">
-            </div>
+        <div class="footer-col">
+            <div class="footer-title">COMPANY</div>
+            <a data-modal="about">About Nuvvio</a>
+            <a data-modal="verda">Verda Space Partnership</a>
+            <a data-modal="marine">Marine Protection</a>
         </div>
-    </section>
-
-    <!-- Section 04: The Nuvvio Pipeline -->
-    <section class="container centered-section fade-up">
-        <h2>The Marine Intelligence Pipeline</h2>
-        <p style="max-width: 750px; margin: 0 auto 16px auto;">A proprietary computational framework powered by Intelsat satellite infrastructure, designed by Nuvvio to scale from orbit to deep-sea analysis.</p>
-        
-        <div class="pipeline-grid">
-            <div class="pipeline-card">
-                <span class="step-num">01</span>
-                <h3>Satellite Data Acquisition</h3>
-                <p class="small-text">Capturing multi-spectral optical data leveraging high-profile orbital assets from Intelsat.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="step-num">02</span>
-                <h3>AI Bathymetric Inversion</h3>
-                <p class="small-text">Processing optical reflectance through Nuvvio software into high-resolution depth and coastal models.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="step-num">03</span>
-                <h3>Ecosystem & Terrain Analysis</h3>
-                <p class="small-text">Evaluating seabed composition, geological strata, and localized benthic environments.</p>
-            </div>
-            <div class="pipeline-card">
-                <span class="step-num">04</span>
-                <h3>Digital Twin Integration</h3>
-                <p class="small-text">Visualizing and simulating the physical marine environment via Nuvvio platforms for research and planning.</p>
-            </div>
+        <div class="footer-col">
+            <div class="footer-title">LEGAL</div>
+            <a data-modal="security">Security Protocol</a>
+            <a data-modal="privacy">Privacy Policy</a>
+            <!-- Único enlace del footer hacia otra página HTML -->
+            <a href="contact.html">Engineering Contact</a>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Fullscreen Image 2 -->
-    <section class="fullscreen-image-section">
-        <img src="oceano.jpg" alt="Deep Ocean Marine Intelligence" class="fs-bg" loading="lazy">
-        <div class="fs-gradient-center"></div>
-        <div class="container">
-            <div class="fs-content centered fade-up">
-                <h2>Empowering Subsea Understanding.</h2>
-                <p>We do not speculate; we quantify. By combining high-profile orbital infrastructure from Intelsat with Nuvvio's proprietary software modeling, we set a new benchmark for accessible, verifiable marine intelligence.</p>
-            </div>
+<!-- ESTRUCTURA DEL MODAL OVERLAY -->
+<div class="modal-overlay" id="modal-wrapper">
+    <div class="modal-container">
+        <button class="modal-close" id="modal-close">&times;</button>
+        <div class="modal-content" id="modal-body">
+            <!-- El contenido dinámico se inyectará aquí -->
         </div>
-    </section>
+    </div>
+</div>
 
-    <!-- Section 05: Applications -->
-    <section class="container">
-        <div class="fade-up">
-            <h2>Sectors & Applications</h2>
-        </div>
-        <div class="app-grid fade-up">
-            <div class="app-item">
-                <h3>Marine Scientific Research Institutes</h3>
-                <p class="small-text">High-resolution spatial databases supported by Nuvvio software and Intelsat telemetry.</p>
-            </div>
-            <div class="app-item">
-                <h3>Coastal Conservation Agencies</h3>
-                <p class="small-text">Empirical data mapping for the preservation of coral reefs, kelp forests, and vulnerable ecosystems.</p>
-            </div>
-            <div class="app-item">
-                <h3>Governmental Marine Authorities</h3>
-                <p class="small-text">Strategic maritime domain awareness, hydrographic mapping, and intelligent coastal governance.</p>
-            </div>
-            <div class="app-item">
-                <h3>Offshore Renewable Energy</h3>
-                <p class="small-text">Precise bathymetry and seabed mechanics for responsible wind turbine placement and routing.</p>
-            </div>
-            <div class="app-item">
-                <h3>Subsea Infrastructure Planning</h3>
-                <p class="small-text">Engineering data solutions for safe fiber-optic cable routing and port construction analysis.</p>
-            </div>
-            <div class="app-item">
-                <h3>Digital Marine Models</h3>
-                <p class="small-text">Proprietary datasets integrated directly into enterprise engineering pipelines and academic GIS software.</p>
-            </div>
-        </div>
-    </section>
+<!-- CONTENIDOS OCULTOS DE LOS MODALES (No se renderizan hasta el clic) -->
+<div class="hidden-data">
+    <div id="content-arch">
+        <div class="eyebrow">Engine</div>
+        <h2>Architecture Overview</h2>
+        <p>El núcleo computacional de Nuvvio está desarrollado bajo una arquitectura de microservicios orientada al rendimiento, escrita principalmente en C++20 para los solucionadores físicos (Physics Solvers) y Rust para el manejo seguro de concurrencia y telemetría de red.</p>
+        <h3>Propagación Orbital y Dinámica</h3>
+        <p>Utilizamos una integración numérica basada en el método Runge-Kutta-Fehlberg (RK45) con tamaño de paso adaptativo, garantizando la conservación de energía durante los picos de estrés dinámico en los regímenes hipersónicos.</p>
+        <h3>Capa de API RESTful</h3>
+        <p>El motor expone su funcionalidad a través de una API RESTful (JSON/HTTPS) que permite a los sistemas de control de misión ingerir vectores de estado y recibir matrices de covarianza y perfiles térmicos en tiempo real.</p>
+    </div>
 
-    <!-- Our Vision Section with Video Background -->
-    <section id="vision" class="vision-section">
-        <video autoplay muted loop playsinline class="vision-bg-video">
-            <source src="mar.mp4" type="video/mp4">
-            Your browser does not support HTML5 video.
-        </video>
-        <div class="vision-overlay"></div>
-        <div class="container">
-            <div class="vision-content fade-up">
-                <h2 style="margin-bottom: 32px;">Our Vision</h2>
-                <p>The ocean is one of Earth's least understood ecosystems, yet it is fundamental to the future of our planet.</p>
-                <p>At Nuvvio, we develop advanced software technologies that make marine intelligence more accessible through artificial intelligence, computational modeling, and digital twins—utilizing high-profile satellite infrastructure from industry leaders like Intelsat. Our mission is to help governments, universities, research institutions, conservation organizations, and responsible industries better understand the ocean while enabling scientific exploration and collaboration.</p>
-                <p>By making advanced marine software solutions more accessible, we aim to accelerate research, deepen our understanding of underwater ecosystems, and contribute to the protection of marine biodiversity—helping preserve the ocean for future generations.</p>
-            </div>
-        </div>
-    </section>
+    <div id="content-aero">
+        <div class="eyebrow">Engine</div>
+        <h2>Aerothermodynamics</h2>
+        <p>El modelado termodinámico es el pilar de la predicción de desintegración espacial. Nuvvio implementa ecuaciones acopladas para la transferencia de calor radiativa y convectiva a lo largo de la trayectoria de vuelo.</p>
+        <h3>Cálculo de Flujo Térmico</h3>
+        <p>Para el punto de estancamiento, el sistema aplica formulaciones derivadas de Fay-Riddell, ajustadas dinámicamente según la geometría de choque y la densidad atmosférica provista por el modelo NRLMSISE-00.</p>
+        <h3>Ablación y Rendimiento de Materiales</h3>
+        <p>Cada componente estructural en la matriz de la nave espacial es evaluado mediante un modelo de red térmica de masas agrupadas (Lumped-Mass). El software rastrea el punto de fusión empírico de aleaciones aeroespaciales (como Aluminio 7075-T6 y Titanio Ti-6Al-4V), determinando con precisión altimétrica el instante exacto de fractura estructural.</p>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content fade-in">
-            <div class="footer-brand">
-                <div class="logo" style="font-size: 15px; border: 1px solid var(--text-primary); padding: 4px 8px; display: inline-block;">NUVVIO</div>
-                <div class="small-text" style="margin-top: 6px;">powered by selixor technologies.</div>
-            </div>
-            <div class="footer-nav-grid">
-                <div class="footer-col">
-                    <h4>Company</h4>
-                    <a href="methodology.html">Methodology</a>
-                    <a href="case-studies.html">Case Studies</a>
-                    <a href="news.html">News & Partnerships</a>
-                    <a href="esg.html">ESG & Ocean Health</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Resources</h4>
-                    <a href="api-docs.html">Developer Portal / API Docs</a>
-                    <a href="academic.html">Academic Access</a>
-                    <a href="documentation.html">Documentation</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal & Contact</h4>
-                    <a href="security.html">Security & Compliance</a>
-                    <a id="btn-privacy">Privacy Policy</a>
-                    <a id="btn-terms">Terms of Use</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div id="content-stochastic">
+        <div class="eyebrow">Engine</div>
+        <h2>Stochastic Modeling</h2>
+        <p>La reentrada atmosférica está gobernada por variables de alta incertidumbre, como la fluctuación de la densidad atmosférica y el perfil aerodinámico de fragmentos asimétricos tras la ruptura principal.</p>
+        <h3>Simulaciones Monte Carlo</h3>
+        <p>Para garantizar los márgenes de seguridad, Nuvvio ejecuta automáticamente entre 10,000 y 100,000 iteraciones de Monte Carlo para cada escenario de desorbitación. Estas simulaciones perturban las condiciones iniciales de entrada (velocidad, altitud, ángulo de trayectoria, coeficiente balístico) basándose en distribuciones gaussianas.</p>
+        <h3>Análisis de Huella (Footprint)</h3>
+        <p>El resultado es un mapa de densidad probabilística (PDF) en latitud y longitud, estableciendo polígonos de confianza del 99.998% para asegurar que los escombros sobrevivientes impacten exclusivamente dentro de la Zona Deshabitada del Pacífico Sur (SPOA).</p>
+    </div>
 
-    <!-- Scripts -->
-    <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -40px 0px"
-        };
+    <div id="content-release">
+        <div class="eyebrow">Engine</div>
+        <h2>Release Notes</h2>
+        <h3>Nuvvio Core v2.4.1 (Latest)</h3>
+        <ul>
+            <li><strong>Actualización de Modelos Atmosféricos:</strong> Integración completa del modelo de viento HWM-14, mejorando la deriva lateral de fragmentos de baja densidad.</li>
+            <li><strong>Optimización Térmica:</strong> Los tiempos de cálculo del Solver Radiativo se han reducido en un 22% mediante vectorización SIMD.</li>
+            <li><strong>API Enhancements:</strong> Nuevo endpoint `/v2/trajectory/covariance` añadido para exportar directamente matrices de dispersión en formato JSON y CSV estándar de la industria.</li>
+            <li><strong>Parche de Seguridad:</strong> Rotación forzada de tokens de autenticación OAuth 2.0 y actualización a TLS 1.3 estricto.</li>
+        </ul>
+    </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
+    <div id="content-api-doc">
+        <div class="eyebrow">Resources</div>
+        <h2>API Documentation</h2>
+        <p>La API de Nuvvio proporciona acceso programático a nuestros motores de propagación de reentrada y modelos de ablación térmica. Está diseñada para integrarse directamente en los conductos de software de Control de Misión (Mission Control).</p>
+        <h3>Autenticación y Límites</h3>
+        <p>El acceso requiere autenticación mediante claves API (Bearer Tokens). Los límites de tasa estándar para cuentas de ingeniería permiten hasta 500 simulaciones de trayectoria completa por hora. El procesamiento de Monte Carlo masivo requiere colas asíncronas vía Webhooks.</p>
+        <h3>Formato de Payload</h3>
+        <p>El motor ingiere vectores de estado de 6 grados de libertad (Posición X, Y, Z; Velocidad Vx, Vy, Vz; y Cuaterniones de Actitud) junto con propiedades inerciales del vehículo. Las respuestas se entregan en formato JSON estructurado detallando telemetría segundo a segundo, puntos de ruptura térmica (Breakup Altitudes) y polígonos GeoJSON de impacto.</p>
+    </div>
+
+    <div id="content-telemetry">
+        <div class="eyebrow">Resources</div>
+        <h2>Telemetry Integration</h2>
+        <p>La capacidad de contrastar simulaciones con datos reales en tiempo de vuelo es vital para afinar los modelos aerotermodinámicos de Nuvvio.</p>
+        <h3>Ingesta de Datos en Tiempo Real</h3>
+        <p>Las interfaces de Nuvvio soportan flujos WebSocket bidireccionales de baja latencia. Esto permite a los operadores de satélites en fase terminal transmitir datos de sensores inerciales y térmicos integrados (IMUs, termopares) directamente al motor.</p>
+        <h3>Filtro de Kalman Extendido (EKF)</h3>
+        <p>El sistema utiliza filtros estocásticos para correlacionar la telemetría entrante con la trayectoria simulada, actualizando dinámicamente el coeficiente de arrastre estimado y mejorando la precisión del punto de impacto nominal durante la transición hipersónica.</p>
+    </div>
+
+    <div id="content-research">
+        <div class="eyebrow">Resources</div>
+        <h2>Research & Papers</h2>
+        <p>La metodología computacional detrás de Nuvvio se basa en fundamentos científicos rigurosos y contribuye activamente al ecosistema académico y regulatorio de la mitigación de basura espacial.</p>
+        <h3>Publicaciones y Referencias</h3>
+        <ul>
+            <li><em>"Coupled Convective-Radiative Heat Transfer in Hypersonic Rarefied Flows."</em> - Fundamento para el motor de calentamiento aerodinámico de Nuvvio.</li>
+            <li><em>"Stochastic Fragmentation Modeling for Massive Orbital Infrastructure."</em> - Metodología de aplicación de redes de masa acoplada para predecir fracturas de titanio y aluminio estructural.</li>
+            <li><em>"Point Nemo Casualty Expectancy Risk Margins."</em> - Documento técnico sobre el confinamiento probabilístico de dispersión oceánica y cálculo de E_c.</li>
+        </ul>
+        <p>Para acceder a la biblioteca completa de metodologías (Whitepapers), contacte a nuestro equipo de ingeniería.</p>
+    </div>
+
+    <div id="content-about">
+        <div class="eyebrow">Company</div>
+        <h2>About Nuvvio</h2>
+        <p>Desarrollado y operado por <strong>Selixor Technologies</strong>, Nuvvio es una solución de software de nicho especializada en la fase más crítica y violenta del ciclo de vida de un vehículo espacial: la reentrada atmosférica.</p>
+        <p>A medida que la órbita terrestre baja (LEO) se congestiona con megaconstelaciones e infraestructura masiva, la desorbitación controlada deja de ser una sugerencia para convertirse en una exigencia legal. Nuvvio se fundó con la misión de proveer certeza determinística y probabilística a las agencias aeroespaciales, asegurando que el hardware retirado se desintegre de forma predecible y segura, mitigando el riesgo humano y protegiendo las vías marítimas.</p>
+    </div>
+
+    <div id="content-verda">
+        <div class="eyebrow">Company</div>
+        <h2>Verda Space Partnership</h2>
+        <p>Nuvvio mantiene una integración arquitectónica exclusiva y profunda con <strong>Verda Space Industries</strong>, uno de los actores principales en el desarrollo de infraestructuras modulares en órbita terrestre baja.</p>
+        <h3>Certificación Operativa</h3>
+        <p>Debido a la densidad y masa atípica de los módulos de Verda Space, las herramientas de propagación estándar no ofrecían la resolución térmica necesaria para predecir la supervivencia de escombros. Nuvvio actúa como el motor de certificación de desorbitación oficial para Verda Space, procesando las matrices estructurales de sus naves antes de cada maniobra crítica para asegurar el estricto cumplimiento de los acuerdos internacionales de mitigación de escombros orbitales.</p>
+    </div>
+
+    <div id="content-marine">
+        <div class="eyebrow">Company</div>
+        <h2>Marine Protection</h2>
+        <p>La responsabilidad aeroespacial no termina en la atmósfera; se extiende al fondo oceánico. La precisión en la predicción del área de impacto de escombros espaciales está directamente ligada a la protección de los ecosistemas marinos vulnerables.</p>
+        <h3>Mitigación de Toxicidad</h3>
+        <p>El confinamiento estricto de la huella de impacto dentro del SPOA (Point Nemo) asegura que los componentes que logran sobrevivir a la ablación —frecuentemente metales pesados o piezas recubiertas con residuos hipergólicos y de hidrazina— no contaminen rutas marítimas comerciales ni hábitats de alta biodiversidad.</p>
+        <p>Nuvvio provee los datos cuantitativos necesarios para que las agencias ambientales evalúen la masa total exacta y la composición del material que llegará al océano, promoviendo la sostenibilidad en el diseño futuro de satélites (Design for Demise).</p>
+    </div>
+
+    <div id="content-security">
+        <div class="eyebrow">Legal</div>
+        <h2>Security Protocol</h2>
+        <p>El manejo de datos de diseño de vehículos espaciales y telemetría orbital requiere estándares de seguridad de grado gubernamental. Las arquitecturas estructurales de nuestros clientes son propiedades intelectuales de misión crítica.</p>
+        <h3>Cifrado y Cumplimiento</h3>
+        <ul>
+            <li><strong>Encriptación:</strong> Todo el tráfico de la API está encriptado vía TLS 1.3. Los datos en reposo, incluyendo las matrices de características de las naves espaciales, utilizan cifrado AES-256.</li>
+            <li><strong>Aislamiento de Datos:</strong> Nuvvio opera en contenedores aislados de un solo inquilino (Single-Tenant) durante la ejecución de simulaciones físicas para prevenir cualquier fuga de memoria cruzada.</li>
+            <li><strong>Auditoría:</strong> Nuestra infraestructura de Selixor Technologies es auditada anualmente bajo los estándares SOC 2 Tipo II, cumpliendo con los lineamientos de soberanía de datos requeridos por las agencias aeroespaciales globales.</li>
+        </ul>
+    </div>
+
+    <div id="content-privacy">
+        <div class="eyebrow">Legal</div>
+        <h2>Privacy Policy</h2>
+        <p>En Selixor Technologies, respetamos la confidencialidad absoluta de los parámetros operativos de nuestros clientes empresariales e institucionales.</p>
+        <h3>Manejo de Datos de Misión</h3>
+        <p>Cualquier dato de entrada, como vectores de estado, coeficientes balísticos y características estructurales proporcionadas a la API de Nuvvio para propósitos de simulación térmica y de trayectoria, es considerado confidencial. Nuvvio procesa esta información de forma efímera en la memoria RAM de nuestros servidores. Los resultados (logs de ruptura y huellas probabilísticas) se retienen únicamente el tiempo configurado explícitamente por el cliente en sus políticas de retención antes de su destrucción criptográfica automática.</p>
+        <p>No recopilamos telemetría no autorizada ni utilizamos los perfiles aerodinámicos de naves privadas para entrenar modelos generalizados sin consentimiento expreso por escrito.</p>
+    </div>
+</div>
+
+<script>
+(()=>{
+    // Observador para animaciones de aparición "reveal"
+    const items = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+        items.forEach(x => x.classList.add('is-visible'));
+    } else {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(e => {
+                if(!e.isIntersecting) return;
+                e.target.classList.add('is-visible');
+                obs.unobserve(e.target);
             });
-        }, observerOptions);
+        },{ threshold: 0.15, rootMargin: '0px 0px -50px' });
+        items.forEach(x => observer.observe(x));
+    }
 
-        document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
-            observer.observe(el);
+    // Lógica para Modales (Footer links interactivos)
+    const modalWrapper = document.getElementById('modal-wrapper');
+    const modalBody = document.getElementById('modal-body');
+    const closeBtn = document.getElementById('modal-close');
+    const triggers = document.querySelectorAll('a[data-modal]');
+
+    const openModal = (contentId) => {
+        const sourceElement = document.getElementById('content-' + contentId);
+        if(sourceElement) {
+            modalBody.innerHTML = sourceElement.innerHTML;
+            modalWrapper.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+        }
+    };
+
+    const closeModal = () => {
+        modalWrapper.classList.remove('active');
+        document.body.style.overflow = '';
+        setTimeout(() => { modalBody.innerHTML = ''; }, 400); // Limpiar después de animación
+    };
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modalId = trigger.getAttribute('data-modal');
+            openModal(modalId);
         });
-    </script>
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    modalWrapper.addEventListener('click', (e) => {
+        if(e.target === modalWrapper) closeModal(); // Cerrar al clickear fuera del contenedor
+    });
+    
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape' && modalWrapper.classList.contains('active')) {
+            closeModal();
+        }
+    });
+})();
+</script>
 </body>
 </html>
