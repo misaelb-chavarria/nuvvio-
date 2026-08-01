@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#000000">
-<meta name="description" content="Nuvvio: 6-DOF Reentry Trajectory, Aerothermodynamic Ablation & Fragmentation Engine.">
-<title>Nuvvio | Reentry & Fragmentation Engine</title>
+<meta name="description" content="Selixor Technologies builds the scientific software layer for what happens after spaceflight: Nuvvio predicts atmospheric reentry and fragmentation, Pelagos predicts where launch debris lands.">
+<title>Selixor Technologies | Nuvvio &amp; Pelagos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@ img, video { display: block; max-width: 100%; height: auto; }
 .container { width: min(var(--max), calc(100% - 64px)); margin: auto; }
 .mono { font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.05em; }
 .eyebrow { display: flex; align-items: center; gap: 12px; color: var(--text-muted); font-size: 11px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; }
-.eyebrow:before { width: 24px; height: 1px; background: #555; content: ""; }
+.eyebrow:before { width: 24px; height: 1px; background: #555; content: ""; flex-shrink: 0; }
 
 /* Top Header */
 .site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: rgba(3,3,3,0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; }
@@ -38,22 +38,38 @@ img, video { display: block; max-width: 100%; height: auto; }
 .brand { display: flex; flex-direction: column; text-decoration: none; justify-content: center; }
 .brand-box { color: var(--accent); font-size: 16px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; text-shadow: 0 2px 10px rgba(0,0,0,1); line-height: 1.1; }
 .brand-powered { color: var(--text-dim); font-size: 9px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); transition: color .2s; }
+.nav-links a:hover { color: #fff; }
+@media(max-width: 720px){ .nav-links { display: none; } }
 
 /* Minimalist Hero */
 .hero { height: 100svh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; border-bottom: 1px solid var(--line); }
 .hero-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.5) contrast(1.15); }
 .hero-shade { position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.4) 100%), linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.5) 100%); }
 .hero-content { position: relative; z-index: 2; width: 100%; text-align: center; padding-top: 60px; }
+.hero-eyebrow { justify-content: center; margin-bottom: 22px; color: #ccc; }
 .hero-title { font-size: clamp(34px, 5.5vw, 90px); font-weight: 300; line-height: 1.1; letter-spacing: -0.03em; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,0.95), 0 0 20px rgba(0,0,0,0.8); }
 .hero-title span { display: block; color: #d0d0d0; }
+.hero-sub { max-width: 560px; margin: 22px auto 0; color: #c8c8c8; font-size: 15px; line-height: 1.7; text-shadow: 0 2px 10px rgba(0,0,0,1); }
 
 /* Data Strip */
 .data-strip { background: var(--bg); border-bottom: 1px solid var(--line); }
 .data-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-.data-item { min-height: 120px; padding: 24px; border-right: 1px solid var(--line); }
+.data-item { min-height: 130px; padding: 24px; border-right: 1px solid var(--line); }
 .data-item:first-child { border-left: 1px solid var(--line); }
 .data-label { color: var(--text-dim); font-size: 10px; font-family: var(--mono); margin-bottom: 12px; }
 .data-value { font-size: 15px; font-weight: 400; color: #d0d0d0; line-height: 1.4; }
+.data-num { font-size: clamp(26px, 2.6vw, 34px); font-weight: 300; color: #fff; margin-bottom: 10px; letter-spacing: -0.02em; }
+
+/* Video Section */
+.video-section { padding: 110px 0; border-bottom: 1px solid var(--line); background: #000; }
+.video-head { text-align: center; margin-bottom: 44px; }
+.video-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+.video-head h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 300; color: #fff; letter-spacing: -0.02em; }
+.video-frame-wrap { border: 1px solid var(--line); background: #050505; max-width: 900px; margin: 0 auto; }
+.video-frame { position: relative; width: 100%; padding-top: 56.25%; height: 0; overflow: hidden; background: #000; }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 
 /* Sections */
 .section { padding: 110px 0; border-bottom: 1px solid var(--line); }
@@ -61,31 +77,71 @@ img, video { display: block; max-width: 100%; height: auto; }
 .grid-layout.reversed { grid-template-columns: 1.1fr 0.9fr; }
 
 /* Typography blocks */
+.copy-block .eyebrow { margin-bottom: 4px; }
 .copy-block h2 { font-size: clamp(26px, 3.2vw, 44px); font-weight: 300; margin: 20px 0; letter-spacing: -0.02em; color: var(--accent); line-height: 1.15; }
 .copy-block p { color: var(--text-muted); margin-bottom: 20px; line-height: 1.7; font-size: 15px; }
 .copy-block p:last-child { margin-bottom: 0; }
 .technical-list { margin-top: 28px; list-style: none; border-top: 1px solid var(--line); padding-top: 20px; }
 .technical-list li { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+.technical-list li:last-child { margin-bottom: 0; }
 .technical-list strong { font-family: var(--mono); font-size: 11px; color: #aaa; letter-spacing: 0.05em; }
 .technical-list span { color: var(--text-dim); font-size: 14px; }
 
 /* Visual Containers */
 .visual-wrapper { border: 1px solid var(--line); background: #000; position: relative; overflow: hidden; }
 .visual-wrapper img { width: 100%; height: auto; display: block; filter: brightness(1.1) contrast(1.05); }
-.visual-caption { display: flex; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); }
+.visual-wrapper svg { width: 100%; height: auto; display: block; }
+.visual-caption { display: flex; justify-content: space-between; padding: 12px 16px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(5,5,5,0.95); backdrop-filter: blur(10px); gap: 12px; }
+.visual-caption span:last-child { text-align: right; }
 
-/* Banner Oceano.jpg - Degradado corregido para máxima legibilidad */
-.ocean-banner { position: relative; padding: 130px 0; overflow: hidden; border-bottom: 1px solid var(--line); background: #000; }
-.ocean-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.2) contrast(1.15); }
-.ocean-shade { position: absolute; inset: 0; background: radial-gradient(circle at 50% 35%, rgba(3,3,3,0.88) 0%, rgba(3,3,3,0.96) 75%), linear-gradient(180deg, rgba(3,3,3,0.8) 0%, rgba(3,3,3,0.95) 100%); }
-.ocean-banner .container { position: relative; z-index: 2; max-width: 900px; text-align: center; }
-.ocean-banner h2 { font-size: clamp(28px, 3.8vw, 52px); font-weight: 300; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.95); }
-.ocean-banner p { font-size: 17px; color: #d0d0d0; line-height: 1.7; text-shadow: 0 2px 10px rgba(0,0,0,1); }
+/* Full-width photo banners (problem / ocean) */
+.photo-banner { position: relative; padding: 130px 0; overflow: hidden; border-bottom: 1px solid var(--line); background: #000; }
+.photo-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.2) contrast(1.15); }
+.photo-shade { position: absolute; inset: 0; background: radial-gradient(circle at 50% 35%, rgba(3,3,3,0.88) 0%, rgba(3,3,3,0.96) 75%), linear-gradient(180deg, rgba(3,3,3,0.8) 0%, rgba(3,3,3,0.95) 100%); }
+.photo-banner .container { position: relative; z-index: 2; max-width: 900px; text-align: center; }
+.photo-banner h2 { font-size: clamp(28px, 3.8vw, 52px); font-weight: 300; color: #fff; margin-bottom: 20px; text-shadow: 0 4px 20px rgba(0,0,0,0.95); }
+.photo-banner p { font-size: 17px; color: #d0d0d0; line-height: 1.7; text-shadow: 0 2px 10px rgba(0,0,0,1); }
 
-/* Integration Section Video */
+/* Full-bleed simulation dashboard section */
+.sim-section { background: #000; border-bottom: 1px solid var(--line); padding: 90px 0; }
+.sim-head { text-align: center; margin-bottom: 44px; }
+.sim-head .eyebrow { justify-content: center; margin-bottom: 18px; }
+.sim-head h2 { font-size: clamp(24px, 2.8vw, 36px); font-weight: 300; color: #fff; letter-spacing: -0.02em; }
+.sim-panel { border: 1px solid var(--line); background: #050505; }
+.sim-panel svg { width: 100%; height: auto; display: block; }
+.sim-foot { display: flex; justify-content: space-between; padding: 14px 20px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 10px; color: var(--text-dim); flex-wrap: wrap; gap: 8px; }
+
+/* Timeline */
+.timeline-list { border-top: 1px solid var(--line); margin-top: 50px; }
+.timeline-row { display: grid; grid-template-columns: 90px 1fr; gap: 30px; padding: 30px 0; border-bottom: 1px solid var(--line); }
+.timeline-row .t-num { font-family: var(--mono); font-size: 12px; color: var(--text-dim); padding-top: 4px; }
+.timeline-row h3 { font-size: 18px; font-weight: 400; color: #fff; margin-bottom: 8px; letter-spacing: -0.01em; }
+.timeline-row p { color: var(--text-muted); font-size: 14px; line-height: 1.7; max-width: 640px; }
+
+/* Partner section */
+.partner-wordmark { font-family: var(--mono); font-size: clamp(30px, 4.5vw, 56px); letter-spacing: 0.06em; color: #fff; border: 1px solid var(--line); padding: 30px 26px; text-align: center; margin-bottom: 6px; }
+.partner-wordmark small { display: block; font-size: 10px; color: var(--text-dim); letter-spacing: 0.2em; margin-top: 10px; font-weight: 400; }
+
+/* Carousel */
+.carousel-section { padding: 70px 0; border-bottom: 1px solid var(--line); overflow: hidden; }
+.carousel-head { text-align: center; margin-bottom: 36px; }
+.carousel-track-wrap { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.carousel-track { display: flex; width: max-content; gap: 64px; animation: scroll-left 34s linear infinite; }
+.carousel-track span { font-family: var(--mono); font-size: 14px; letter-spacing: 0.1em; color: var(--text-dim); white-space: nowrap; text-transform: uppercase; }
+@keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .carousel-track { animation: none; } }
+
+/* Research cards */
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 50px; }
+.rcard { background: var(--bg); padding: 34px 30px; }
+.rcard .eyebrow { margin-bottom: 18px; }
+.rcard h3 { font-size: 18px; font-weight: 400; color: #fff; margin-bottom: 12px; letter-spacing: -0.01em; }
+.rcard p { color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+
+/* CTA / Integration Section */
 .integration-section { position: relative; padding: 130px 0; overflow: hidden; background: #000; border-bottom: 1px solid var(--line); }
-.integration-section video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.5) contrast(1.15); }
-.integration-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.5) 100%); }
+.integration-section img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(1.4) contrast(1.15); }
+.integration-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.6) 100%); }
 .integration-content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .integration-panel { background: rgba(10,10,10,0.85); border: 1px solid rgba(255,255,255,0.1); padding: 40px; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 
@@ -116,6 +172,10 @@ footer { background: #030303; padding: 70px 0; }
 
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
 .reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+}
 
 /* Responsive Adjustments for Tablets and Mobile (Up to 1024px) */
 @media(max-width: 1024px) {
@@ -130,7 +190,9 @@ footer { background: #030303; padding: 70px 0; }
     .footer-grid { grid-template-columns: 1fr 1fr; row-gap: 40px; }
     .modal-container { padding: 32px 20px; }
     .section { padding: 80px 0; }
-    .ocean-banner, .integration-section { padding: 90px 0; }
+    .photo-banner, .integration-section { padding: 90px 0; }
+    .video-section { padding: 80px 0; }
+    .cards-grid { grid-template-columns: 1fr; }
 }
 
 /* Specific Mobile Adjustments (Up to 600px) */
@@ -142,7 +204,10 @@ footer { background: #030303; padding: 70px 0; }
     .hero-title { font-size: clamp(30px, 7.5vw, 46px); }
     .integration-panel { padding: 28px 20px; }
     .section { padding: 60px 0; }
-    .ocean-banner, .integration-section { padding: 75px 0; }
+    .photo-banner, .integration-section { padding: 75px 0; }
+    .video-section { padding: 60px 0; }
+    .timeline-row { grid-template-columns: 1fr; gap: 8px; }
+    .partner-wordmark { font-size: 26px; padding: 22px 16px; }
 }
 </style>
 </head>
@@ -154,6 +219,12 @@ footer { background: #030303; padding: 70px 0; }
             <span class="brand-box">NUVVIO</span>
             <span class="brand-powered">Powered by Selixor Technologies</span>
         </a>
+        <div class="nav-links">
+            <a href="#nuvvio">Nuvvio</a>
+            <a href="#pelagos">Pelagos</a>
+            <a href="#varda">Partners</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 </header>
 
@@ -164,53 +235,69 @@ footer { background: #030303; padding: 70px 0; }
     </video>
     <div class="hero-shade"></div>
     <div class="container hero-content reveal">
-        <h1 class="hero-title">Atmospheric Reentry<br><span>& Fragmentation Engine.</span></h1>
+        <div class="eyebrow hero-eyebrow">Selixor Technologies — Aerospace Software</div>
+        <h1 class="hero-title">Every Mission Ends<br><span>Somewhere. We Compute Where.</span></h1>
+        <p class="hero-sub">Nuvvio and Pelagos model what happens after launch and after orbit — reentry, fragmentation, and debris recovery — so the space industry can grow without leaving a mess behind.</p>
     </div>
 </section>
 
 <section class="data-strip">
     <div class="container data-grid">
         <div class="data-item reveal">
-            <div class="data-label">KINEMATICS</div>
-            <div class="data-value">6-DOF Rigid Body Dynamics with Variable Mass Matrices.</div>
+            <div class="data-num">12,000+</div>
+            <div class="data-label">ACTIVE PAYLOADS IN ORBIT</div>
+            <div class="data-value">Every one of them will eventually come down, by design or by decay.</div>
         </div>
         <div class="data-item reveal">
-            <div class="data-label">ENVIRONMENT</div>
-            <div class="data-value">NRLMSISE-00 Atmosphere & HWM-14 Wind Models.</div>
+            <div class="data-num">2–3</div>
+            <div class="data-label">LAUNCHES WORLDWIDE, DAILY</div>
+            <div class="data-value">Each one sheds fairings, adapters, and stages before the payload even reaches orbit.</div>
         </div>
         <div class="data-item reveal">
-            <div class="data-label">THERMAL SOLVER</div>
-            <div class="data-value">Coupled Radiative-Convective Heat Flux & Ablation.</div>
+            <div class="data-num">71%</div>
+            <div class="data-label">OF EARTH IS OCEAN</div>
+            <div class="data-value">Most uncontrolled reentries and debris fall there — largely unmodeled, until now.</div>
         </div>
         <div class="data-item reveal">
-            <div class="data-label">STOCHASTICS</div>
-            <div class="data-value">Monte Carlo (n=100,000) Casualty Expectancy Mapping.</div>
+            <div class="data-num">2</div>
+            <div class="data-label">SOFTWARE PLATFORMS, ONE LIFECYCLE</div>
+            <div class="data-value">Nuvvio governs spacecraft disposal. Pelagos governs launch debris recovery.</div>
         </div>
     </div>
 </section>
 
-<section class="section">
+<section class="photo-banner">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Earth%20from%20Orbit-%20Atmospheric%20Rivers%20Hit%20West%20Cost%20(52660935489).png" alt="Earth's atmosphere seen from orbit" loading="lazy">
+    <div class="photo-shade"></div>
+    <div class="container reveal">
+        <div class="eyebrow" style="justify-content:center;margin-bottom:20px;color:#aaa;">The Industry's Blind Spot</div>
+        <h2>Spaceflight Was Engineered For Liftoff. Not For What Comes Down.</h2>
+        <p>Launch vehicles, satellites, and constellations are certified to extraordinary precision — until the moment their mission ends. What happens after is still handled with rough estimates and wide margins of error, at a time when the industry is launching and deorbiting more hardware than ever before.</p>
+    </div>
+</section>
+
+<section class="section" id="nuvvio">
     <div class="container grid-layout">
         <div class="copy-block reveal">
-            <div class="eyebrow">Computational Architecture</div>
-            <h2>Deterministic Demise Modeling.</h2>
-            <p>End-of-life de-orbit procedures require mathematically rigorous evidence to satisfy international orbital debris mitigation standards (e.g., NASA-STD-8719.14). Standard propagation is insufficient for high-mass orbital infrastructure undergoing destructive reentry.</p>
-            <p>Nuvvio operates in the deterministic computational layer. Our engine resolves the coupled equations of motion and heat transfer. By treating the spacecraft as an Object-Oriented hierarchical assembly, we apply lumped-mass thermal network models to predict the exact altitude of structural yield, melt points, and the aerodynamic transition of sub-components.</p>
+            <div class="eyebrow">Product — Nuvvio</div>
+            <h2>Reentry, Modeled Before It Happens.</h2>
+            <p>End-of-life de-orbit requires mathematically rigorous evidence to satisfy international debris mitigation standards. Nuvvio resolves the coupled equations of motion and heat transfer that govern how a spacecraft actually breaks apart — not just where it might land.</p>
+            <p>Treating each vehicle as a hierarchical assembly, Nuvvio applies lumped-mass thermal network models to predict the exact altitude of structural yield, melting points, and the aerodynamic transition of every surviving sub-component.</p>
             <ul class="technical-list">
                 <li>
                     <strong>AEROTHERMODYNAMIC HEATING</strong>
-                    <span>Real-time calculation of stagnation point heat flux and wall temperatures based on varying ballistic coefficients.</span>
+                    <span>Real-time stagnation point heat flux and wall temperature across varying ballistic coefficients.</span>
                 </li>
                 <li>
                     <strong>EPHEMERIS INGESTION</strong>
-                    <span>Direct API integration for TLE (Two-Line Element) and high-fidelity covariance matrices.</span>
+                    <span>Direct API integration for TLE data and high-fidelity covariance matrices.</span>
                 </li>
             </ul>
         </div>
         <div class="visual-wrapper reveal">
-            <img src="entrada.png" alt="Reentry Simulation & Trajectory Telemetry" loading="lazy">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Progress%20MS-02%20reentry%20plasma%20trail.jpg" alt="Spacecraft reentry plasma trail" loading="lazy">
             <div class="visual-caption">
-                <span>SYS.DISPLAY // 6-DOF TRAJECTORY SOLVER</span>
+                <span>EVENT: DESTRUCTIVE REENTRY</span>
                 <span>STATE: HYPERSONIC TRANSITION</span>
             </div>
         </div>
@@ -220,7 +307,7 @@ footer { background: #030303; padding: 70px 0; }
 <section class="section" style="background: #060606;">
     <div class="container grid-layout reversed">
         <div class="visual-wrapper reveal">
-            <img src="basura.png" alt="Object recovery telemetry at Point Nemo" loading="lazy">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Location%20of%20Point%20Nemo%20in%20the%20South%20Pacific%20Ocean.png" alt="Location of Point Nemo in the South Pacific Ocean" loading="lazy" style="filter:invert(1) brightness(0.85) contrast(1.1);">
             <div class="visual-caption">
                 <span>TARGET: SPOA (POINT NEMO)</span>
                 <span>DISPERSION: 99.998% CONFIDENCE</span>
@@ -228,40 +315,214 @@ footer { background: #030303; padding: 70px 0; }
         </div>
         <div class="copy-block reveal">
             <div class="eyebrow">Terminal Dispersion Footprint</div>
-            <h2>SPOA Operational Intelligence.</h2>
-            <p>The South Pacific Ocean Uninhabited Area (SPOA), colloquially known as Point Nemo, is the mandated target for controlled spacecraft disposal. Reaching SPOA coordinates is a baseline; containing the resulting debris shower is the engineering challenge.</p>
-            <p>Upon atmospheric breakup, a spacecraft fragments into thousands of objects, each with unique aerodynamic characteristics (Cd, Cl). Nuvvio simulates the descent trajectory of every surviving component. We compute the Probability Density Function (PDF) of the debris footprint, guaranteeing that the maximum dispersion ellipse remains strictly confined within uninhabited oceanic boundaries.</p>
-            <p>This allows space agencies to certify that the Casualty Expectancy (E<sub>c</sub>) margin remains strictly below the 1 &times; 10<sup>-4</sup> threshold under all atmospheric perturbations.</p>
+            <h2>Point Nemo Is A Baseline, Not An Answer.</h2>
+            <p>The South Pacific Ocean Uninhabited Area — Point Nemo — is the mandated target for controlled spacecraft disposal. Reaching those coordinates is the easy part. Containing the resulting debris shower is the actual engineering challenge.</p>
+            <p>On breakup, a spacecraft fragments into thousands of pieces, each with its own aerodynamic signature. Nuvvio simulates the descent of every one, computing a probability density function that keeps the maximum dispersion ellipse strictly inside uninhabited waters — with Casualty Expectancy held below the 1 &times; 10<sup>-4</sup> threshold under all atmospheric conditions.</p>
         </div>
     </div>
 </section>
 
-<section class="ocean-banner">
-    <img src="oceano.jpg" alt="Pacific Ocean Horizon at SPOA" loading="lazy">
-    <div class="ocean-shade"></div>
+<section class="photo-banner">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/HMS%20Ocean%20at%20sea.%20MOD%2045160033.jpg" alt="Open ocean, aerial view" loading="lazy">
+    <div class="photo-shade"></div>
     <div class="container reveal">
         <div class="eyebrow" style="justify-content: center; margin-bottom: 20px; color: #aaa;">Environmental Constraints</div>
-        <h2>Marine Impact & Oceanic Ecosystem Protection.</h2>
-        <p>Beyond mathematical risk mitigation, precise footprint containment prevents toxic hypergolic residues and heavy structural metals from polluting sensitive marine ecosystems or maritime routes. The isolation of Point Nemo minimizes human risk, while Nuvvio’s rigorous ablation modeling minimizes the total surviving mass that reaches the ocean surface.</p>
+        <h2>Marine Impact &amp; Oceanic Ecosystem Protection.</h2>
+        <p>Precise footprint containment keeps hypergolic residues and heavy structural metals out of sensitive marine ecosystems and shipping lanes. Isolation minimizes human risk; Nuvvio's ablation modeling minimizes the surviving mass that ever reaches the water.</p>
+    </div>
+</section>
+
+<section class="sim-section">
+    <div class="container">
+        <div class="sim-head reveal">
+            <div class="eyebrow">Live Simulation Output</div>
+            <h2>Monte Carlo Debris Dispersion.</h2>
+        </div>
+        <div class="sim-panel reveal">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Debris-GEO1280.jpg" alt="Tracked objects in Earth orbit, including satellites and orbital debris" loading="lazy" style="width:100%;display:block;filter:brightness(1.05) contrast(1.05);">
+            <div class="sim-foot">
+                <span>ENGINE: NUVVIO CORE v2.4.1</span>
+                <span>SOLVER: STOCHASTIC / RK45</span>
+                <span>OUTPUT: IMPACT GEOJSON POLYGON</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="video-section">
+    <div class="container">
+        <div class="video-head reveal">
+            <div class="eyebrow">See It In Motion</div>
+            <h2>Nuvvio, Explained.</h2>
+        </div>
+        <div class="video-frame-wrap reveal">
+            <div class="video-frame">
+                <iframe src="https://www.youtube.com/embed/Nnk8INKLW4I?si=Z_WO4uJHqHDB_jXV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="pelagos">
+    <div class="container grid-layout reversed">
+        <div class="visual-wrapper reveal">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Falcon%209%20-%20Starlink%206-103%20Launch%20(9524394).jpg" alt="Falcon 9 rocket launch" loading="lazy">
+            <div class="visual-caption">
+                <span>EVENT: FAIRING SEPARATION</span>
+                <span>PHASE: ASCENT</span>
+            </div>
+        </div>
+        <div class="copy-block reveal">
+            <div class="eyebrow">Product — Pelagos // Final Development Stage</div>
+            <h2>What Falls On The Way Up Matters Too.</h2>
+            <p>Every launch sheds hardware long before the payload reaches orbit — fairings, adapters, and secondary structures released mid-ascent, then left to fall wherever wind and physics take them.</p>
+            <p>Pelagos predicts exactly where. It models trajectory, wind influence, atmospheric drag, and marine currents to define a recoverable footprint before debris ever reaches the water — turning cleanup from a search into a plan.</p>
+            <ul class="technical-list">
+                <li>
+                    <strong>TRAJECTORY RECONSTRUCTION</strong>
+                    <span>Per-component descent modeling for fairings, adapters, and detached structures.</span>
+                </li>
+                <li>
+                    <strong>MARINE DRIFT PROJECTION</strong>
+                    <span>Post-splashdown current modeling to define a live recovery search radius.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background:#060606;">
+    <div class="container grid-layout">
+        <div class="copy-block reveal">
+            <div class="eyebrow">Launch Corridor Intelligence</div>
+            <h2>From Launch Corridor To Recovery Zone.</h2>
+            <p>Pelagos was first built for the launch corridors near Starbase, correlating real ascent telemetry with drop-zone predictions. It's designed to work the same way for every launch provider, on any coastline.</p>
+            <p>The output isn't a report — it's a bounded, prioritized search area a recovery vessel can act on before debris disperses or sinks.</p>
+        </div>
+        <div class="visual-wrapper reveal">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Of%20Course%20I%20Still%20Love%20You.jpg" alt="SpaceX autonomous recovery vessel at sea" loading="lazy">
+            <div class="visual-caption">
+                <span>ASSET CLASS: RECOVERY VESSEL</span>
+                <span>STATE: FINAL VALIDATION</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="copy-block reveal" style="max-width:640px;">
+            <div class="eyebrow">Company Roadmap</div>
+            <h2>Built In Stages, Flying Today.</h2>
+        </div>
+        <div class="timeline-list reveal">
+            <div class="timeline-row">
+                <div class="t-num">01</div>
+                <div><h3>Nuvvio Core, Operational</h3><p>The reentry and fragmentation engine is live, integrated by Varda Space for the decommissioning of returning capsule hardware.</p></div>
+            </div>
+            <div class="timeline-row">
+                <div class="t-num">02</div>
+                <div><h3>SPOA Certification Layer</h3><p>Casualty Expectancy modeling extends into full Monte Carlo dispersion mapping for regulatory-grade compliance evidence.</p></div>
+            </div>
+            <div class="timeline-row">
+                <div class="t-num">03</div>
+                <div><h3>Pelagos, Final Development</h3><p>The launch debris recovery engine enters final validation across the launch corridors near Starbase.</p></div>
+            </div>
+            <div class="timeline-row">
+                <div class="t-num">04</div>
+                <div><h3>Multi-Provider Rollout</h3><p>Pelagos opens beyond a single launch site — built to track fairings, adapters, and stages for any provider, anywhere.</p></div>
+            </div>
+            <div class="timeline-row">
+                <div class="t-num">05</div>
+                <div><h3>One Lifecycle Layer</h3><p>Nuvvio and Pelagos converge into a single computational layer covering everything from liftoff to ocean floor.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="varda" style="background:#060606;">
+    <div class="container grid-layout">
+        <div class="reveal">
+            <div class="partner-wordmark">VARDA SPACE<small>ORBITAL MANUFACTURING</small></div>
+        </div>
+        <div class="copy-block reveal">
+            <div class="eyebrow">Current Partner</div>
+            <h2>Manufacturing In Orbit Needs A Way Down.</h2>
+            <p>Varda Space manufactures pharmaceuticals and advanced materials in microgravity, then returns them to Earth inside recoverable reentry capsules — a mission that depends entirely on getting that return right, every time.</p>
+            <p>Orbital manufacturing can only scale if reentry is boring: predictable, certifiable, and safe by default. That's the same standard Nuvvio was built to hold. Nuvvio is currently used by Varda Space for atmospheric reentry analysis of its returning hardware.</p>
+        </div>
+    </div>
+</section>
+
+<section class="carousel-section">
+    <div class="container carousel-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Engineering Ecosystem</div>
+    </div>
+    <div class="carousel-track-wrap">
+        <div class="carousel-track">
+            <span>Varda Space</span><span>CUDA</span><span>C++</span><span>Rust</span><span>Python</span><span>Docker</span><span>PostgreSQL</span><span>Linux</span><span>GitHub</span><span>OpenGL</span><span>WebGL</span><span>CesiumJS</span>
+            <span>Varda Space</span><span>CUDA</span><span>C++</span><span>Rust</span><span>Python</span><span>Docker</span><span>PostgreSQL</span><span>Linux</span><span>GitHub</span><span>OpenGL</span><span>WebGL</span><span>CesiumJS</span>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="copy-block reveal" style="max-width:640px;">
+            <div class="eyebrow">Research &amp; Publications</div>
+            <h2>The Science Underneath.</h2>
+        </div>
+        <div class="cards-grid reveal">
+            <div class="rcard">
+                <div class="eyebrow">Risk Modeling</div>
+                <h3>Casualty Expectancy</h3>
+                <p>Computing E<sub>c</sub> margins under NASA-STD-8719.14, extended to multi-body fragmentation events.</p>
+            </div>
+            <div class="rcard">
+                <div class="eyebrow">Flow Physics</div>
+                <h3>Rarefied Hypersonic Flow</h3>
+                <p>Modeling the transitional flow regimes that dominate high-altitude breakup and heating.</p>
+            </div>
+            <div class="rcard">
+                <div class="eyebrow">Marine Ecology</div>
+                <h3>Debris Density Mapping</h3>
+                <p>Long-term tracking of surviving fragment distribution across the SPOA and launch corridors.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background:#060606;">
+    <div class="container grid-layout reversed">
+        <div class="visual-wrapper reveal">
+            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Falcon%209%20Rocket%20in%20Hangar.jpg" alt="Falcon 9 rocket in hangar" loading="lazy">
+            <div class="visual-caption">
+                <span>STATUS: PRE-LAUNCH INTEGRATION</span>
+                <span>SCOPE: MULTI-PROVIDER</span>
+            </div>
+        </div>
+        <div class="copy-block reveal">
+            <div class="eyebrow">Where This Goes Next</div>
+            <h2>Debris Management As Infrastructure, Not Afterthought.</h2>
+            <p>As launch cadence keeps climbing, the question isn't whether hardware falls back to Earth — it's whether anyone can say exactly where. Nuvvio and Pelagos are built to answer that for every mission, not just the ones that go wrong.</p>
+            <p>The goal is a default layer underneath the entire industry: certifiable disposal, recoverable debris, and an ocean that stays a footnote instead of a headline.</p>
+        </div>
     </div>
 </section>
 
 <section class="integration-section">
-    <video autoplay muted loop playsinline preload="metadata">
-        <source src="video.mp4" type="video/mp4">
-    </video>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/SpaceX%20Mission%20Control%20in%20Hawthorne%2C%20CA.jpg" alt="Aerospace mission operations center" loading="lazy">
     <div class="integration-shade"></div>
     <div class="container integration-content">
         <div class="copy-block reveal" style="text-shadow: 0 2px 10px rgba(0,0,0,1);">
-            <div class="eyebrow" style="color: #ccc; border-color: rgba(255,255,255,0.3);">Industrial Deployment</div>
-            <h2 style="color: #fff;">Verda Space Industries Integration.</h2>
-            <p style="color: #e0e0e0; font-size: 17px;">Verda Space Industries relies on Nuvvio's computational architecture to certify the end-of-life decommissioning of their Low Earth Orbit (LEO) assets.</p>
-            <p style="color: #ccc;">Through our API, Verda Space automatically processes destructive reentry protocols for massive orbital modules. Nuvvio models the localized atmospheric conditions and material ablation, generating the critical compliance documentation required by international regulatory bodies before any de-orbit burn is executed.</p>
+            <div class="eyebrow" style="color: #ccc; border-color: rgba(255,255,255,0.3);">Get Access</div>
+            <h2 style="color: #fff;">Compute The Footprint.</h2>
+            <p style="color: #e0e0e0; font-size: 17px;">Access the scientific engines behind Nuvvio and Pelagos — thermal ablation, structural fragmentation, and debris footprint analysis, available through one API.</p>
         </div>
         <div class="integration-panel reveal">
             <div class="copy-block">
-                <h3 style="font-size: 18px; font-weight: 400; margin-bottom: 14px; color:#fff;">Compute the Footprint.</h3>
-                <p style="font-size: 14px; margin-bottom: 0;">Access the scientific engine for thermal stress simulation, structural fragmentation, and rigorous impact footprint analysis.</p>
+                <h3 style="font-size: 18px; font-weight: 400; margin-bottom: 14px; color:#fff;">Request Engineering Access.</h3>
+                <p style="font-size: 14px; margin-bottom: 0;">For launch providers, satellite operators, and research teams working on end-of-life or debris recovery planning.</p>
                 <a href="contact.html" class="btn">REQUEST API CREDENTIALS</a>
             </div>
         </div>
@@ -276,18 +537,19 @@ footer { background: #030303; padding: 70px 0; }
             <a data-modal="arch">Architecture Overview</a>
             <a data-modal="aero">Aerothermodynamics</a>
             <a data-modal="stochastic">Stochastic Modeling</a>
+            <a data-modal="pelagos">Pelagos Overview</a>
             <a data-modal="release">Release Notes</a>
         </div>
         <div class="footer-col">
             <div class="footer-title">RESOURCES</div>
             <a data-modal="api-doc">API Documentation</a>
             <a data-modal="telemetry">Telemetry Integration</a>
-            <a data-modal="research">Research & Papers</a>
+            <a data-modal="research">Research &amp; Papers</a>
         </div>
         <div class="footer-col">
             <div class="footer-title">COMPANY</div>
             <a data-modal="about">About Nuvvio</a>
-            <a data-modal="verda">Verda Space Partnership</a>
+            <a data-modal="verda">Varda Space Partnership</a>
             <a data-modal="marine">Marine Protection</a>
         </div>
         <div class="footer-col">
@@ -311,20 +573,29 @@ footer { background: #030303; padding: 70px 0; }
         <div class="eyebrow">Engine</div>
         <h2>Architecture Overview</h2>
         <p>Nuvvio's core computational engine is developed under a high-performance architecture, written in C++20 for physical solvers and Rust for concurrency safety.</p>
-        <h3>Orbital Propagation & Dynamics</h3>
+        <h3>Orbital Propagation &amp; Dynamics</h3>
         <p>We utilize adaptive high-order numerical integration methods (RK45) to ensure pinpoint precision across hypersonic flight regimes.</p>
     </div>
     <div id="content-aero">
         <div class="eyebrow">Engine</div>
         <h2>Aerothermodynamics</h2>
         <p>Advanced modeling of radiative and convective heat transfer throughout the destructive reentry trajectory.</p>
-        <h3>Ablation & Materials</h3>
+        <h3>Ablation &amp; Materials</h3>
         <p>Detailed tracking of melting points and phase changes for aerospace alloys using lumped-mass thermal network simulations.</p>
     </div>
     <div id="content-stochastic">
         <div class="eyebrow">Engine</div>
         <h2>Stochastic Modeling</h2>
         <p>Automated execution of Monte Carlo simulations (up to n=100,000) to compute probabilistic impact footprint density distributions.</p>
+    </div>
+    <div id="content-pelagos">
+        <div class="eyebrow">Engine</div>
+        <h2>Pelagos Overview</h2>
+        <p>Pelagos predicts where launch debris — fairings, adapters, and secondary structures — will land after release during ascent.</p>
+        <h3>Inputs</h3>
+        <p>Ascent telemetry, atmospheric wind profiles, and vehicle drag characteristics for each released component.</p>
+        <h3>Outputs</h3>
+        <p>A bounded, time-decaying recovery search area accounting for marine drift after splashdown. Currently in final development across launch corridors near Starbase, built for use by any launch provider.</p>
     </div>
     <div id="content-release">
         <div class="eyebrow">Engine</div>
@@ -335,7 +606,7 @@ footer { background: #030303; padding: 70px 0; }
         <div class="eyebrow">Resources</div>
         <h2>API Documentation</h2>
         <p>Nuvvio's API provides programmatic access to our reentry propagation engines and thermal ablation models. It is designed to integrate directly into Mission Control software pipelines.</p>
-        <h3>Authentication & Limits</h3>
+        <h3>Authentication &amp; Limits</h3>
         <p>Access requires API key authentication via Bearer Tokens. Standard engineering account rate limits allow up to 500 complete trajectory simulations per hour. Massive Monte Carlo processing requires asynchronous queues via Webhooks.</p>
         <h3>Payload Format</h3>
         <p>The engine ingests 6-DOF state vectors (Position X, Y, Z; Velocity Vx, Vy, Vz; and Attitude Quaternions) alongside vehicle inertial properties. Responses are delivered in structured JSON format detailing second-by-second telemetry, thermal breakup altitudes, and impact GeoJSON polygons.</p>
@@ -347,7 +618,7 @@ footer { background: #030303; padding: 70px 0; }
     </div>
     <div id="content-research">
         <div class="eyebrow">Resources</div>
-        <h2>Research & Papers</h2>
+        <h2>Research &amp; Papers</h2>
         <p>Technical publications detailing rarefied hypersonic flow modeling and Casualty Expectancy (E<sub>c</sub>) computations under NASA-STD-8719.14 specifications.</p>
     </div>
     <div id="content-about">
@@ -357,8 +628,8 @@ footer { background: #030303; padding: 70px 0; }
     </div>
     <div id="content-verda">
         <div class="eyebrow">Company</div>
-        <h2>Verda Space Partnership</h2>
-        <p>Dedicated architectural integration supporting the automated decommissioning and de-orbit certification of massive Low Earth Orbit (LEO) commercial constellations.</p>
+        <h2>Varda Space Partnership</h2>
+        <p>Dedicated support for the atmospheric reentry analysis of Varda Space's returning orbital manufacturing capsules, certifying safe descent and disposal.</p>
     </div>
     <div id="content-marine">
         <div class="eyebrow">Company</div>
@@ -424,7 +695,7 @@ footer { background: #030303; padding: 70px 0; }
     modalWrapper.addEventListener('click', (e) => {
         if(e.target === modalWrapper) closeModal();
     });
-    
+
     document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape' && modalWrapper.classList.contains('active')) {
             closeModal();
